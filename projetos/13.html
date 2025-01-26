@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- ===== TITLE and META ===== -->
+    <title>Personalização de Saudação</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Refresh" content="25; 14.html" />
+    <meta
+      name="viewport"
+      content="width=device-width,maximum-scale=0.9,user-scalable=0"
+    />
+    <meta name="keywords" content="Personalização de Saudação" />
+    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta content="#333333" name="theme-color" />
+    <meta name="robots" content="index, follow" />
+    <!-- ==== OPEN GRAPH and SECURITY ==== -->
+    <meta property="og:title" content="Personalização de Saudação" />
+    <meta property="og:type" content="website" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- ==== MICROSOFT TILE ==== -->
+    <meta name="application-name" content="Personalização de Saudação" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <!-- ===== CSS ===== -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #331f19;
+      }
+      .container {
+        text-align: center;
+        background-color: #cbbba7;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #331f19;
+      }
+      p {
+        color: #331f19;
+        font-size: 1.1em;
+      }
+      .saudacao {
+        font-size: 1.5em;
+        color: #60041a;
+        margin-top: 10px;
+      }
+      button {
+        background-color: #60041a;
+        color: #f4f0ea;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        margin-top: 15px;
+      }
+      button:hover {
+        background-color: #a34743;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== CONTEÚDO ===== -->
+    <div class="container">
+      <h1>Boas vindas!</h1>
+      <p>Vamos personalizar sua saudação usando JavaScript!</p>
+      <div class="saudacao" id="mensagemSaudacao">Olá, visitante!</div>
+      <button onClick="mudarNome()">Personalizar saudação</button>
+    </div>
+  </body>
+  <!-- ===== SCRIPT ===== -->
+  <script defer>
+    function mudarNome() {
+      let nome = "Alan";
+      document.getElementById("mensagemSaudacao").textContent =
+        "Olá, " + nome + "!";
+    }
+  </script>
+</html>

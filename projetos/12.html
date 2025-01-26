@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- ===== TITLE and META ===== -->
+    <title>Efeito de movimento de grade cronometrado</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Refresh" content="25; 13.html" />
+    <meta
+      name="viewport"
+      content="width=device-width,maximum-scale=0.9,user-scalable=0"
+    />
+    <meta name="keywords" content="Efeito de movimento de grade cronometrado" />
+    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta content="#333333" name="theme-color" />
+    <meta name="robots" content="index, follow" />
+    <!-- ==== OPEN GRAPH and SECURITY ==== -->
+    <meta
+      property="og:title"
+      content="Efeito de movimento de grade cronometrado"
+    />
+    <meta property="og:type" content="website" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- ==== MICROSOFT TILE ==== -->
+    <meta
+      name="application-name"
+      content="Efeito de movimento de grade cronometrado"
+    />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <!-- ===== CSS ===== -->
+    <style>
+      :root {
+        --g1: rgb(98, 0, 234);
+        --g2: #ff6a00;
+      }
+      @keyframes background-pan {
+        from {
+          background-position: 0% center;
+        }
+
+        to {
+          background-position: -200% center;
+        }
+      }
+      body {
+        animation: background-pan 10s linear infinite;
+        background: linear-gradient(to right, var(--g1), var(--g2), var(--g1));
+        background-size: 200%;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0px;
+      }
+      body.toggled {
+        animation: none;
+      }
+      body.toggled > #title {
+        opacity: 0;
+      }
+
+      body.toggled > #tiles > .tile:hover {
+        opacity: 0.1 !important;
+      }
+      .centered {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #tiles {
+        height: calc(100vh - 1px);
+        width: calc(100vw - 1px);
+        position: relative;
+        z-index: 2;
+
+        display: grid;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: repeat(var(--rows), 1fr);
+      }
+      .tile {
+        cursor: pointer;
+        position: relative;
+      }
+      .tile:hover:before {
+        background-color: rgb(30, 30, 30);
+      }
+      .tile:before {
+        background-color: rgb(15, 15, 15);
+        content: "";
+        inset: 0.5px;
+        position: absolute;
+      }
+      #title {
+        color: white;
+        font-family: "Rubik", sans-serif;
+        font-size: 4.1vw;
+        margin: 0px;
+        pointer-events: none;
+        transition: opacity 1200ms ease;
+        width: 50vw;
+        z-index: 3;
+      }
+      #title > .fancy {
+        color: var(--g2);
+        font-family: "Fira Code";
+        font-size: 1.8em;
+        line-height: 1.6em;
+      }
+    </style>
+  </head>
+  <!-- ===== CONTEÚDO ===== -->
+  <body>
+    <div id="tiles"></div>
+    <h1 id="title" class="centered">
+      Pesquise e encontre o seu curso de TI com exclusividade no
+      <span class="fancy">InovaTech</span>.
+    </h1>
+  </body>
+  <!-- ===== SCRIPT ===== -->
+  <script defer>
+    const wrapper = document.getElementById("tiles");
+
+    let columns = 0,
+      rows = 0,
+      toggled = false;
+
+    const toggle = () => {
+      toggled = !toggled;
+      document.body.classList.toggle("toggled");
+    };
+
+    const handleOnClick = (index) => {
+      toggle();
+      anime({
+        targets: ".tile",
+        opacity: toggled ? 0 : 1,
+        delay: anime.stagger(50, {
+          grid: [columns, rows],
+          from: index,
+        }),
+      });
+    };
+
+    const createTile = (index) => {
+      const tile = document.createElement("div");
+      tile.classList.add("tile");
+      tile.style.opacity = toggled ? 0 : 1;
+      tile.onclick = (e) => handleOnClick(index);
+      return tile;
+    };
+
+    const createTiles = (quantity) => {
+      Array.from(Array(quantity)).map((tile, index) => {
+        wrapper.appendChild(createTile(index));
+      });
+    };
+
+    const createGrid = () => {
+      wrapper.innerHTML = "";
+      const size = document.body.clientWidth > 800 ? 100 : 50;
+      columns = Math.floor(document.body.clientWidth / size);
+      rows = Math.floor(document.body.clientHeight / size);
+      wrapper.style.setProperty("--columns", columns);
+      wrapper.style.setProperty("--rows", rows);
+      createTiles(columns * rows);
+    };
+
+    createGrid();
+
+    window.onresize = () => createGrid();
+  </script>
+  <!-- Include React -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js"></script>
+
+  <!-- Include Anime.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.1.0/anime.min.js"></script>
+
+  <!-- Include RandomColor -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.4/randomColor.min.js"></script>
+</html>
