@@ -5,14 +5,14 @@
     <title>Lista de Tarefas</title>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="Refresh" content="25; 01.html" />
+    <!-- <meta http-equiv="Refresh" content="25; 01.html" /> -->
     <meta
       name="viewport"
       content="width=device-width,maximum-scale=0.9,user-scalable=0"
     />
     <meta name="keywords" content="Lista de Tarefas" />
     <meta name="Author" content="Alan Ryan da Silva Domingues" />
-    <meta content="#333333" name="theme-color" />
+    <meta content="#222" name="theme-color" />
     <meta name="robots" content="index, follow" />
     <!-- ==== OPEN GRAPH and SECURITY ==== -->
     <meta property="og:title" content="Lista de Tarefas" />
@@ -26,83 +26,394 @@
     <!-- ===== CSS ===== -->
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Roboto", sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
         margin: 0;
-        background-color: #331f19;
+        background-image: linear-gradient(
+          180deg,
+          #0f2027,
+          #162c36,
+          #1b313f,
+          #203a43,
+          #24434d,
+          #254351,
+          #294b5a,
+          #2c5364,
+          #325e70,
+          #3a6073,
+          #426b7d,
+          #4b7585,
+          #567f8c,
+          #5e8a96,
+          #678493,
+          #708a97,
+          #7a939f,
+          #869da6,
+          #93a8af
+        );
+
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        color: #eee;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at center, transparent, #4a46463d);
+        background-size: 5px 5px;
+        animation: starryBackground 10s linear infinite;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      @keyframes starryBackground {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: -100px -100px;
+        }
       }
 
       .container {
         text-align: center;
-        background-color: #cbbba7;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: rgba(240, 240, 240, 0.85);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
         width: 90%;
         max-width: 600px;
-        border: 2px solid #8b7d70;
+        border: 2px solid #7d8899;
+        position: relative;
+        z-index: 1;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+        backdrop-filter: blur(5px);
+      }
+
+      .container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
       }
 
       h1 {
-        color: #331f19;
+        color: #552300;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
       }
 
       p {
-        color: #331f19;
+        color: #333;
         font-size: 1.1em;
       }
 
-      button {
-        background-color: #60041a;
-        color: #f4f0ea;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1em;
-        transition: background-color 0.3s ease;
+      #mensagem {
         margin-top: 10px;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.3s ease, color 0.3s ease;
+      }
+
+      #mensagem.erro {
+        color: #a34743;
+        opacity: 1;
+      }
+
+      #mensagem.sucesso {
+        color: #28a745;
+        opacity: 1;
+      }
+
+      button {
+        background-color: #552300;
+        color: #f0e8e1;
+        padding: 12px 22px;
+        border: 2px solid #7d8899;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease, border-color 0.3s ease,
+          transform 0.2s ease;
+        margin-top: 15px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
       }
 
       button:hover {
-        background-color: #a34743;
+        background-color: #c37729;
+        border-color: #c37729;
+        transform: scale(1.05);
       }
 
       ul {
         list-style: none;
         padding: 0;
-        margin-top: 20px;
+        margin-top: 25px;
       }
 
       ul li {
-        background-color: #f4f0ea;
-        color: #331f19;
-        padding: 10px;
-        margin: 5px 0;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #333;
+        padding: 15px;
+        margin: 8px 0;
+        border-radius: 6px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+
+      ul li:hover {
+        background-color: rgba(255, 255, 255, 1);
+        transform: scale(1.01);
+      }
+
+      ul li .task-title {
+        cursor: pointer;
+        flex-grow: 1;
+        text-align: left;
+        margin-right: 10px;
+      }
+
+      ul li .button-container {
+        display: flex;
+        gap: 5px;
+      }
+
+      ul li .remover,
+      .editar {
+        color: #f4f0ea;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9em;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      ul li .remover {
+        background-color: #a34743;
+      }
+
+      ul li .editar {
+        background-color: #ff9900;
+      }
+
+      ul li .editar:hover {
+        background-color: #c37729;
+        transform: scale(1.03);
+      }
+
+      ul li .remover:hover {
+        background-color: #60041a;
+        transform: scale(1.03);
+      }
+
+      ul li .edit-input {
+        width: 65%;
+        padding: 8px;
+        border: 1px solid #7d8899;
+        border-radius: 4px;
+        font-size: 1em;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        outline: none;
+      }
+
+      ul li .edit-input:focus {
+        border-color: #552300;
+        box-shadow: inset 0 1px 2px rgba(85, 35, 0, 0.3);
+      }
+
+      ul li.editing {
+        background-color: #f0e8e1;
       }
 
       input[type="text"] {
-        padding: 10px;
+        padding: 12px;
         width: 80%;
         max-width: 500px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        border: 2px solid #8b7d70;
-        border-radius: 5px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        border: 2px solid #7d8899;
+        border-radius: 6px;
         font-size: 1em;
         box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         outline: none;
-        transition: border-color 0.3s ease;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        background-color: #fff;
+        color: #333;
       }
 
       input[type="text"]:focus {
+        border-color: #552300;
+        box-shadow: inset 0 2px 4px rgba(85, 35, 0, 0.3);
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          width: 95%;
+          margin: 10px;
+        }
+      }
+
+      #button-add {
+        background-color: #28a745;
+      }
+      #button-add:hover {
+        background-color: #26853c;
+        border-color: #26853c;
+      }
+
+      #button-clear {
+        background-color: #a34743;
+      }
+
+      #button-clear:hover {
+        background-color: #60041a;
         border-color: #60041a;
-        box-shadow: inset 0 2px 4px rgba(96, 4, 26, 0.3);
+        transform: scale(1.03);
+      }
+
+      .import-export-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .import-export-container button {
+        margin-top: 0;
+        display: inline-block;
+      }
+      .import-export-container #button-import {
+        display: inline-block;
+      }
+      #input-import {
+        display: none;
+      }
+
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f0e8e1;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        max-width: 90%;
+        width: 500px;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      .popup .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #7d8899;
+        padding-bottom: 5px;
+      }
+
+      .popup .header h2 {
+        margin: 0;
+        color: #552300;
+      }
+
+      .popup .header button {
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        background: none;
+        color: #a34743;
+        transition: color 0.3s ease;
+      }
+
+      .popup .header button:hover {
+        color: #60041a;
+      }
+
+      .popup textarea {
+        width: 100%;
+        border: 2px solid #7d8899;
+        height: 200px;
+        border-radius: 8px;
+        font-size: 1.1em;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        outline: none;
+        resize: vertical;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .popup textarea:focus {
+        border-color: #552300;
+        box-shadow: inset 0 2px 4px rgba(85, 35, 0, 0.3);
+      }
+
+      .popup button {
+        background-color: #552300;
+        color: #f0e8e1;
+        padding: 10px 20px;
+        border: 2px solid #7d8899;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease, border-color 0.3s ease,
+          transform 0.2s ease;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        margin: 10px 0 0;
+      }
+
+      .popup button:hover {
+        background-color: #c37729;
+        border-color: #c37729;
+        transform: scale(1.05);
+      }
+
+      .popup.show {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .popup {
+          width: 90%;
+          padding: 15px;
+        }
+
+        .popup textarea {
+          font-size: 1em;
+        }
       }
     </style>
   </head>
@@ -112,64 +423,344 @@
       <h1>Lista de Tarefas</h1>
       <p>Adicione suas tarefas!</p>
       <input type="text" id="inputTarefa" placeholder="Digite a sua tarefa" />
-      <button onclick="adicionarTarefa()">Adicionar Tarefa</button>
-      <button onclick="limparTarefas()">Limpar Tarefas</button>
+      <button id="button-add" onclick="adicionarTarefa()">
+        Adicionar Tarefa
+      </button>
+      <button id="button-clear" onclick="limparTarefas()" style="display: none">
+        Limpar Tarefas
+      </button>
+      <div class="import-export-container">
+        <button id="button-export-json" onclick="exportarTarefasJSON()">
+          Exportar JSON
+        </button>
+        <button id="button-export-text" onclick="exportarTarefasTexto()">
+          Exportar Texto
+        </button>
+        <input
+          type="file"
+          id="input-import"
+          accept=".json,.txt"
+          onchange="importarTarefas(event)"
+        />
+        <button
+          id="button-import"
+          onclick="document.getElementById('input-import').click()"
+        >
+          Importar
+        </button>
+      </div>
       <p id="mensagem"></p>
       <ul id="listaTarefas"></ul>
+      <div class="popup" id="popupDescricao">
+        <div class="header">
+          <h2>Descrição da Tarefa</h2>
+          <button onclick="fecharPopupDescricao()">X</button>
+        </div>
+        <textarea id="popupTextarea"></textarea>
+        <button onclick="salvarDescricao()">Salvar</button>
+      </div>
     </div>
   </body>
   <!-- ===== SCRIPT ===== -->
-  <script defer>
-    function adicionarTarefa() {
-      let inputTarefa = document.getElementById("inputTarefa");
-      let tarefa = inputTarefa.value;
+  <script>
+    let tarefas = [];
+    let tarefaSelecionadaIndex = null;
 
-      if (tarefa.trim() === "") {
-        document.getElementById("mensagem").textContent =
-          "Por favor, insira uma tarefa!";
-        return;
-      }
+    function mostrarMensagem(mensagem, tipo) {
+      const mensagemElement = document.getElementById("mensagem");
+      mensagemElement.textContent = mensagem;
+      mensagemElement.classList.add(tipo);
 
-      let listaTarefas = document.getElementById("listaTarefas");
-      let novaTarefa = document.createElement("li");
-      novaTarefa.textContent = tarefa;
-      listaTarefas.appendChild(novaTarefa);
-
-      salvarTarefas();
-
-      document.getElementById("mensagem").textContent =
-        "Tarefa adicionada com sucesso!";
-      inputTarefa.value = "";
+      setTimeout(() => {
+        mensagemElement.classList.remove(tipo);
+      }, 3000);
     }
 
-    function salvarTarefas() {
-      let listaTarefas = document.getElementById("listaTarefas");
-      let tarefas = [];
-      listaTarefas.querySelectorAll("li").forEach((tarefa) => {
-        tarefas.push(tarefa.textContent);
+    function adicionarTarefa() {
+      let inputTarefa = document.getElementById("inputTarefa");
+      let tarefaText = inputTarefa.value;
+
+      if (tarefaText.trim() === "") {
+        mostrarMensagem("Por favor, insira uma tarefa!", "erro");
+        return;
+      }
+      tarefaText = tarefaText
+        .toLowerCase()
+        .replace(/(?:^|\s)\w/g, function (match) {
+          return match.toUpperCase();
+        });
+
+      const novaTarefa = {
+        text: tarefaText,
+        description: "",
+      };
+      tarefas.push(novaTarefa);
+      salvarTarefas();
+      renderizarTarefas();
+      mostrarMensagem("Tarefa adicionada com sucesso!", "sucesso");
+      inputTarefa.value = "";
+      atualizarBotaoLimpar();
+      atualizarBotoesImportExport();
+    }
+
+    function removerTarefa(index) {
+      tarefas.splice(index, 1);
+      salvarTarefas();
+      renderizarTarefas();
+      mostrarMensagem("Tarefa removida com sucesso!", "sucesso");
+      atualizarBotaoLimpar();
+      atualizarBotoesImportExport();
+    }
+
+    function editarTarefa(index, liElement) {
+      if (liElement.classList.contains("editing")) return;
+      liElement.classList.add("editing");
+      const originalText = liElement.textContent
+        .split("Editar")[0]
+        .split("Remover")[0]
+        .trim();
+      liElement.innerHTML = "";
+
+      let editInput = document.createElement("input");
+      editInput.type = "text";
+      editInput.value = originalText;
+      editInput.classList.add("edit-input");
+
+      editInput.addEventListener("blur", function () {
+        salvarEdicao(index, liElement, editInput.value, originalText);
       });
+      editInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          salvarEdicao(index, liElement, editInput.value, originalText);
+        }
+      });
+
+      let buttonContainer = document.createElement("div");
+      buttonContainer.classList.add("button-container");
+
+      let editarButton = document.createElement("button");
+      editarButton.textContent = "Editar";
+      editarButton.classList.add("editar");
+      editarButton.onclick = function () {
+        salvarEdicao(index, liElement, editInput.value, originalText);
+      };
+
+      let removerButton = document.createElement("button");
+      removerButton.textContent = "Remover";
+      removerButton.classList.add("remover");
+      removerButton.onclick = function () {
+        removerTarefa(index);
+      };
+
+      buttonContainer.appendChild(editarButton);
+      buttonContainer.appendChild(removerButton);
+
+      liElement.appendChild(editInput);
+      liElement.appendChild(buttonContainer);
+
+      editInput.focus();
+    }
+
+    function salvarEdicao(index, liElement, newText, originalText) {
+      liElement.classList.remove("editing");
+      if (newText !== originalText) {
+        tarefas[index].text = newText;
+        salvarTarefas();
+        renderizarTarefas();
+        mostrarMensagem("Tarefa editada com sucesso!", "sucesso");
+      } else {
+        renderizarTarefas();
+      }
+    }
+    function abrirPopupDescricao(index) {
+      tarefaSelecionadaIndex = index;
+      const popup = document.getElementById("popupDescricao");
+      const popupTextarea = document.getElementById("popupTextarea");
+      popupTextarea.value = tarefas[index].description;
+      popup.classList.add("show");
+      popupTextarea.focus();
+    }
+
+    function fecharPopupDescricao() {
+      const popup = document.getElementById("popupDescricao");
+      popup.classList.remove("show");
+      tarefaSelecionadaIndex = null;
+    }
+
+    function salvarDescricao() {
+      const popupTextarea = document.getElementById("popupTextarea");
+      if (tarefaSelecionadaIndex !== null) {
+        const initialDescription = tarefas[tarefaSelecionadaIndex].description;
+        const newDescription = popupTextarea.value;
+        if (newDescription !== initialDescription) {
+          tarefas[tarefaSelecionadaIndex].description = newDescription;
+          salvarTarefas();
+          renderizarTarefas();
+          mostrarMensagem("Descrição salva com sucesso!", "sucesso");
+        }
+        fecharPopupDescricao();
+      }
+    }
+
+    function renderizarTarefas() {
+      const listaTarefas = document.getElementById("listaTarefas");
+      listaTarefas.innerHTML = "";
+
+      tarefas.forEach((tarefa, index) => {
+        const novaTarefa = document.createElement("li");
+
+        const taskTitle = document.createElement("span");
+        taskTitle.classList.add("task-title");
+        taskTitle.textContent = tarefa.text;
+        taskTitle.onclick = function () {
+          abrirPopupDescricao(index);
+        };
+        novaTarefa.appendChild(taskTitle);
+
+        let buttonContainer = document.createElement("div");
+        buttonContainer.classList.add("button-container");
+
+        let editarButton = document.createElement("button");
+        editarButton.textContent = "Editar";
+        editarButton.classList.add("editar");
+        editarButton.onclick = function () {
+          editarTarefa(index, novaTarefa);
+        };
+
+        let removerButton = document.createElement("button");
+        removerButton.textContent = "Remover";
+        removerButton.classList.add("remover");
+        removerButton.onclick = function () {
+          removerTarefa(index);
+        };
+
+        buttonContainer.appendChild(editarButton);
+        buttonContainer.appendChild(removerButton);
+        novaTarefa.appendChild(buttonContainer);
+        listaTarefas.appendChild(novaTarefa);
+      });
+      atualizarBotaoLimpar();
+    }
+    function salvarTarefas() {
       localStorage.setItem("tarefas", JSON.stringify(tarefas));
     }
 
     function carregarTarefas() {
-      let tarefas = JSON.parse(localStorage.getItem("tarefas") || "[]");
-      let listaTarefas = document.getElementById("listaTarefas");
-      tarefas.forEach((tarefa) => {
-        let novaTarefa = document.createElement("li");
-        novaTarefa.textContent = tarefa;
-        listaTarefas.appendChild(novaTarefa);
-      });
+      const tarefasSalvas = localStorage.getItem("tarefas");
+      if (tarefasSalvas) {
+        tarefas = JSON.parse(tarefasSalvas);
+        renderizarTarefas();
+      }
+      atualizarBotaoLimpar();
+      atualizarBotoesImportExport();
     }
-
+    function atualizarBotaoLimpar() {
+      const botaoLimpar = document.getElementById("button-clear");
+      if (tarefas.length > 0) {
+        botaoLimpar.style.display = "inline-block";
+      } else {
+        botaoLimpar.style.display = "none";
+      }
+    }
+    function atualizarBotoesImportExport() {
+      const containerImportExport = document.querySelector(
+        ".import-export-container"
+      );
+      const botoes = containerImportExport.querySelectorAll(
+        "button:not(#button-import)"
+      );
+      if (tarefas.length > 0) {
+        botoes.forEach((botao) => (botao.style.display = "inline-block"));
+      } else {
+        botoes.forEach((botao) => (botao.style.display = "none"));
+      }
+    }
     function limparTarefas() {
+      tarefas = [];
       localStorage.removeItem("tarefas");
-
-      document.getElementById("listaTarefas").innerHTML = "";
-
-      document.getElementById("mensagem").textContent =
-        "Todas as tarefas foram removidas!";
+      renderizarTarefas();
+      mostrarMensagem("Todas as tarefas foram removidas!", "sucesso");
+      atualizarBotaoLimpar();
+      atualizarBotoesImportExport();
     }
 
+    function exportarTarefasJSON() {
+      const tarefasJSON = JSON.stringify(tarefas, null, 2);
+      const blob = new Blob([tarefasJSON], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "tarefas.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function exportarTarefasTexto() {
+      const tarefasTexto = tarefas
+        .map((tarefa) => `${tarefa.text}\n${tarefa.description}`)
+        .join("\n---\n");
+      const blob = new Blob([tarefasTexto], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "tarefas.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function importarTarefas(event) {
+      const file = event.target.files[0];
+      if (!file) {
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          if (file.name.endsWith(".json")) {
+            tarefas = JSON.parse(e.target.result);
+          } else {
+            const lines = e.target.result.split("\n---\n");
+            tarefas = lines
+              .map((line) => {
+                const parts = line.split("\n");
+                return {
+                  text: parts[0] || "",
+                  description: parts.slice(1).join("\n") || "",
+                };
+              })
+              .filter((task) => task.text.trim() !== "");
+          }
+          salvarTarefas();
+          renderizarTarefas();
+          mostrarMensagem("Tarefas importadas com sucesso!", "sucesso");
+          atualizarBotaoLimpar();
+          atualizarBotoesImportExport();
+        } catch (error) {
+          mostrarMensagem(
+            "Erro ao importar tarefas. Verifique o formato do arquivo.",
+            "erro"
+          );
+          console.error("Erro ao importar arquivo:", error);
+        }
+      };
+      reader.onerror = function () {
+        mostrarMensagem("Erro ao ler o arquivo.", "erro");
+      };
+      reader.readAsText(file);
+    }
+    document
+      .getElementById("popupTextarea")
+      .addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          salvarDescricao();
+        }
+      });
     document
       .getElementById("inputTarefa")
       .addEventListener("keypress", function (event) {
