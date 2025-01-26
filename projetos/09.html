@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>09 - Imagens</title>
+    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta
+      name="description"
+      content="Esta página foi criada para estudo HTML"
+    />
+    <meta name="keywords" content="HTML,CSS" />
+    <meta http-equiv="Refresh" content="25; 10.html" />
+    <meta charset="UTF-8" />
+    <style type="text/css">
+      body {
+        background-image: url(assets/img/roxinho-bolinha.png);
+      }
+      header,
+      footer {
+        background-image: url(assets/img/rotated-square.png);
+        background-repeat: repeat-x;
+      }
+      section,
+      footer {
+        text-align: center;
+      }
+      footer {
+        color: #adff2f;
+      }
+      main {
+        background-image: url(assets/img/cubo-3d.png);
+      }
+      .cabecalho-1 {
+        color: khaki;
+        text-decoration: underline;
+      }
+      .cabecalho-2 {
+        color: #adff2f;
+      }
+      hr {
+        border-top: solid 0;
+        color: paleturquoise;
+      }
+      .fotos {
+        width: 200px;
+        border: 5px #000000 solid;
+        cursor: grab;
+      }
+      .fotos:hover {
+        border: 5px #ff0000 solid;
+        zoom: 110%;
+      }
+      .banda {
+        height: 200px;
+        width: 350px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Cabeçalho -->
+    <header>
+      <h2 class="cabecalho-1">Módulo de HTML</h2>
+      <span class="cabecalho-2"
+        >Realizado por Alan Ryan na data de 21 de setembro de 2024.</span
+      >
+      <hr />
+    </header>
+    <!-- Conteúdo de hoje -->
+    <section>
+      <div>
+        <img class="banda" src="./assets/img/elp.jpg" />
+        <img class="banda" src="./assets/img/os-mutantes.webp" />
+      </div>
+      <main>
+        <div>
+          <img class="fotos" src="./assets/img/A-Night-at-the Opera.jpeg" />
+          <img class="fotos" src="./assets/img/Brain-Salad-Surgery.jpeg" />
+          <img class="fotos" src="./assets/img/Tudo-foi-feito-pelo-Sol.jpeg" />
+          <img class="fotos" src="./assets/img/Wheels-Are-Turnin.jpeg" />
+        </div>
+      </main>
+      <div>
+        <img class="banda" src="./assets/img/queen.webp" />
+        <img class="banda" src="./assets/img/reo-speedwagon.jpg" />
+      </div>
+    </section>
+    <!-- Rodapé -->
+    <footer>
+      <small> &copy;2024 Alan Ryan </small>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: schibsted;
+  font-weight: bold;
+  color: #333;
+  background-image: linear-gradient(180deg, #e34f26, #1572b6, #f7df1e);
+  user-select: none;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, transparent, #00000071);
+  background-size: 5px 5px;
+  animation: starryBackground 10s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.logo {
+  display: inline-block;
+  width: auto;
+}
+
+.logo img {
+  height: 120px;
+  width: 250px;
+  display: block;
+}
+
+header h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 2rem 0;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: arca-majora;
+}
+
+img {
+  width: 100%;
+  height: 250px;
+  display: block;
+}
+
+.contetnt {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1rem;
+}
+
+.card-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  list-style: none;
+}
+
+.card-list {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card-list:first-child {
+  grid-column: span 3;
+}
+
+.card-list:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-listLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  padding: 1.5rem;
+}
+
+.card-listTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 1rem 0;
+  word-break: break-all;
+}
+
+.card-listText {
+  line-height: 1.6;
+  text-align: center;
+}
+
+footer {
+  font-family: "gamelia";
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem 0;
+  color: #cccccc;
+  background-image: linear-gradient(135deg, #e34f26, #1572b6, #f7df1e);
+  border-top: 2px solid #cccccc;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+  letter-spacing: 0.2rem;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  filter: blur(10px);
+  z-index: -1;
+  opacity: 0.6;
+}
+
+#scrollTopButton {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #777bb4;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+#scrollTopButton:hover {
+  background-color: #4f549c;
+}
+
+#scrollTopButton i {
+  font-size: 2.5rem;
+}
+
+.card-special {
+  background-image: url(../assets/images/particulas-espaciais.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: #cccccc;
+}
