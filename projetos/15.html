@@ -5,7 +5,7 @@
     <title>ALN Wiki</title>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="Refresh" content="25; 15.html" />
+    <meta http-equiv="Refresh" content="25; 01.html" />
     <meta
       name="viewport"
       content="width=device-width,maximum-scale=0.9,user-scalable=0"
@@ -182,7 +182,6 @@
 
       main article {
         display: flex;
-        flex-direction: row;
         align-items: flex-start;
         background-image: linear-gradient(
           180deg,
@@ -218,7 +217,7 @@
         height: auto;
         border-radius: 8px;
         object-fit: cover;
-        cursor: pointer; /* Transforma o cursor em mãozinha */
+        cursor: pointer;
       }
 
       main article .images-container img {
@@ -226,11 +225,13 @@
         height: auto;
         object-fit: cover;
         border-radius: 8px;
-        cursor: pointer; /* Transforma o cursor em mãozinha */
+        cursor: pointer;
       }
 
-      main article div {
+      main article > div {
         flex: 1;
+        display: flex;
+        flex-direction: column;
       }
 
       main h1 {
@@ -329,7 +330,7 @@
         font-size: 2.5rem;
         color: #fff;
       }
-      /* Estilos do Popup */
+
       .popup {
         display: none;
         position: fixed;
@@ -337,45 +338,98 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.7); /* Fundo escurecido */
-        z-index: 1001; /* Garante que o popup fique acima de outros elementos */
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 341;
       }
 
       .popup-content {
         position: absolute;
-        top: 50%;
+        top: 10%;
         left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
+        transform: translateX(-50%);
+        background: transparent;
         padding: 20px;
         border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        max-width: 600px;
-        overflow-y: auto; /* Adicionado para habilitar scroll */
+        max-width: 90%;
+        overflow-y: auto;
         max-height: 80vh;
+        color: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
       }
+
+      .popup-content img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        object-fit: contain;
+      }
+
+      .popup-content small {
+        font-style: normal;
+      }
+
       .popup-content p {
         text-align: justify;
+        font-style: italic;
       }
-      .close-popup {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 20px;
-        cursor: pointer;
-        color: #333;
-        background: transparent;
-        border: none;
-        outline: none;
+
+      .popup-content a {
+        color: #16a085;
+        text-decoration: none;
+        font-weight: bold;
       }
-      .dark-mode .popup-content {
-        background-color: #333;
-        color: #f0f0f0;
-        box-shadow: 0 4px 12px rgba(153, 153, 153, 0.1);
+
+      /* Adiciona bordas às tabelas dentro do popup */
+      .popup-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
       }
-      .dark-mode .close-popup {
+
+      .popup-content th,
+      .popup-content td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      .popup-content th {
+        background-color: #16a085;
         color: #fff;
+        font-weight: bold;
       }
+
+      .dark-mode .popup-content th {
+        background-color: #29abe2;
+      }
+
+      .close-popup {
+        position: fixed;
+        top: 3%;
+        right: 50%;
+        font-size: 25px;
+        cursor: pointer;
+        border: none;
+        border-radius: 100%;
+        padding: 8px;
+        outline: none;
+        background: #16a085;
+        color: #fff;
+        z-index: 1001;
+        display: none;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .close-popup:hover {
+        box-shadow: 0 0 15px #29abe2, 0 0 20px #29abe2;
+      }
+
+      .dark-mode .close-popup {
+        background-color: #29abe2;
+      }
+
       /* === RESPONSIVIDADE === */
       @media (max-width: 768px) {
         h1 {
@@ -384,6 +438,23 @@
 
         p {
           font-size: 0.95rem;
+        }
+        main article {
+          flex-direction: column;
+        }
+        main article:nth-child(odd) {
+          flex-direction: column;
+        }
+        main article img {
+          width: 100%;
+        }
+
+        main .images-container {
+          width: 100%;
+        }
+        .popup-content img {
+          width: 100%;
+          object-fit: contain;
         }
       }
     </style>
@@ -396,6 +467,7 @@
     <div id="scrollTopButton">
       <i class="fa-solid fa-angle-up"></i>
     </div>
+    <button class="close-popup"><i class="fa-solid fa-xmark"></i></button>
     <header>
       <h1>ALN Wiki</h1>
       <p>Uma enciclopédia criada por Alan Ryan</p>
@@ -406,8 +478,7 @@
           <img
             src="./assets/images/nuvens-lenticulares.jpeg"
             alt="Nuvem Lenticular"
-            data-description='<p>As nuvens lenticulares são formações atmosféricas fascinantes, facilmente reconhecidas por sua aparência em forma de lente ou disco empilhado, o que justifica seu nome. Elas são nuvens estacionárias que se formam na troposfera, frequentemente alinhadas com a direção do vento. Essas nuvens surgem em regiões montanhosas, onde o fluxo de ar é forçado a subir ao encontrar uma barreira natural, como montanhas. Esse movimento cria ondas estacionárias na atmosfera, e quando o ar úmido se resfria durante o processo, o vapor de água se condensa, formando essas nuvens suaves e bem definidas, que muitas vezes parecem esculpidas pelo vento.</p><p>Embora as nuvens lenticulares não estejam diretamente associadas a eventos climáticos extremos, sua presença pode ser um indicativo importante de mudanças climáticas próximas. Elas frequentemente aparecem bem à frente de frentes frias ou tempestades, servindo como "indicadores de previsão". Em áreas montanhosas, por exemplo, a formação dessas nuvens pode sugerir a chegada de neve dentro de 24 a 48 horas, pois as montanhas intensificam a umidade de alto nível, criando um sinal de alerta natural.</p><p>Os lenticulares, também conhecidos como <strong>Altocumulus Lenticularis</strong>, permanecem estacionários enquanto o ar flui continuamente através deles. Eles podem aparecer isolados ou organizados em camadas empilhadas ou linhas alongadas no lado de sotavento das montanhas, dependendo de fatores como umidade, direção e velocidade do vento. Em algumas situações, os lenticulares podem até surgir na estratosfera inferior, apresentando-se como nuvens nacaradas.</p><p>Essas nuvens vêm em três tipos principais, classificados de acordo com sua altitude, e sua aparência dramática também está associada a histórias curiosas. Em 1947, o piloto Kenneth Arnold, ao sobrevoar o Mount Rainier, confundiu essas formações com "discos voadores", popularizando o termo OVNIs. Hoje, as nuvens lenticulares são admiradas não só pela ciência, mas também por sua estética espetacular, sendo uma combinação perfeita de natureza e arte atmosférica.
-            <br><br><small>Fonte:<a href="https://opensnow.com/news/post/lenticular-clouds-explained" target="_blank">OpenSnow</a></small></p>'
+            data-description='<img src="./assets/images/nuvens-lenticulares.jpeg" alt="Nuvem Lenticular Popup" /><p>Monte Fuji com nuvens lenticulares</p><p><small>Fonte: <a href="https://opensnow.com/news/post/lenticular-clouds-explained" target="_blank">OpenSnow</a></small></p>'
           />
           <div>
             <h1>nuvens lenticulares</h1>
@@ -462,12 +533,17 @@
             <img
               src="./assets/images/dark-hedges.jpg"
               alt="Dark Hedges"
-              data-description='<p>Dark Hedges é uma passagem única e impressionante localizada em Bregagh Road, no Condado de Antrim, Irlanda do Norte, famosa por sua linha de árvores entrelaçadas que criam um túnel natural. Com mais de 300 anos de idade, essas árvores foram plantadas no século XVIII pela família Stuart para embelezar a estrada que leva à sua mansão, a Gracehill House. O aspecto sombrio e misterioso de Dark Hedges é visível em qualquer estação do ano, com suas árvores retorcidas e majestosas que oferecem uma experiência visual inesquecível.</p> <p>O local, cujo nome "Dark Hedges" se deve ao seu ambiente encantado e quase sinistro, se tornou uma atração turística internacionalmente reconhecida. A atmosfera do lugar tem um apelo natural e cinematográfico, o que atrai fotógrafos e aventureiros de todo o mundo. Além de sua beleza, o local ficou ainda mais famoso após ser utilizado nas filmagens da famosa série Game of Thrones, onde a estrada serviu como a "Kings Road", um dos cenários mais emblemáticos da série.</p><p>Muitos acreditam que a passagem é assombrada, o que adiciona uma camada extra de mistério e fascínio. Hoje, Dark Hedges continua sendo um dos pontos turísticos mais visitados da Irlanda do Norte, encantando os visitantes com sua aura mágica e, ao mesmo tempo, aterradora. Sua combinação de história, natureza e presença na cultura popular faz desse lugar uma experiência única e imperdível para qualquer viajante ou fã da série.</p>'
+              data-description='<img src="./assets/images/dark-hedges.jpg" alt="Dark Hedges Popup" /><p>Dark Hedges.</p>
+              <p><small>Fonte: <a href="https://unseraum.blogspot.com/2015/01/the-dark-hedges-no-reino-unido.html" target="_blank">Unser Raum!</a></small></p>
+              '
+              
             />
             <img
               src="./assets/images/dark-hedges-02.jpg"
               alt="Dark Hedges"
-              data-description='<p>Dark Hedges é uma passagem única e impressionante localizada em Bregagh Road, no Condado de Antrim, Irlanda do Norte, famosa por sua linha de árvores entrelaçadas que criam um túnel natural. Com mais de 300 anos de idade, essas árvores foram plantadas no século XVIII pela família Stuart para embelezar a estrada que leva à sua mansão, a Gracehill House. O aspecto sombrio e misterioso de Dark Hedges é visível em qualquer estação do ano, com suas árvores retorcidas e majestosas que oferecem uma experiência visual inesquecível.</p> <p>O local, cujo nome "Dark Hedges" se deve ao seu ambiente encantado e quase sinistro, se tornou uma atração turística internacionalmente reconhecida. A atmosfera do lugar tem um apelo natural e cinematográfico, o que atrai fotógrafos e aventureiros de todo o mundo. Além de sua beleza, o local ficou ainda mais famoso após ser utilizado nas filmagens da famosa série Game of Thrones, onde a estrada serviu como a "Kings Road", um dos cenários mais emblemáticos da série.</p><p>Muitos acreditam que a passagem é assombrada, o que adiciona uma camada extra de mistério e fascínio. Hoje, Dark Hedges continua sendo um dos pontos turísticos mais visitados da Irlanda do Norte, encantando os visitantes com sua aura mágica e, ao mesmo tempo, aterradora. Sua combinação de história, natureza e presença na cultura popular faz desse lugar uma experiência única e imperdível para qualquer viajante ou fã da série.</p>'
+              data-description='<img src="./assets/images/dark-hedges-02.jpg" alt="Dark Hedges Popup" /><p>Dark Hedges.</p>
+              <p><small>Fonte: <a href="https://unseraum.blogspot.com/2015/01/the-dark-hedges-no-reino-unido.html" target="_blank">Unser Raum!</a></small></p>
+              '
             />
           </div>
           <div>
@@ -507,20 +583,70 @@
 
         <article>
           <img
-            src="./assets/images/exemplo3.jpg"
-            alt="Exemplo de imagem 3"
-            data-description="<p>Esta é a descrição da imagem de exemplo 3.</p>"
+            src="./assets/images/the-astrud-gilberto-album.jpeg"
+            alt="The Astrud Gilberto Album (1965)"
+            data-description='<img src="./assets/images/the-astrud-gilberto-album.jpeg" alt="The Astrud Gilberto Album (1965)" />
+            <h3>Informações sobre os Créditos do Álbum "The Astrud Gilberto Album" (1965)</h3>
+              <table>
+                <tr><th>Nome</th><th>Função</th></tr>
+                <tr><td>Astrud Gilberto</td><td>Vocals</td></tr>
+                <tr><td>Marty Paich</td><td>Arranger, Conductor</td></tr>
+                <tr><td>Antônio Carlos Jobim</td><td>Vocals, Guitar, Songwriter</td></tr>
+                <tr><td>Milt Bernhart</td><td>Trombone</td></tr>
+                <tr><td>João Donato</td><td>Piano</td></tr>
+                <tr><td>Joe Mondragon</td><td>Bass</td></tr>
+                <tr><td>Bud Shank</td><td>Flute, Alto Saxophone</td></tr>
+                <tr><td>Stu Williamson</td><td>Trumpet</td></tr>
+                <tr><td>Guildhall Strings</td><td>Strings</td></tr>
+                <tr><td>Val Valentin</td><td>Director</td></tr>
+                <tr><td>Rudy Van Gelder</td><td>Mastering Engineer</td></tr>
+                <tr><td>Michael Malatak</td><td>Cover Art</td></tr>
+                <tr><td>Dave Hassinger</td><td>Engineer</td></tr>
+                <tr><td>Creed Taylor</td><td>Producer</td></tr>
+              </table>
+              <p><small>Fonte: <a href="https://rateyourmusic.com/release/album/astrud-gilberto/the-astrud-gilberto-album/" target="_blank">Rate Your Music (RYM)</a></small></p>
+            '
           />
           <div>
-            <h1>Título do Artigo 3</h1>
-            <p>Conteúdo do terceiro artigo vai aqui.</p>
+            <h1>The Astrud Gilberto Album (1965)</h1>
+            <p>
+              Lançado em 1965, The Astrud Gilberto Album é uma obra essencial da
+              bossa nova, consolidando Astrud Gilberto como uma das maiores
+              vozes do gênero. O álbum se destaca pela parceria entre Astrud e o
+              mestre Antonio Carlos Jobim, ícone da música brasileira, que
+              desempenha papel fundamental na criação do som sofisticado e
+              encantador que caracteriza o disco. A produção, a cargo de Creed
+              Taylor, trouxe arranjos refinados que mesclam o jazz com a
+              suavidade da bossa nova, criando uma atmosfera única e atemporal.
+            </p>
+            <p>
+              Com 11 faixas, o álbum apresenta um repertório encantador,
+              incluindo clássicos como "Água de Beber" e "Só Tinha de Ser com
+              Você", que se tornaram referência da música brasileira no cenário
+              internacional. A interpretação de Astrud, com sua voz serena e
+              intimista, é acompanhada por uma instrumentação de primeira linha,
+              com destaque para o violão de Jobim e o saxofone de Stan Getz,
+              proporcionando uma harmonia perfeita entre os músicos.
+            </p>
+            <p>
+              A parceria entre Astrud e Jobim é um dos maiores destaques do
+              álbum, trazendo de volta os anos dourados da bossa nova e
+              relembrando os momentos mais emblemáticos da música popular
+              brasileira. O álbum foi crucial para solidificar a carreira de
+              Astrud Gilberto como artista solo e expandir a influência da bossa
+              nova para os mercados norte-americano e europeu.
+            </p>
+            <p>
+              Até hoje, The Astrud Gilberto Album é considerado uma obra-prima
+              que eterniza a genialidade de Astrud e Jobim, celebrando a leveza
+              e a elegância da bossa nova.
+            </p>
           </div>
         </article>
       </div>
     </main>
     <div class="popup" id="imagePopup">
       <div class="popup-content">
-        <button class="close-popup">×</button>
         <div id="popup-description"></div>
       </div>
     </div>
@@ -556,24 +682,28 @@
         });
       });
 
+    closePopupBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+      closePopupBtn.style.display = "none";
+    });
+
     document
       .querySelectorAll("main article img, main .images-container img")
       .forEach((img) => {
         img.addEventListener("click", function () {
+          closePopupBtn.style.display = "block";
           const description = this.getAttribute("data-description");
           if (description) {
-            popupDescriptionDiv.innerHTML = description; // Usa innerHTML para renderizar o HTML
+            popupDescriptionDiv.innerHTML = description;
             popup.style.display = "block";
           }
         });
       });
-    closePopupBtn.addEventListener("click", () => {
-      popup.style.display = "none";
-    });
 
     window.addEventListener("click", (event) => {
       if (event.target === popup) {
         popup.style.display = "none";
+        closePopupBtn.style.display = "none";
       }
     });
   </script>

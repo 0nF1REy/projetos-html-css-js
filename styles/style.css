@@ -23,11 +23,26 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at center, transparent, #00000071);
+  background: radial-gradient(ellipse at center, transparent, #04492f7e);
   background-size: 5px 5px;
   animation: starryBackground 10s linear infinite;
   pointer-events: none;
   z-index: -1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../assets/images/star.svg");
+  background-repeat: repeat;
+  background-size: auto;
+  opacity: 0.1;
+  z-index: -5;
+  transform: translateX(-50%);
 }
 
 .logo {
@@ -73,16 +88,21 @@ img {
   list-style: none;
 }
 
+@media (min-width: 600px) {
+  .card-wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card-list:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
 .card-list {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease;
-}
-
-.card-list:first-child {
-  grid-column: span 3;
 }
 
 .card-list:hover {
@@ -162,10 +182,44 @@ footer::before {
   font-size: 2.5rem;
 }
 
-.card-special {
-  background-image: url(../assets/images/particulas-espaciais.gif);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  color: #cccccc;
+.card-special-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+}
+
+.card-special-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.card-special-link:hover {
+  transform: scale(1.05);
+}
+
+.card-special-link img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0.5rem;
+}
+
+.card-special-subtitle {
+  font-size: 1.1rem;
+  margin-top: 0.3rem;
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .card-special {
+    grid-column: 1 / -1;
+  }
 }
