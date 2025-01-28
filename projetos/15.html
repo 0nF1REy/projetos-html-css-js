@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- ===== TITLE and META ===== -->
+    <title>ALN Wiki</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Refresh" content="25; 15.html" />
+    <meta
+      name="viewport"
+      content="width=device-width,maximum-scale=0.9,user-scalable=0"
+    />
+    <meta name="keywords" content="ALN Wiki" />
+    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta content="#222" name="theme-color" />
+    <meta name="robots" content="index, follow" />
+    <!-- ==== OPEN GRAPH and SECURITY ==== -->
+    <meta property="og:title" content="ALN Wiki" />
+    <meta property="og:type" content="website" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- ==== MICROSOFT TILE ==== -->
+    <meta name="application-name" content="ALN Wiki" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./assets/icons/fontawesome/css/all.min.css" />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-image: linear-gradient(
+          180deg,
+          #d1dbe6,
+          #c1d4e2,
+          #b1cce0,
+          #8fa6b5,
+          #6f7f98
+        );
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        min-height: 100vh;
+        position: relative;
+        transition: background-image 0.3s ease, color 0.3s ease;
+      }
+
+      body.dark-mode {
+        background: linear-gradient(
+          180deg,
+          #1a1a22,
+          #191a21,
+          #181a1f,
+          #171a1e,
+          #161a1d
+        );
+        background-blend-mode: multiply;
+        color: #fff;
+      }
+
+      body.dark-mode main article {
+        background: linear-gradient(
+          180deg,
+          #16171e,
+          #181a22,
+          #1a1a24,
+          #16181f,
+          #101016
+        );
+        background-blend-mode: multiply;
+        color: #f0f0f0;
+        box-shadow: 0 4px 12px rgba(153, 153, 153, 0.1);
+        border: 1px solid #29abe2;
+      }
+
+      body.dark-mode main article h1 {
+        color: #16a085;
+        text-shadow: 0 0 30px #29abe2;
+      }
+
+      body.dark-mode header h1 {
+        color: #29abe2;
+        text-shadow: 0 0 30px #29abe2, 0 0 2px #29abe2;
+      }
+      body.dark-mode header p {
+        color: #f0f0f0;
+        text-shadow: 0 0 8px #f0f0f0;
+      }
+
+      body.dark-mode main article p {
+        color: #bbbbbb;
+      }
+
+      .dark-mode-toggle {
+        position: fixed;
+        top: 15px;
+        right: 30px;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        cursor: pointer;
+        border-radius: 100%;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        z-index: 100;
+        background-color: #16a085;
+      }
+
+      .dark-mode-toggle:hover {
+        background-color: #1e75a1;
+        box-shadow: 0 0 15px #29abe2, 0 0 20px #29abe2;
+      }
+
+      .dark-mode-toggle i {
+        color: #fff;
+        text-shadow: 0 0 10px #29abe2, 0 0 15px #29abe2;
+      }
+
+      .dark-mode .dark-mode-toggle {
+        background-color: #29abe2;
+      }
+
+      .dark-mode .dark-mode-toggle:hover {
+        background-color: #1e75a1;
+        box-shadow: 0 0 15px #29abe2, 0 0 20px #29abe2;
+      }
+
+      /* ========= HEADER ========= */
+      header {
+        background-image: linear-gradient(
+          135deg,
+          #2c3e50,
+          #34495e,
+          #1a252f,
+          #3a4d64,
+          #283c4c,
+          #2f3b47
+        );
+        color: #fff;
+        text-align: center;
+        padding: 30px 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        border-bottom: 2px solid #16a085;
+      }
+
+      .dark-mode header {
+        border-bottom: 2px solid #29abe2;
+      }
+      header h1 {
+        font-size: 3rem;
+        margin: 0;
+        font-weight: bold;
+        letter-spacing: 2px;
+        color: #16a085;
+      }
+
+      header p {
+        margin: 5px 0 0;
+        font-size: 1.2rem;
+        font-style: italic;
+        color: #bdc3c7;
+      }
+
+      /* ========= MAIN ========= */
+      main .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      main article {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        background-image: linear-gradient(
+          180deg,
+          #f4f6f9,
+          #e8eff5,
+          #e1e7f0,
+          #d9dde9,
+          #eaf0f9,
+          #f1f4f9
+        );
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 20px;
+        gap: 20px;
+        transition: background-image 0.3s ease, color 0.3s ease;
+      }
+
+      main article:nth-child(odd) {
+        flex-direction: row-reverse;
+      }
+
+      main .images-container {
+        width: 40%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      main article img {
+        width: 40%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+        cursor: pointer; /* Transforma o cursor em mãozinha */
+      }
+
+      main article .images-container img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer; /* Transforma o cursor em mãozinha */
+      }
+
+      main article div {
+        flex: 1;
+      }
+
+      main h1 {
+        font-size: 1.8rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+        transition: color 0.3s ease;
+        text-transform: capitalize;
+      }
+
+      main .container p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 15px;
+        text-align: justify;
+        transition: color 0.3s ease;
+      }
+
+      main strong {
+        font-weight: bold;
+        color: #16a085;
+      }
+
+      /* ========= FOOTER ========= */
+
+      footer {
+        font-family: "gamelia";
+        text-align: center;
+        margin-top: 3rem;
+        padding: 2rem 0;
+        color: #16a085;
+        background-image: linear-gradient(
+          135deg,
+          #2c3e50,
+          #34495e,
+          #1a252f,
+          #3a4d64,
+          #283c4c,
+          #2f3b47
+        );
+        border-top: 2px solid #16a085;
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 10;
+        letter-spacing: 0.2rem;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        filter: blur(10px);
+        z-index: -1;
+        opacity: 0.6;
+      }
+      .dark-mode footer {
+        border-top: 2px solid #29abe2;
+        color: #29abe2;
+      }
+
+      #scrollTopButton {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #16a085;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        padding: 12px;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.3s, background-color 0.3s, box-shadow 0.3s;
+        z-index: 1000;
+      }
+
+      #scrollTopButton:hover {
+        background-color: #1e75a1;
+        box-shadow: 0 0 15px #29abe2, 0 0 20px #29abe2;
+      }
+
+      .dark-mode #scrollTopButton {
+        background-color: #29abe2;
+      }
+
+      .dark-mode #scrollTopButton:hover {
+        background-color: #1e75a1;
+        box-shadow: 0 0 15px #29abe2, 0 0 20px #29abe2;
+      }
+
+      #scrollTopButton i {
+        font-size: 2.5rem;
+        color: #fff;
+      }
+      /* Estilos do Popup */
+      .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Fundo escurecido */
+        z-index: 1001; /* Garante que o popup fique acima de outros elementos */
+      }
+
+      .popup-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 600px;
+        overflow-y: auto; /* Adicionado para habilitar scroll */
+        max-height: 80vh;
+      }
+      .popup-content p {
+        text-align: justify;
+      }
+      .close-popup {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        color: #333;
+        background: transparent;
+        border: none;
+        outline: none;
+      }
+      .dark-mode .popup-content {
+        background-color: #333;
+        color: #f0f0f0;
+        box-shadow: 0 4px 12px rgba(153, 153, 153, 0.1);
+      }
+      .dark-mode .close-popup {
+        color: #fff;
+      }
+      /* === RESPONSIVIDADE === */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== CONTEÚDO ===== -->
+    <button class="dark-mode-toggle">
+      <i class="fa-solid fa-circle-half-stroke"></i>
+    </button>
+    <div id="scrollTopButton">
+      <i class="fa-solid fa-angle-up"></i>
+    </div>
+    <header>
+      <h1>ALN Wiki</h1>
+      <p>Uma enciclopédia criada por Alan Ryan</p>
+    </header>
+    <main>
+      <div class="container">
+        <article>
+          <img
+            src="./assets/images/nuvens-lenticulares.jpeg"
+            alt="Nuvem Lenticular"
+            data-description='<p>As nuvens lenticulares são formações atmosféricas fascinantes, facilmente reconhecidas por sua aparência em forma de lente ou disco empilhado, o que justifica seu nome. Elas são nuvens estacionárias que se formam na troposfera, frequentemente alinhadas com a direção do vento. Essas nuvens surgem em regiões montanhosas, onde o fluxo de ar é forçado a subir ao encontrar uma barreira natural, como montanhas. Esse movimento cria ondas estacionárias na atmosfera, e quando o ar úmido se resfria durante o processo, o vapor de água se condensa, formando essas nuvens suaves e bem definidas, que muitas vezes parecem esculpidas pelo vento.</p><p>Embora as nuvens lenticulares não estejam diretamente associadas a eventos climáticos extremos, sua presença pode ser um indicativo importante de mudanças climáticas próximas. Elas frequentemente aparecem bem à frente de frentes frias ou tempestades, servindo como "indicadores de previsão". Em áreas montanhosas, por exemplo, a formação dessas nuvens pode sugerir a chegada de neve dentro de 24 a 48 horas, pois as montanhas intensificam a umidade de alto nível, criando um sinal de alerta natural.</p><p>Os lenticulares, também conhecidos como <strong>Altocumulus Lenticularis</strong>, permanecem estacionários enquanto o ar flui continuamente através deles. Eles podem aparecer isolados ou organizados em camadas empilhadas ou linhas alongadas no lado de sotavento das montanhas, dependendo de fatores como umidade, direção e velocidade do vento. Em algumas situações, os lenticulares podem até surgir na estratosfera inferior, apresentando-se como nuvens nacaradas.</p><p>Essas nuvens vêm em três tipos principais, classificados de acordo com sua altitude, e sua aparência dramática também está associada a histórias curiosas. Em 1947, o piloto Kenneth Arnold, ao sobrevoar o Mount Rainier, confundiu essas formações com "discos voadores", popularizando o termo OVNIs. Hoje, as nuvens lenticulares são admiradas não só pela ciência, mas também por sua estética espetacular, sendo uma combinação perfeita de natureza e arte atmosférica.
+            <br><br><small>Fonte:<a href="https://opensnow.com/news/post/lenticular-clouds-explained" target="_blank">OpenSnow</a></small></p>'
+          />
+          <div>
+            <h1>nuvens lenticulares</h1>
+            <p>
+              As nuvens lenticulares são formações atmosféricas fascinantes,
+              facilmente reconhecidas por sua aparência em forma de lente ou
+              disco empilhado, o que justifica seu nome. Elas são nuvens
+              estacionárias que se formam na troposfera, frequentemente
+              alinhadas com a direção do vento. Essas nuvens surgem em regiões
+              montanhosas, onde o fluxo de ar é forçado a subir ao encontrar uma
+              barreira natural, como montanhas. Esse movimento cria ondas
+              estacionárias na atmosfera, e quando o ar úmido se resfria durante
+              o processo, o vapor de água se condensa, formando essas nuvens
+              suaves e bem definidas, que muitas vezes parecem esculpidas pelo
+              vento.
+            </p>
+            <p>
+              Embora as nuvens lenticulares não estejam diretamente associadas a
+              eventos climáticos extremos, sua presença pode ser um indicativo
+              importante de mudanças climáticas próximas. Elas frequentemente
+              aparecem bem à frente de frentes frias ou tempestades, servindo
+              como "indicadores de previsão". Em áreas montanhosas, por exemplo,
+              a formação dessas nuvens pode sugerir a chegada de neve dentro de
+              24 a 48 horas, pois as montanhas intensificam a umidade de alto
+              nível, criando um sinal de alerta natural.
+            </p>
+            <p>
+              Os lenticulares, também conhecidos como
+              <strong>Altocumulus Lenticularis</strong>, permanecem
+              estacionários enquanto o ar flui continuamente através deles. Eles
+              podem aparecer isolados ou organizados em camadas empilhadas ou
+              linhas alongadas no lado de sotavento das montanhas, dependendo de
+              fatores como umidade, direção e velocidade do vento. Em algumas
+              situações, os lenticulares podem até surgir na estratosfera
+              inferior, apresentando-se como nuvens nacaradas.
+            </p>
+            <p>
+              Essas nuvens vêm em três tipos principais, classificados de acordo
+              com sua altitude, e sua aparência dramática também está associada
+              a histórias curiosas. Em 1947, o piloto Kenneth Arnold, ao
+              sobrevoar o Mount Rainier, confundiu essas formações com "discos
+              voadores", popularizando o termo OVNIs. Hoje, as nuvens
+              lenticulares são admiradas não só pela ciência, mas também por sua
+              estética espetacular, sendo uma combinação perfeita de natureza e
+              arte atmosférica.
+            </p>
+          </div>
+        </article>
+
+        <article>
+          <div class="images-container">
+            <img
+              src="./assets/images/dark-hedges.jpg"
+              alt="Dark Hedges"
+              data-description='<p>Dark Hedges é uma passagem única e impressionante localizada em Bregagh Road, no Condado de Antrim, Irlanda do Norte, famosa por sua linha de árvores entrelaçadas que criam um túnel natural. Com mais de 300 anos de idade, essas árvores foram plantadas no século XVIII pela família Stuart para embelezar a estrada que leva à sua mansão, a Gracehill House. O aspecto sombrio e misterioso de Dark Hedges é visível em qualquer estação do ano, com suas árvores retorcidas e majestosas que oferecem uma experiência visual inesquecível.</p> <p>O local, cujo nome "Dark Hedges" se deve ao seu ambiente encantado e quase sinistro, se tornou uma atração turística internacionalmente reconhecida. A atmosfera do lugar tem um apelo natural e cinematográfico, o que atrai fotógrafos e aventureiros de todo o mundo. Além de sua beleza, o local ficou ainda mais famoso após ser utilizado nas filmagens da famosa série Game of Thrones, onde a estrada serviu como a "Kings Road", um dos cenários mais emblemáticos da série.</p><p>Muitos acreditam que a passagem é assombrada, o que adiciona uma camada extra de mistério e fascínio. Hoje, Dark Hedges continua sendo um dos pontos turísticos mais visitados da Irlanda do Norte, encantando os visitantes com sua aura mágica e, ao mesmo tempo, aterradora. Sua combinação de história, natureza e presença na cultura popular faz desse lugar uma experiência única e imperdível para qualquer viajante ou fã da série.</p>'
+            />
+            <img
+              src="./assets/images/dark-hedges-02.jpg"
+              alt="Dark Hedges"
+              data-description='<p>Dark Hedges é uma passagem única e impressionante localizada em Bregagh Road, no Condado de Antrim, Irlanda do Norte, famosa por sua linha de árvores entrelaçadas que criam um túnel natural. Com mais de 300 anos de idade, essas árvores foram plantadas no século XVIII pela família Stuart para embelezar a estrada que leva à sua mansão, a Gracehill House. O aspecto sombrio e misterioso de Dark Hedges é visível em qualquer estação do ano, com suas árvores retorcidas e majestosas que oferecem uma experiência visual inesquecível.</p> <p>O local, cujo nome "Dark Hedges" se deve ao seu ambiente encantado e quase sinistro, se tornou uma atração turística internacionalmente reconhecida. A atmosfera do lugar tem um apelo natural e cinematográfico, o que atrai fotógrafos e aventureiros de todo o mundo. Além de sua beleza, o local ficou ainda mais famoso após ser utilizado nas filmagens da famosa série Game of Thrones, onde a estrada serviu como a "Kings Road", um dos cenários mais emblemáticos da série.</p><p>Muitos acreditam que a passagem é assombrada, o que adiciona uma camada extra de mistério e fascínio. Hoje, Dark Hedges continua sendo um dos pontos turísticos mais visitados da Irlanda do Norte, encantando os visitantes com sua aura mágica e, ao mesmo tempo, aterradora. Sua combinação de história, natureza e presença na cultura popular faz desse lugar uma experiência única e imperdível para qualquer viajante ou fã da série.</p>'
+            />
+          </div>
+          <div>
+            <h1>dark hedges</h1>
+            <p>
+              Dark Hedges é uma passagem única e impressionante localizada em
+              Bregagh Road, no Condado de Antrim, Irlanda do Norte, famosa por
+              sua linha de árvores entrelaçadas que criam um túnel natural. Com
+              mais de 300 anos de idade, essas árvores foram plantadas no século
+              XVIII pela família Stuart para embelezar a estrada que leva à sua
+              mansão, a Gracehill House. O aspecto sombrio e misterioso de Dark
+              Hedges é visível em qualquer estação do ano, com suas árvores
+              retorcidas e majestosas que oferecem uma experiência visual
+              inesquecível.
+            </p>
+            <p>
+              O local, cujo nome "Dark Hedges" se deve ao seu ambiente encantado
+              e quase sinistro, se tornou uma atração turística
+              internacionalmente reconhecida. A atmosfera do lugar tem um apelo
+              natural e cinematográfico, o que atrai fotógrafos e aventureiros
+              de todo o mundo. Além de sua beleza, o local ficou ainda mais
+              famoso após ser utilizado nas filmagens da famosa série Game of
+              Thrones, onde a estrada serviu como a "Kings Road", um dos
+              cenários mais emblemáticos da série.
+            </p>
+            <p>
+              Muitos acreditam que a passagem é assombrada, o que adiciona uma
+              camada extra de mistério e fascínio. Hoje, Dark Hedges continua
+              sendo um dos pontos turísticos mais visitados da Irlanda do Norte,
+              encantando os visitantes com sua aura mágica e, ao mesmo tempo,
+              aterradora. Sua combinação de história, natureza e presença na
+              cultura popular faz desse lugar uma experiência única e imperdível
+              para qualquer viajante ou fã da série.
+            </p>
+          </div>
+        </article>
+
+        <article>
+          <img
+            src="./assets/images/exemplo3.jpg"
+            alt="Exemplo de imagem 3"
+            data-description="<p>Esta é a descrição da imagem de exemplo 3.</p>"
+          />
+          <div>
+            <h1>Título do Artigo 3</h1>
+            <p>Conteúdo do terceiro artigo vai aqui.</p>
+          </div>
+        </article>
+      </div>
+    </main>
+    <div class="popup" id="imagePopup">
+      <div class="popup-content">
+        <button class="close-popup">×</button>
+        <div id="popup-description"></div>
+      </div>
+    </div>
+    <footer>©2025 Alan Ryan</footer>
+  </body>
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    const darkModeToggle = document.querySelector(".dark-mode-toggle");
+    const body = document.body;
+    const scrollTopButton = document.getElementById("scrollTopButton");
+    const popup = document.getElementById("imagePopup");
+    const closePopupBtn = document.querySelector(".close-popup");
+    const popupDescriptionDiv = document.getElementById("popup-description");
+
+    darkModeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+    });
+
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 200) {
+        scrollTopButton.style.display = "block";
+      } else {
+        scrollTopButton.style.display = "none";
+      }
+    });
+
+    document
+      .getElementById("scrollTopButton")
+      .addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+    document
+      .querySelectorAll("main article img, main .images-container img")
+      .forEach((img) => {
+        img.addEventListener("click", function () {
+          const description = this.getAttribute("data-description");
+          if (description) {
+            popupDescriptionDiv.innerHTML = description; // Usa innerHTML para renderizar o HTML
+            popup.style.display = "block";
+          }
+        });
+      });
+    closePopupBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+      if (event.target === popup) {
+        popup.style.display = "none";
+      }
+    });
+  </script>
+</html>
