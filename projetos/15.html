@@ -5,7 +5,7 @@
     <title>ALN Wiki</title>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="Refresh" content="25; 01.html" />
+    <!-- <meta http-equiv="Refresh" content="25; 01.html" /> -->
     <meta
       name="viewport"
       content="width=device-width,maximum-scale=0.9,user-scalable=0"
@@ -173,11 +173,42 @@
       main .container {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 50px;
         max-width: 1100px;
         margin: 0 auto;
         padding: 20px;
         box-sizing: border-box;
+        max-height: 2200px;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      main .container.expanded {
+        max-height: none;
+        overflow: visible;
+      }
+
+      .ver-mais-btn {
+        display: block;
+        margin: 20px auto;
+        background-color: #16a085;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+      }
+      .ver-mais-btn:hover {
+        background-color: #11705e;
+        box-shadow: 0 0 10px #16a085;
+      }
+      .dark-mode .ver-mais-btn {
+        background-color: #29abe2;
+      }
+      .dark-mode .ver-mais-btn:hover {
+        background-color: #1e75a1;
+        box-shadow: 0 0 10px #29abe2;
       }
 
       main article {
@@ -203,29 +234,22 @@
       main article:nth-child(odd) {
         flex-direction: row-reverse;
       }
-
-      main .images-container {
-        width: 40%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+      main article:nth-child(even) {
+        flex-direction: row;
       }
 
       main article img {
         width: 40%;
-        height: auto;
-        border-radius: 8px;
         object-fit: cover;
         cursor: pointer;
       }
 
+      main .images-container {
+        gap: 15px;
+      }
+
       main article .images-container img {
         width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 8px;
-        cursor: pointer;
       }
 
       main article > div {
@@ -370,15 +394,27 @@
         font-style: normal;
       }
 
-      .popup-content p {
-        text-align: justify;
-        font-style: italic;
+      .popup-content-container .popup-description-content img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
       }
-
-      .popup-content a {
+      .popup-description-content p {
+        width: 100%;
+      }
+      .popup-description-content table {
+        width: 100%;
+      }
+      .popup-description-content a {
         color: #16a085;
         text-decoration: none;
         font-weight: bold;
+      }
+
+      @media (min-width: 768px) {
+        .popup-content {
+          overflow-y: auto;
+        }
       }
 
       .popup-content table {
@@ -455,6 +491,50 @@
           width: 100%;
           object-fit: contain;
         }
+        .popup-description-content {
+          flex-direction: column;
+        }
+      }
+
+      .filter-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: #e0e7ef;
+      }
+
+      .dark-mode .filter-container {
+        background-color: #1f2128;
+        box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+      }
+
+      .filter-btn {
+        background-color: #16a085;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background-color: #11705e;
+        box-shadow: 0 0 10px #16a085;
+      }
+
+      .dark-mode .filter-btn {
+        background-color: #29abe2;
+      }
+
+      .dark-mode .filter-btn:hover,
+      .dark-mode .filter-btn.active {
+        background-color: #1e75a1;
+        box-shadow: 0 0 10px #29abe2;
       }
     </style>
   </head>
@@ -471,14 +551,45 @@
       <h1>ALN Wiki</h1>
       <p>Uma enciclopédia criada por Alan Ryan</p>
     </header>
+    <div class="filter-container">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="natureza">Natureza</button>
+      <button class="filter-btn" data-filter="musica">Música</button>
+    </div>
     <main>
       <div class="container">
-        <article>
-          <img
-            src="./assets/images/nuvens-lenticulares.jpeg"
-            alt="Nuvem Lenticular"
-            data-description='<img src="./assets/images/nuvens-lenticulares.jpeg" alt="Nuvem Lenticular Popup" /><p>Monte Fuji com nuvens lenticulares</p><p><small>Fonte: <a href="https://opensnow.com/news/post/lenticular-clouds-explained" target="_blank">OpenSnow</a></small></p>'
-          />
+        <article id="01" data-category="natureza">
+          <div class="images-container">
+            <img
+              src="./assets/images/nuvens-lenticulares.jpeg"
+              alt="Nuvem Lenticular"
+              data-description='<img src="./assets/images/nuvens-lenticulares.jpeg" alt="Nuvem Lenticular Popup" /><p>Monte Fuji com nuvens lenticulares</p><p><small>Fonte: <a href="https://opensnow.com/news/post/lenticular-clouds-explained" target="_blank">OpenSnow</a>.</small></p>'
+            />
+            <img
+              src="./assets/images/nuvens-lenticulares-02.jpg"
+              alt="Nuvem
+            Lenticular"
+              data-description='<img
+              src="./assets/images/nuvens-lenticulares-02.jpg"
+              alt="Nuvem Lenticular Popup"
+            />
+            <p>
+              Nuvem lenticular sobre Harold&apos;s Cross Dublin Ireland foto tirada às
+              11h30, 30 de junho de 2015.
+            </p>
+            <p>
+              <small
+                >Fonte:
+                <a
+                  href="https://en.wikipedia.org/wiki/Lenticular_cloud"
+                  target="_blank"
+                  >Wikipédia</a
+                >.</small
+              >
+            </p>
+            '
+            />
+          </div>
           <div>
             <h1>nuvens lenticulares</h1>
             <p>
@@ -527,20 +638,20 @@
           </div>
         </article>
 
-        <article>
+        <article id="02" data-category="natureza">
           <div class="images-container">
             <img
               src="./assets/images/dark-hedges.jpg"
               alt="Dark Hedges"
-              data-description='<img src="./assets/images/dark-hedges.jpg" alt="Dark Hedges Popup" /><p>Dark Hedges.</p>
-              <p><small>Fonte: <a href="https://unseraum.blogspot.com/2015/01/the-dark-hedges-no-reino-unido.html" target="_blank">Unser Raum!</a></small></p>
+              data-description='<img src="./assets/images/dark-hedges.jpg" alt="Dark Hedges Popup" />
+              <small>Fonte: <a href="https://unseraum.blogspot.com/2015/01/the-dark-hedges-no-reino-unido.html" target="_blank">Unser Raum!</a></small>
               '
             />
             <img
               src="./assets/images/dark-hedges-02.jpg"
               alt="Dark Hedges"
-              data-description='<img src="./assets/images/dark-hedges-02.jpg" alt="Dark Hedges Popup" /><p>Dark Hedges.</p>
-              <p><small>Fonte: <a href="https://unseraum.blogspot.com/2015/01/the-dark-hedges-no-reino-unido.html" target="_blank">Unser Raum!</a></small></p>
+              data-description='<img src="./assets/images/dark-hedges-02.jpg" alt="Dark Hedges Popup" />
+              <small>Fonte: <a href="https://unseraum.blogspot.com/2015/01/the-dark-hedges-no-reino-unido.html" target="_blank">Unser Raum!</a></small>
               '
             />
           </div>
@@ -579,85 +690,97 @@
           </div>
         </article>
 
-        <article>
+        <article id="03" data-category="musica">
           <img
             src="./assets/images/the-astrud-gilberto-album.jpeg"
+            alt="The
+          Astrud Gilberto Album (1965)"
+            data-description='<img
+            src="./assets/images/the-astrud-gilberto-album.jpeg"
             alt="The Astrud Gilberto Album (1965)"
-            data-description='<img src="./assets/images/the-astrud-gilberto-album.jpeg" alt="The Astrud Gilberto Album (1965)" />
-            <h2>Ficha técnica</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Gênero</th>
-                  <th>Estilo</th>
-                  <th>Ano de lançamento</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Jazz, Latin</td>
-                  <td>Bossa Nova, Easy Listening</td>
-                  <td>1965</td>
-                </tr>
-              </tbody>
-            </table>
-            <div style="margin-bottom: 15px;"></div>
-            <h3>Lista de faixas</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Música</th>
-                  <th>Duração</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Once I Loved</td><td>2:10</td></tr>
-                <tr><td>Agua De Beber</td><td>2:16</td></tr>
-                <tr><td>Meditation</td><td>2:39</td></tr>
-                <tr><td>And Roses And Roses</td><td>2:30</td></tr>
-                <tr><td>O Morro (Nao Tem Vez)</td><td>2:55</td></tr>
-                <tr><td>How Insensitive</td><td>2:45</td></tr>
-                <tr><td>Dindi</td><td>2:40</td></tr>
-                <tr><td>Photograph</td><td>2:10</td></tr>
-                <tr><td>Dreamer</td><td>2:00</td></tr>
-                <tr><td>So Finha De Ser Com Voce</td><td>2:15</td></tr>
-                <tr><td>All That&apos;s Left Is To Say Goodbye</td><td>3:09</td></tr>
-              </tbody>
+          />
+          <h2>Ficha técnica</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Gênero</th>
+                <th>Estilo</th>
+                <th>Ano de lançamento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Jazz, Latin</td>
+                <td>Bossa Nova, Easy Listening</td>
+                <td>1965</td>
+              </tr>
+            </tbody>
           </table>
           <div style="margin-bottom: 15px;"></div>
+          <h3>Lista de faixas</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Duração</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Once I Loved</td><td>2:10</td></tr>
+              <tr><td>Agua De Beber</td><td>2:16</td></tr>
+              <tr><td>Meditation</td><td>2:39</td></tr>
+              <tr><td>And Roses And Roses</td><td>2:30</td></tr>
+              <tr><td>O Morro (Nao Tem Vez)</td><td>2:55</td></tr>
+              <tr><td>How Insensitive</td><td>2:45</td></tr>
+              <tr><td>Dindi</td><td>2:40</td></tr>
+              <tr><td>Photograph</td><td>2:10</td></tr>
+              <tr><td>Dreamer</td><td>2:00</td></tr>
+              <tr><td>So Finha De Ser Com Voce</td><td>2:15</td></tr>
+              <tr><td>All That&apos;s Left Is To Say Goodbye</td><td>3:09</td></tr>
+            </tbody>
+        </table>
+          <div style="margin-bottom: 15px"></div>
           <h3>Créditos</h3>
           <table>
-              <thead>
-                  <tr>
-                      <th>Nome</th>
-                      <th>Função</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr><td>Astrud Gilberto</td><td>Vocals</td></tr>
-                  <tr><td>Marty Paich</td><td>Arranger, Conductor</td></tr>
-                  <tr><td>Antônio Carlos Jobim</td><td>Vocals, Guitar, Songwriter</td></tr>
-                  <tr><td>Milt Bernhart</td><td>Trombone</td></tr>
-                  <tr><td>João Donato</td><td>Piano</td></tr>
-                  <tr><td>Joe Mondragon</td><td>Bass</td></tr>
-                  <tr><td>Bud Shank</td><td>Flute, Alto Saxophone</td></tr>
-                  <tr><td>Stu Williamson</td><td>Trumpet</td></tr>
-                  <tr><td>Guildhall Strings</td><td>Strings</td></tr>
-                  <tr><td>Val Valentin</td><td>Director</td></tr>
-                  <tr><td>Rudy Van Gelder</td><td>Mastering Engineer</td></tr>
-                  <tr><td>Michael Malatak</td><td>Cover Art</td></tr>
-                  <tr><td>Dave Hassinger</td><td>Engineer</td></tr>
-                  <tr><td>Creed Taylor</td><td>Producer</td></tr>
-              </tbody>
-          </table>
-              <p>
-                <small>
-                  Fontes:
-                    <a href="https://www.discogs.com/master/107174-Astrud-Gilberto-The-Astrud-Gilberto-Album" target="_blank">Discogs</a>,
-                    <a href="https://rateyourmusic.com/release/album/astrud-gilberto/the-astrud-gilberto-album/" target="_blank">Rate Your Music (RYM)</a>. 
-                </small>              
-              </p>
-            '
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Contribuições</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Astrud Gilberto</td><td>Vocals</td></tr>
+                <tr><td>Marty Paich</td><td>Arranger, Conductor</td></tr>
+                <tr><td>Antônio Carlos Jobim</td><td>Vocals, Guitar, Songwriter</td></tr>
+                <tr><td>Milt Bernhart</td><td>Trombone</td></tr>
+                <tr><td>João Donato</td><td>Piano</td></tr>
+                <tr><td>Joe Mondragon</td><td>Bass</td></tr>
+                <tr><td>Bud Shank</td><td>Flute, Alto Saxophone</td></tr>
+                <tr><td>Stu Williamson</td><td>Trumpet</td></tr>
+                <tr><td>Guildhall Strings</td><td>Strings</td></tr>
+                <tr><td>Val Valentin</td><td>Director</td></tr>
+                <tr><td>Rudy Van Gelder</td><td>Mastering Engineer</td></tr>
+                <tr><td>Michael Malatak</td><td>Cover Art</td></tr>
+                <tr><td>Dave Hassinger</td><td>Engineer</td></tr>
+                <tr><td>              Creed Taylor</td><td>Producer</td></tr>
+            </tbody>
+        </table>
+          <p>
+            <small>
+              Fontes:
+              <a
+                href="https://www.discogs.com/master/107174-Astrud-Gilberto-The-Astrud-Gilberto-Album"
+                target="_blank"
+                >Discogs</a
+              >,
+              <a
+                href="https://rateyourmusic.com/release/album/astrud-gilberto/the-astrud-gilberto-album/"
+                target="_blank"
+                >Rate Your Music (RYM)</a
+              >.
+            </small>
+          </p>
+          '
           />
           <div>
             <h1>the astrud gilberto album (1965)</h1>
@@ -695,7 +818,373 @@
             </p>
           </div>
         </article>
+        <article id="04" data-category="musica">
+          <img
+            src="./assets/images/tudo-foi-feito-pelo-sol.jpeg"
+            alt="Tudo Foi
+          Feito Pelo Sol (1974)"
+            data-description='<img
+            src="./assets/images/tudo-foi-feito-pelo-sol.jpeg"
+            alt="Tudo Foi Feito Pelo Sol (1974)"
+          />
+          <h2>Ficha técnica</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Gênero</th>
+                <th>Estilo</th>
+                <th>Ano de lançamento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Rock</td>
+                <td>Prog Rock</td>
+                <td>1974</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="margin-bottom: 15px"></div>
+          <h3>Lista de faixas</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Duração</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Deixe Entrar Um Pouco D&apos;Água No Quintal</td><td>5:03</td></tr>
+              <tr><td>Pitágoras</td><td>6:56</td></tr>
+              <tr><td>Desanuviar</td><td>8:13</td></tr>
+              <tr><td>Eu Só Penso Em Te Ajudar</td><td>4:58</td></tr>
+              <tr><td>Cidadão da Terra</td><td>5:53</td></tr>
+              <tr><td>O Contrário de Nada é Nada</td><td>2:58</td></tr>
+              <tr><td>Tudo Foi Feito Pelo Sol</td><td>8:45</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-bottom: 15px"></div>
+          <h3>Créditos</h3>
+          <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Contribuições</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Sérgio Dias</td><td>Guitar, Acoustic Guitar, Sitar, Wind, Vocals</td></tr>
+                <tr><td>Túlio Mourão</td><td>Piano, Hammond Organ, Mini Moog, Vocals</td></tr>
+                <tr><td>A. Pedro de Medeiros</td><td>Bass, Vocals</td></tr>
+                <tr><td>Rui Motta</td><td>Drums, Percussion, Vocals</td></tr>
+                <tr><td>Os Mutantes</td><td>Producer</td></tr>
+                <tr><td>Luiz Carlos T. Reis</td><td>Mixing</td></tr>
+            </tbody>
+        </table>      
+          <p>
+            <small>
+              Fontes:
+              <a
+                href="https://www.discogs.com/master/309247-Mutantes-Tudo-Foi-Feito-Pelo-Sol"
+                target="_blank"
+                >Discogs</a
+              >,
+              <a
+                href="https://rateyourmusic.com/release/album/mutantes/tudo-foi-feito-pelo-sol/"
+                target="_blank"
+                >Rate Your Music (RYM)</a
+              >.
+            </small>
+          </p>
+          '
+          />
+          <div>
+            <h1>tudo foi feito pelo sol (1974)</h1>
+            <p>
+              Em 1974, "Tudo Foi Feito Pelo Sol" marcou uma nova era para Os
+              Mutantes. Após a saída deArnaldo Baptista e Rita Lee, Sérgio Dias,
+              então com apenas 23 anos, assumiu o comando do grupo e reformulou
+              sua sonoridade. Com o baixista Antonio Pedro de Medeiros, o
+              tecladista Túlio Mourão e o baterista Rui Motta, a banda mergulhou
+              de cabeça no rock progressivo, incorporando influências de nomes
+              como Yes e Emerson, Lake & Palmer.
+            </p>
+            <p>
+              Gravado nos estúdios da RCA, no Rio de Janeiro, o álbum foi
+              captado praticamente ao vivo, em um único take, capturando toda a
+              energia da nova formação. Lançado pela Som Livre, "Tudo Foi Feito
+              Pelo Sol" tornou-se o disco mais vendido da história dos Mutantes
+              e rendeu a maior turnê da banda até então. A recepção foi ambígua:
+              enquanto conquistava fãs do progressivo, o álbum causava
+              desconforto nos saudosistas da fase tropicalista, que consideravam
+              sua sonoridade "pouco brasileira".
+            </p>
+            <p>
+              O repertório traz composições elaboradas e instrumentação
+              refinada. A abertura com "Deixe Entrar Um Pouco D’Água No Quintal"
+              é empolgante, seguida pela viagem psicodélica de "Pitágoras".
+              "Desanuviar", de atmosfera etérea, e "Eu Só Penso Em Te Ajudar",
+              com pegada rock ‘n’ roll, demonstram a versatilidade do álbum, que
+              encerra com a grandiosa faixa-título.
+            </p>
+            <p>
+              Com o passar dos anos, "Tudo Foi Feito Pelo Sol" tornou-se um
+              clássico cult do progressivo brasileiro. Sua ausência em
+              relançamentos de vinil fez com que o disco se tornasse item raro e
+              cobiçado mundialmente. Para os amantes do gênero, essa obra
+              representa um momento singular na trajetória dos Mutantes,
+              provando que a criatividade e inovação do grupo ultrapassaram
+              fronteiras estilísticas.
+            </p>
+          </div>
+        </article>
+        <article id="05" data-category="musica">
+          <div class="images-container">
+            <img
+              src="./assets/images/a-night-at-the-opera.jpeg"
+              alt="A Night At
+            The Opera (1975)"
+              data-description='<img
+              src="./assets/images/a-night-at-the-opera.jpeg"
+              alt="A Night At The Opera (1975)"
+            />
+            <h2>Ficha técnica</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Gênero</th>
+                  <th>Estilo</th>
+                  <th>Ano de lançamento</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Rock</td>
+                  <td>
+                    Hard Rock, Pop Rock, Art Rock, Glam, Prog Rock, Classic Rock
+                  </td>
+                  <td>1975</td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="margin-bottom: 15px"></div>
+            <h3>Lista de faixas</h3>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th>Duração</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Death on Two Legs (Dedicated To...)</td><td>3:43</td></tr>
+                  <tr><td>Lazing on a Sunday Afternoon</td><td>1:08</td></tr>
+                  <tr><td>I&apos;m in Love With My Car</td><td>3:05</td></tr>
+                  <tr><td>You&apos;re My Best Friend</td><td>2:50</td></tr>
+                  <tr><td>&apos;39</td><td>3:25</td></tr>
+                  <tr><td>Sweet Lady</td><td>4:01</td></tr>
+                  <tr><td>Seaside Rendezvous</td><td>2:13</td></tr>
+                  <tr><td>The Prophet&apos;s Song</td><td>8:17</td></tr>
+                  <tr><td>Love of My Life</td><td>3:38</td></tr>
+                  <tr><td>Good Company</td><td>3:26</td></tr>
+                  <tr><td>Bohemian Rhapsody</td><td>5:55</td></tr>
+                  <tr><td>God Save the Queen</td><td>1:11</td></tr>
+                </tbody>
+              </table>  
+            <div style="margin-bottom: 15px"></div>
+            <h3>Créditos</h3>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Contribuições</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Freddie Mercury</td><td>piano, lead vocals, backing vocals, vocal, orchestration, woodwind, writer</td></tr>
+                  <tr><td>Brian May</td><td>guitar, backing vocals, lead vocals, koto, harp, ukulele, writer, arrangements</td></tr>
+                  <tr><td>Roger Taylor</td><td>drums, percussion, backing vocals, lead vocals, writer, vocal, orchestration, brass</td></tr>
+                  <tr><td>John Deacon</td><td>electric bass, electric piano, writer, double bass</td></tr>
+                  <tr><td>Mike Stone</td><td>engineer</td></tr>
+                  <tr><td>Gary Lyons</td><td>additional engineer</td></tr>
+                  <tr><td>Roy Thomas Baker</td><td>producer</td></tr>
+                  <tr><td>Queen</td><td>arrangements, producer</td></tr>
+                  <tr><td>David Costa</td><td>art direction</td></tr>
+                </tbody>
+              </table>   
+            <p>
+              <small>
+                Fontes:
+                <a
+                  href="https://www.discogs.com/master/5863-Queen-A-Night-At-The-Opera"
+                  target="_blank"
+                  >Discogs</a
+                >,
+                <a
+                  href="https://rateyourmusic.com/release/album/queen/a-night-at-the-opera/"
+                  target="_blank"
+                  >Rate Your Music (RYM)</a
+                >.
+              </small>
+            </p>
+            '
+            />
+            <img
+              src="./assets/images/a-night-at-the-opera-02.jpg"
+              alt="A Night at the Opera (1975)"
+              data-description='<img src="./assets/images/a-night-at-the-opera-02.jpg" alt=A Night at the Opera (1975)" /><p>A Night at the Opera (1975)</p>
+          <small>Fonte: <a href="https://www.discogs.com/master/5863-Queen-A-Night-At-The-Opera" target="_blank">Discogs</a>.</small>
+            '
+            />
+          </div>
+          <div>
+            <h1>a night at the opera (1975)</h1>
+            <p>
+              “A Night at the Opera” (1975) é o quarto álbum de estúdio da
+              lendária banda britânica Queen, lançado em 21 de novembro daquele
+              ano. Considerado um marco na história do rock, o disco se destaca
+              por sua ousadia e diversidade musical. A obra, que combina
+              elementos de rock clássico, hard rock, música de câmara e até
+              ópera, é mais conhecida pela icônica faixa "Bohemian Rhapsody".
+              Compositor principal do álbum, Freddie Mercury criou uma
+              obra-prima que desafiou os limites da música popular, misturando
+              estilos e criando uma narrativa complexa, que se transformaria em
+              uma das músicas mais emblemáticas da história. O álbum também
+              conta com contribuições de Brian May, Roger Taylor e John Deacon,
+              cujas composições ajudaram a cimentar o Queen como uma das bandas
+              mais criativas e inovadoras de sua época.
+            </p>
+            <p>
+              A produção de “A Night at the Opera” foi um dos aspectos mais
+              desafiadores e arriscados da carreira da banda. As gravações, que
+              duraram mais de quatro meses, aconteceram em vários estúdios de
+              Londres e no Rockfield Studios, no País de Gales, com a supervisão
+              do produtor Roy Thomas Baker. Durante esse processo, a banda
+              utilizou uma vasta gama de técnicas de gravação e experimentação
+              sonora, resultando em um álbum monumental que exigiu um nível de
+              virtuosismo e trabalho colaborativo entre os membros. A música
+              “Bohemian Rhapsody”, em particular, foi um desafio, com Mercury
+              forçando seus colegas de banda a gravar passagens complexas e
+              inusitadas, o que gerou resistência inicial, mas resultou em uma
+              composição revolucionária.
+            </p>
+            <p>
+              A atmosfera de criatividade intensa que permeava as gravações do
+              álbum se refletiu no conteúdo das faixas. A música “Death on Two
+              Legs (Dedicated to...)” foi uma crítica direta ao antigo
+              empresário da banda, que os havia sufocado financeiramente e
+              emocionalmente. Com a chegada de um novo empresário, os membros do
+              Queen experimentaram um renascimento criativo, o que lhes permitiu
+              compor sem as limitações impostas anteriormente. Esse período de
+              renovação trouxe à tona a habilidade da banda de mesclar estilos
+              de forma única, como evidenciado na suavidade de “You’re My Best
+              Friend” (composta por John Deacon) e na narrativa futurista de
+              “’39” (de May).
+            </p>
+            <p>
+              A estreia de “A Night at the Opera” não foi apenas um sucesso
+              comercial imediato, mas também um ponto de virada na história do
+              rock, consolidando a posição do Queen como uma das bandas mais
+              influentes do século XX. "Bohemian Rhapsody", que inicialmente
+              enfrentou resistência das gravadoras devido à sua duração e
+              estrutura não convencional, tornou-se um dos maiores sucessos da
+              banda, vendendo milhões de cópias e sendo repetidamente escolhida
+              como uma das melhores músicas de todos os tempos. O álbum não só
+              refletiu a habilidade técnica e a visão criativa do Queen, mas
+              também solidificou sua capacidade de inovar dentro de uma
+              indústria musical em constante evolução.
+            </p>
+          </div>
+        </article>
+        <article id="06" data-category="natureza">
+          <div class="images-container">
+            <!-- PRIMEIRA IMAGEM -->
+            <img
+              src="./assets/images/arco-iris-monocromatico.jpg"
+              alt="Arco-íris monocromático"
+              data-description='<img src="./assets/images/arco-iris-monocromatico.jpg" 
+              alt="Arco-íris monocromático Popup" />
+              <p>
+                Enquanto os arco-íris são geralmente multicoloridos, um arco-íris monocromático é um fenômeno raro. A imagem acima mostra um grande arco-íris monocromático acima de Washington, EUA.
+              </p>
+              <p><small>Fonte: <a href="https://www.weatherandradar.co.uk/weather-news/a-unique-phenomenon-monochrome-rainbows--23cedf6a-289c-447c-a169-b4041ea875d8" target="_blank">Weather Radar</a>.</small></p>'
+            />
+            <!-- SEGUNDA IMAGEM -->
+            <img
+              src="./assets/images/arco-iris-monocromatico-02.jpg"
+              alt="Arco-íris monocromático"
+              data-description='<img
+              src="./assets/images/arco-iris-monocromatico-02.jpg"
+              alt="Arco-íris monocromático Popup"
+            />
+            <p>
+              A luz é então refratada e refletida dentro da gota, fazendo com que as diferentes cores da luz se espalhem e se tornem visíveis como um arco de cores.
+            </p>
+            <p>
+              <small
+                >Fonte:
+                <a
+                  href="https://www.weatherandradar.co.uk/weather-news/a-unique-phenomenon-monochrome-rainbows--23cedf6a-289c-447c-a169-b4041ea875d8"
+                  target="_blank"
+                  >Weather Radar</a
+                >.</small
+              >
+            </p>
+            '
+            />
+          </div>
+          <div>
+            <h1>arco-íris monocromático</h1>
+            <p>
+              Um arco-íris monocromático é um fenômeno óptico fascinante em que
+              um arco-íris aparece em uma única cor ou em uma faixa muito
+              estreita de matizes, contrastando com o espectro completo de cores
+              normalmente observado na maioria dos arco-íris. Esse efeito
+              intrigante pode ocorrer sob condições atmosféricas específicas ou
+              devido a circunstâncias particulares de iluminação. Embora
+              comumente associemos os arco-íris a arcos vibrantes e
+              multicoloridos, criados pela dispersão da luz solar através das
+              gotas de chuva, o arco-íris monocromático oferece uma variação
+              única dessa norma.
+            </p>
+            <p>
+              A formação de um arco-íris monocromático é semelhante à de um
+              arco-íris comum. Quando a luz solar entra nas gotas de água no ar,
+              ela desacelera e se curva devido à mudança de densidade entre o ar
+              e a água. Essa curvatura, ou refração, faz com que os diferentes
+              comprimentos de onda da luz se espalhem, criando o arco
+              característico de cores. No entanto, no caso de um arco-íris
+              monocromático, a dispersão da luz é limitada a um comprimento de
+              onda específico, resultando tipicamente em uma única cor.
+            </p>
+            <p>
+              Arco-íris monocromáticos são mais comumente observados durante o
+              crepúsculo, ao amanhecer ou ao pôr do sol, quando o sol está baixo
+              no horizonte. Nesses momentos, a luz solar viaja por uma espessura
+              maior da atmosfera da Terra, fazendo com que comprimentos de onda
+              mais curtos, como azul, verde e amarelo, se dispersem mais
+              eficazmente. Como resultado, comprimentos de onda
+              predominantemente mais longos, como o vermelho, dominam o
+              arco-íris. Fatores ambientais, como poluição luminosa, névoa ou
+              bruma, podem ainda restringir mais o espectro visível, permitindo
+              que apenas uma única cor surja.
+            </p>
+            <p>
+              Embora os arco-íris monocromáticos possam não ter a intensidade
+              vibrante dos arco-íris tradicionais, eles transmitem uma sensação
+              de calma e simplicidade, contrastando fortemente com os arco-íris
+              mais caóticos e coloridos aos quais estamos acostumados. Eles
+              também oferecem uma oportunidade interessante para estudar as
+              sutis maneiras como a luz interage com nossa atmosfera, ampliando
+              nossa compreensão da ótica atmosférica. Esse fenômeno raro nos
+              encoraja a apreciar a beleza e a complexidade dos acontecimentos
+              naturais, oferecendo uma nova perspectiva através da qual podemos
+              observar o mundo ao nosso redor.
+            </p>
+          </div>
+        </article>
       </div>
+      <button class="ver-mais-btn">Ver Mais</button>
     </main>
     <div class="popup" id="imagePopup">
       <div class="popup-content">
@@ -706,12 +1195,17 @@
   </body>
   <!-- ===== SCRIPT ===== -->
   <script>
+    // =========================================================================
+    //  INICIALIZAÇÃO E CONFIGURAÇÕES GERAIS
+    // =========================================================================
     const darkModeToggle = document.querySelector(".dark-mode-toggle");
     const body = document.body;
     const scrollTopButton = document.getElementById("scrollTopButton");
     const popup = document.getElementById("imagePopup");
     const closePopupBtn = document.querySelector(".close-popup");
     const popupDescriptionDiv = document.getElementById("popup-description");
+    const container = document.querySelector(".container");
+    const verMaisBtn = document.querySelector(".ver-mais-btn");
 
     function applySavedTheme() {
       const savedTheme = localStorage.getItem("theme");
@@ -719,9 +1213,11 @@
         body.classList.add("dark-mode");
       }
     }
-
     applySavedTheme();
 
+    // =========================================================================
+    //  FUNCIONALIDADES DO MODO ESCURO
+    // =========================================================================
     darkModeToggle.addEventListener("click", () => {
       body.classList.toggle("dark-mode");
       if (body.classList.contains("dark-mode")) {
@@ -731,6 +1227,9 @@
       }
     });
 
+    // =========================================================================
+    //  FUNCIONALIDADES DO BOTÃO DE ROLAGEM PARA O TOPO
+    // =========================================================================
     window.addEventListener("scroll", function () {
       if (window.scrollY > 200) {
         scrollTopButton.style.display = "block";
@@ -747,7 +1246,9 @@
           behavior: "smooth",
         });
       });
-
+    // =========================================================================
+    //  FUNCIONALIDADES DO POPUP DE IMAGEM
+    // =========================================================================
     closePopupBtn.addEventListener("click", () => {
       popup.style.display = "none";
       closePopupBtn.style.display = "none";
@@ -760,7 +1261,10 @@
           closePopupBtn.style.display = "block";
           const description = this.getAttribute("data-description");
           if (description) {
-            popupDescriptionDiv.innerHTML = description;
+            popupDescriptionDiv.innerHTML =
+              '<div class="popup-description-content">' +
+              description +
+              "</div>";
             popup.style.display = "block";
           }
         });
@@ -771,6 +1275,130 @@
         popup.style.display = "none";
         closePopupBtn.style.display = "none";
       }
+    });
+    // =========================================================================
+    //  FUNCIONALIDADES DOS FILTROS
+    // =========================================================================
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const articles = document.querySelectorAll("article");
+
+    function filterArticles(filter) {
+      let articlesArray = Array.from(articles);
+      if (filter === "all") {
+        articlesArray.sort((a, b) => {
+          const titleA = a.querySelector("h1").textContent.trim().toLowerCase();
+          const titleB = b.querySelector("h1").textContent.trim().toLowerCase();
+          return titleA.localeCompare(titleB);
+        });
+      }
+
+      articlesArray.forEach((article) => {
+        if (
+          filter === "all" ||
+          article.getAttribute("data-category") === filter
+        ) {
+          article.style.display = "flex";
+        } else {
+          article.style.display = "none";
+        }
+      });
+
+      articlesArray.forEach((article) => {
+        container.appendChild(article);
+      });
+    }
+
+    function applyOddArticleStyle() {
+      let visibleIndex = 0;
+      const articles = document.querySelectorAll(
+        'article:not([style*="display: none"])'
+      );
+      articles.forEach((article) => {
+        if (visibleIndex % 2 === 0) {
+          article.style.flexDirection = "row";
+        } else {
+          article.style.flexDirection = "row-reverse";
+        }
+        visibleIndex++;
+      });
+    }
+
+    function updateActiveButton(selectedButton) {
+      filterButtons.forEach((button) => {
+        button.classList.remove("active");
+      });
+      selectedButton.classList.add("active");
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const filter = this.dataset.filter;
+        filterArticles(filter);
+        updateActiveButton(this);
+        applyOddArticleStyle();
+      });
+    });
+
+    filterArticles("all");
+    // =========================================================================
+    //  FUNCIONALIDADES DO BOTÃO VER MAIS/VER MENOS
+    // =========================================================================
+    const filterStates = {};
+    let activeMostrarMenosBtn = null;
+
+    function createMostrarMenosBtn(filter) {
+      const btn = document.createElement("button");
+      btn.classList.add("ver-mais-btn");
+      btn.textContent = "Ver Menos";
+      if (activeMostrarMenosBtn) {
+        activeMostrarMenosBtn.remove();
+        activeMostrarMenosBtn = null;
+      }
+      container.after(btn);
+      activeMostrarMenosBtn = btn;
+      btn.addEventListener("click", () => {
+        container.classList.remove("expanded");
+        btn.style.display = "none";
+        filterStates[filter] = "collapsed";
+        activeMostrarMenosBtn = null;
+        verMaisBtn.style.display = "block";
+        if (filterStates[filter] === "collapsed") {
+          verMaisBtn.style.display = "block";
+        } else {
+          verMaisBtn.style.display = "none";
+        }
+      });
+      return btn;
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const filter = this.dataset.filter;
+        filterArticles(filter);
+        updateActiveButton(this);
+        applyOddArticleStyle();
+        if (activeMostrarMenosBtn) {
+          activeMostrarMenosBtn.remove();
+          activeMostrarMenosBtn = null;
+        }
+        if (filterStates[filter] === "expanded") {
+          container.classList.add("expanded");
+          verMaisBtn.style.display = "none";
+          const mostrarMenosBtn = createMostrarMenosBtn(filter);
+        } else {
+          container.classList.remove("expanded");
+          verMaisBtn.style.display = "block";
+        }
+      });
+    });
+
+    verMaisBtn.addEventListener("click", () => {
+      const activeFilter =
+        document.querySelector(".filter-btn.active").dataset.filter;
+      container.classList.add("expanded");
+      verMaisBtn.style.display = "none";
+      filterStates[activeFilter] = "expanded";
+      const mostrarMenosBtn = createMostrarMenosBtn(activeFilter);
     });
   </script>
 </html>
