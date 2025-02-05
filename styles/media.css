@@ -1,11 +1,23 @@
-@media (max-width: 900px) {
-    .card-list {
-        width: calc(50% - 20px);
-    }
+@media (min-width: 600px) {
+  .card-wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card-list:first-child {
+    grid-column: 1 / -1;
+  }
+  .card-special {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 600px) {
-     .card-list {
-        width: 100%;
-    }
+  .card-list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .card-list {
+    width: calc(50% - 20px);
+  }
 }

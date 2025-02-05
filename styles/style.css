@@ -1,3 +1,4 @@
+/* ========= RESET UNIVERSAL ========= */
 *,
 *::before,
 *::after {
@@ -6,6 +7,7 @@
   padding: 0;
 }
 
+/* ========= BODY ========= */
 body {
   font-family: schibsted;
   font-weight: bold;
@@ -45,6 +47,7 @@ body::before {
   transform: translateX(-50%);
 }
 
+/* ========= HEADER ========= */
 .logo {
   display: inline-block;
   width: auto;
@@ -74,27 +77,20 @@ img {
   display: block;
 }
 
-.contetnt {
+/* ========= CONTEÚDO ========= */
+.content {
   max-width: 1000px;
   margin-right: auto;
   margin-left: auto;
   padding: 1rem;
 }
 
+/* ========= CARD ========= */
 .card-wrap {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   list-style: none;
-}
-
-@media (min-width: 600px) {
-  .card-wrap {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .card-list:first-child {
-    grid-column: 1 / -1;
-  }
 }
 
 .card-list {
@@ -130,6 +126,7 @@ img {
   text-align: center;
 }
 
+/* ========= FOOTER ========= */
 footer {
   font-family: "gamelia";
   text-align: center;
@@ -157,6 +154,7 @@ footer::before {
   opacity: 0.6;
 }
 
+/* ========= BOTÃO PARA O TOPO ========= */
 #scrollTopButton {
   display: none;
   position: fixed;
@@ -182,6 +180,7 @@ footer::before {
   font-size: 2.5rem;
 }
 
+/* ========= CARD ESPECIAL ========= */
 .card-special-content {
   display: flex;
   flex-direction: row;
@@ -216,10 +215,4 @@ footer::before {
   font-size: 1.1rem;
   margin-top: 0.3rem;
   text-align: center;
-}
-
-@media (min-width: 600px) {
-  .card-special {
-    grid-column: 1 / -1;
-  }
 }
