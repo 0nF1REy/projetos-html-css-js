@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- ===== TITLE and META ===== -->
+    <title>Cafeleza</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,maximum-scale=0.9,user-scalable=0"
+    />
+    <meta name="keywords" content="Cafeleza" />
+    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta content="#222" name="theme-color" />
+    <meta name="robots" content="index, follow" />
+    <!-- ==== FAVICON and ICONS ==== -->
+    <link
+      rel="shortcut icon"
+      href="./assets/images/16_cafeleza/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/images/16_cafeleza/favicon-16x16.png"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/images/16_cafeleza/favicon-32x32.png"
+      sizes="32x32"
+    />
+    <!-- ==== OPEN GRAPH and SECURITY ==== -->
+    <meta property="og:title" content="Cafeleza" />
+    <meta property="og:type" content="website" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- ==== MICROSOFT TILE ==== -->
+    <meta name="application-name" content="Cafeleza" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <style>
+      /* ========= BODY ========= */
+      body {
+        font-family: "Arial", sans-serif;
+        background: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      li {
+        list-style-type: none;
+      }
+      /* ========= HEADER ========= */
+      header {
+        background-color: #d0c2a9;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px;
+        max-width: 920px;
+        margin: 0 auto;
+      }
+
+      .header-container a {
+        line-height: 0;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 16px;
+      }
+
+      nav ul li {
+        color: #1f0e07;
+        font-weight: bold;
+        text-transform: capitalize;
+        transition: color 0.3s ease;
+      }
+
+      nav ul li:hover {
+        color: #6b2405;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .logo-image {
+        width: 180px;
+        transition: transform 0.3s ease;
+      }
+
+      .logo-image:hover {
+        transform: scale(1.1);
+      }
+      /* ========= CONTEÚDO ========= */
+      main {
+        margin: 40px 0;
+        padding: 0 16px;
+        flex: 1;
+      }
+
+      .main-section-container {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 16px;
+        background-color: none;
+      }
+
+      .main-section-container ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 36px;
+        justify-content: center;
+      }
+
+      .main-section-container ul li {
+        flex: 1 0 340px;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+      }
+
+      .main-section-container ul li:hover {
+        transform: scale(1.05);
+        box-shadow: 10px 10px #1f0e07f1;
+        border-radius: 8px;
+      }
+
+      .main-section-container ul li img {
+        width: 100%;
+        height: 392px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .main-section-container ul li img:hover {
+        opacity: 0.9;
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          flex-direction: column;
+          gap: 24px;
+        }
+        .main-section-container ul li {
+          flex: 1 0 48%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .main-section-container ul li {
+          flex: 1 0 100%;
+        }
+      }
+
+      /* ========= FOOTER ========= */
+      footer {
+        background-color: #d0c2a9;
+        color: #1f0e07;
+        padding: 20px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+
+      footer header {
+        padding-bottom: 5px;
+        box-shadow: none;
+      }
+
+      footer span {
+        font-family: "gamelia";
+        letter-spacing: 0.1rem;
+      }
+
+      footer p {
+        margin: 0;
+        font-size: 0.9em;
+      }
+
+      footer a {
+        color: #832a04;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      footer a:hover {
+        color: #ff4d00;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="16.html">
+          <img
+            class="logo-image"
+            src="./assets/images/16_cafeleza/cafeleza-logo.png"
+            alt="cafeleza logotipo"
+          />
+        </a>
+
+        <nav>
+          <ul>
+            <li><a href="16.html">Início</a></li>
+            <li><a href="#">Tipos de café</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="main-section-container">
+        <ul>
+          <li>
+            <img src="./assets/images/16_cafeleza/coffe-01.png" alt="Café 1" />
+          </li>
+          <li>
+            <img src="./assets/images/16_cafeleza/coffe-02.png" alt="Café 2" />
+          </li>
+          <li>
+            <img src="./assets/images/16_cafeleza/coffe-03.png" alt="Café 3" />
+          </li>
+          <li>
+            <img src="./assets/images/16_cafeleza/coffe-04.png" alt="Café 4" />
+          </li>
+          <li>
+            <img src="./assets/images/16_cafeleza/coffe-05.png" alt="Café 5" />
+          </li>
+          <li>
+            <img src="./assets/images/16_cafeleza/coffe-06.png" alt="Café 6" />
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <header>
+        <p>© <span>2025 Alan Ryan</span> | Todos os direitos reservados.</p>
+      </header>
+      <p>
+        <a href="#">Política de Privacidade</a> |
+        <a href="#">Termos de Uso</a>
+      </p>
+    </footer>
+  </body>
+</html>
