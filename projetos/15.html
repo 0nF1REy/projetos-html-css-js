@@ -5,7 +5,7 @@
     <title>ALN Wiki</title>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <!-- <meta http-equiv="Refresh" content="25; 01.html" /> -->
+    <!-- <meta http-equiv="Refresh" content="25; 16.html" /> -->
     <meta
       name="viewport"
       content="width=device-width,maximum-scale=0.9,user-scalable=0"
@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./assets/icons/fontawesome/css/all.min.css" />
     <style>
+      /* ==================== RESET and GENERAL ==================== */
       *,
       *::before,
       *::after {
@@ -37,6 +38,11 @@
 
       body {
         font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        min-height: 100vh;
+        position: relative;
+        color: #333;
         background-image: linear-gradient(
           180deg,
           #d1dbe6,
@@ -45,15 +51,12 @@
           #8fa6b5,
           #6f7f98
         );
-        color: #333;
-        line-height: 1.6;
-        margin: 0;
-        min-height: 100vh;
-        position: relative;
         transition: background-image 0.3s ease, color 0.3s ease;
       }
 
+      /* ==================== DARK MODE  ==================== */
       body.dark-mode {
+        color: #fff;
         background: linear-gradient(
           180deg,
           #1a1a22,
@@ -63,10 +66,10 @@
           #161a1d
         );
         background-blend-mode: multiply;
-        color: #fff;
       }
 
       body.dark-mode main article {
+        color: #f0f0f0;
         background: linear-gradient(
           180deg,
           #16171e,
@@ -76,7 +79,6 @@
           #101016
         );
         background-blend-mode: multiply;
-        color: #f0f0f0;
         box-shadow: 0 4px 12px rgba(153, 153, 153, 0.1);
         border: 1px solid #29abe2;
       }
@@ -90,6 +92,7 @@
         color: #29abe2;
         text-shadow: 0 0 30px #29abe2, 0 0 2px #29abe2;
       }
+
       body.dark-mode header p {
         color: #f0f0f0;
         text-shadow: 0 0 8px #f0f0f0;
@@ -99,18 +102,19 @@
         color: #bbbbbb;
       }
 
+      /* ==================== DARK MODE TOGGLE ==================== */
       .dark-mode-toggle {
         position: fixed;
         top: 15px;
         right: 30px;
+        z-index: 100;
         color: #fff;
         border: none;
         padding: 12px;
         cursor: pointer;
         border-radius: 100%;
-        transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        z-index: 100;
         background-color: #16a085;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
       }
 
       .dark-mode-toggle:hover {
@@ -131,8 +135,13 @@
         box-shadow: 0 0 15px #29abe2, 0 0 20px #29abe2;
       }
 
-      /* ========= HEADER ========= */
+      /* ==================== HEADER ==================== */
       header {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #fff;
+        padding: 30px 20px;
+        border-bottom: 2px solid #16a085;
         background-image: linear-gradient(
           135deg,
           #2c3e50,
@@ -142,17 +151,13 @@
           #283c4c,
           #2f3b47
         );
-        color: #fff;
-        text-align: center;
-        padding: 30px 20px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-        border-bottom: 2px solid #16a085;
       }
 
       .dark-mode header {
         border-bottom: 2px solid #29abe2;
       }
+
       header h1 {
         font-size: 3rem;
         margin: 0;
@@ -168,7 +173,7 @@
         color: #bdc3c7;
       }
 
-      /* ========= MAIN ========= */
+      /* ==================== MAIN ==================== */
       main .container {
         display: grid;
         grid-template-columns: 1fr;
@@ -180,6 +185,7 @@
         max-height: 2200px;
         overflow: hidden;
         transition: max-height 0.3s ease;
+        flex: 1;
       }
 
       main .container.expanded {
@@ -187,32 +193,14 @@
         overflow: visible;
       }
 
-      .ver-mais-btn {
-        display: block;
-        margin: 20px auto;
-        background-color: #16a085;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: center;
-      }
-      .ver-mais-btn:hover {
-        background-color: #11705e;
-        box-shadow: 0 0 10px #16a085;
-      }
-      .dark-mode .ver-mais-btn {
-        background-color: #29abe2;
-      }
-      .dark-mode .ver-mais-btn:hover {
-        background-color: #1e75a1;
-        box-shadow: 0 0 10px #29abe2;
-      }
-
       main article {
         display: flex;
         align-items: flex-start;
+        overflow: hidden;
+        padding: 20px;
+        gap: 20px;
+        border-radius: 10px;
+        flex-direction: row;
         background-image: linear-gradient(
           180deg,
           #f4f6f9,
@@ -222,17 +210,14 @@
           #eaf0f9,
           #f1f4f9
         );
-        border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        padding: 20px;
-        gap: 20px;
         transition: background-image 0.3s ease, color 0.3s ease;
       }
 
       main article:nth-child(odd) {
         flex-direction: row-reverse;
       }
+
       main article:nth-child(even) {
         flex-direction: row;
       }
@@ -259,16 +244,16 @@
 
       main h1 {
         font-size: 1.8rem;
-        color: #2c3e50;
         margin-bottom: 15px;
-        transition: color 0.3s ease;
+        color: #2c3e50;
         text-transform: capitalize;
+        transition: color 0.3s ease;
       }
 
       main .container p {
         font-size: 1rem;
-        color: #555;
         margin-bottom: 15px;
+        color: #555;
         text-align: justify;
         transition: color 0.3s ease;
       }
@@ -278,13 +263,81 @@
         color: #16a085;
       }
 
-      /* ========= FOOTER ========= */
+      main article[data-category="erro"] h1 {
+        color: #ed4337;
+      }
+
+      body.dark-mode main article[data-category="erro"] h1 {
+        color: #ed4337;
+        text-shadow: 0 0 30px #d44848;
+      }
+
+      main article[data-category="erro"] p {
+        color: #b71c1b;
+        font-weight: bold;
+      }
+
+      body.dark-mode main article[data-category="erro"] p {
+        color: #b71c1b;
+        font-weight: bold;
+      }
+
+      .theme-icon {
+        transition: opacity 0.3s ease;
+      }
+
+      .dark-mode .fa-moon {
+        display: none;
+      }
+
+      .dark-mode .fa-sun {
+        display: inline;
+      }
+
+      .fa-moon {
+        display: inline;
+      }
+
+      .fa-sun {
+        display: none;
+      }
+
+      /* ==================== VER MAIS BUTTON ==================== */
+      .ver-mais-btn {
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #16a085;
+      }
+
+      .ver-mais-btn:hover {
+        background-color: #11705e;
+        box-shadow: 0 0 10px #16a085;
+      }
+
+      .dark-mode .ver-mais-btn {
+        background-color: #29abe2;
+      }
+
+      .dark-mode .ver-mais-btn:hover {
+        background-color: #1e75a1;
+        box-shadow: 0 0 10px #29abe2;
+      }
+
+      /* ==================== FOOTER ==================== */
       footer {
         font-family: "gamelia";
         text-align: center;
-        margin-top: 3rem;
+        margin-top: auto;
         padding: 2rem 0;
+        letter-spacing: 0.2rem;
         color: #16a085;
+        border-top: 2px solid #16a085;
         background-image: linear-gradient(
           135deg,
           #2c3e50,
@@ -294,11 +347,9 @@
           #283c4c,
           #2f3b47
         );
-        border-top: 2px solid #16a085;
         box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
         position: relative;
         z-index: 10;
-        letter-spacing: 0.2rem;
       }
 
       footer::before {
@@ -308,30 +359,32 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: inherit;
-        filter: blur(10px);
         z-index: -1;
         opacity: 0.6;
-      }
-      .dark-mode footer {
-        border-top: 2px solid #29abe2;
-        color: #29abe2;
+        background: inherit;
+        filter: blur(10px);
       }
 
+      .dark-mode footer {
+        color: #29abe2;
+        border-top: 2px solid #29abe2;
+      }
+
+      /* ==================== SCROLL TO TOP BUTTON ==================== */
       #scrollTopButton {
         display: none;
         position: fixed;
         bottom: 30px;
         right: 30px;
-        background-color: #16a085;
+        z-index: 1000;
         color: #fff;
         border: none;
-        border-radius: 50%;
         padding: 12px;
+        border-radius: 50%;
         cursor: pointer;
         opacity: 0.7;
+        background-color: #16a085;
         transition: opacity 0.3s, background-color 0.3s, box-shadow 0.3s;
-        z-index: 1000;
       }
 
       #scrollTopButton:hover {
@@ -353,6 +406,7 @@
         color: #fff;
       }
 
+      /* ==================== POPUP  ==================== */
       .popup {
         display: none;
         position: fixed;
@@ -360,8 +414,8 @@
         left: 0;
         width: 100%;
         height: 100%;
+        z-index: 3489;
         background-color: rgba(0, 0, 0, 0.7);
-        z-index: 341;
       }
 
       .popup-content {
@@ -369,16 +423,16 @@
         top: 10%;
         left: 50%;
         transform: translateX(-50%);
-        background: transparent;
-        padding: 20px;
-        border-radius: 8px;
-        max-width: 90%;
-        overflow-y: auto;
-        max-height: 80vh;
-        color: #f0f0f0;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        max-width: 90%;
+        max-height: 80vh;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-y: auto;
+        background: transparent;
+        color: #f0f0f0;
       }
 
       .popup-content img {
@@ -397,12 +451,15 @@
         height: auto;
         object-fit: contain;
       }
+
       .popup-description-content p {
         width: 100%;
       }
+
       .popup-description-content table {
         width: 100%;
       }
+
       .popup-description-content a {
         color: #16a085;
         text-decoration: none;
@@ -438,20 +495,21 @@
         background-color: #29abe260;
       }
 
+      /* ==================== CLOSE POPUP ==================== */
       .close-popup {
         position: fixed;
         top: 3%;
         right: 50%;
+        z-index: 3490;
+        display: none;
         font-size: 25px;
-        cursor: pointer;
+        color: #fff;
         border: none;
-        border-radius: 100%;
         padding: 8px;
+        cursor: pointer;
+        border-radius: 100%;
         outline: none;
         background: #16a085;
-        color: #fff;
-        z-index: 1001;
-        display: none;
         transition: background-color 0.3s ease, box-shadow 0.3s ease;
       }
 
@@ -463,42 +521,40 @@
         background-color: #29abe2;
       }
 
-      /* === RESPONSIVIDADE === */
-      @media (max-width: 768px) {
-        h1 {
-          font-size: 1.5rem;
-        }
-
-        p {
-          font-size: 0.95rem;
-        }
-        main article {
-          flex-direction: column;
-        }
-        main article:nth-child(odd) {
-          flex-direction: column;
-        }
-        main article img {
-          width: 100%;
-        }
-
-        main .images-container {
-          width: 100%;
-        }
-        .popup-content img {
-          width: 100%;
-          object-fit: contain;
-        }
+      /* ==================== SOCIAL MEDIAS CONTAINER ==================== */
+      .social-medias-container {
+        position: fixed;
+        left: 10px;
+        top: 50%;
+        z-index: 1000;
+        transform: translateY(-50%);
       }
 
+      .social-medias-container ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .social-medias-container img {
+        width: 40px;
+        height: auto;
+        display: block;
+      }
+
+      /* ==================== FILTER CONTAINER ==================== */
       .filter-container {
         display: flex;
         justify-content: center;
         gap: 10px;
         margin-bottom: 20px;
         padding: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         background-color: #e0e7ef;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
       .dark-mode .filter-container {
@@ -506,13 +562,14 @@
         box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
       }
 
+      /* ==================== FILTER BUTTON ==================== */
       .filter-btn {
-        background-color: #16a085;
         color: #e0e7ef;
         border: none;
         padding: 10px 20px;
         cursor: pointer;
         border-radius: 5px;
+        background-color: #16a085;
         transition: background-color 0.3s ease, box-shadow 0.3s ease;
       }
 
@@ -531,12 +588,114 @@
         background-color: #1e75a1;
         box-shadow: 0 0 10px #29abe2;
       }
+
+      /* ==================== INPUT ==================== */
+      .search-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-right: 38.5%;
+      }
+
+      #searchInput {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 260px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        outline: none;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding-left: 30px;
+      }
+
+      .search-container i {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+      }
+
+      #searchInput:focus {
+        border-color: #16a085;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .dark-mode #searchInput {
+        background-color: #333;
+        color: #fff;
+        border-color: #555;
+        box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+      }
+
+      .dark-mode .search-container i {
+        color: #bbb;
+      }
+
+      .dark-mode #searchInput:focus {
+        border-color: #29abe2;
+        box-shadow: 0 2px 6px rgba(255, 255, 255, 0.2);
+      }
+
+      /* ==================== RESPONSIVE ==================== */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
+
+        main article {
+          flex-direction: column;
+        }
+
+        main article:nth-child(odd) {
+          flex-direction: column;
+        }
+
+        main article:nth-child(even) {
+          flex-direction: column;
+        }
+
+        main article img {
+          width: 100%;
+        }
+
+        main .images-container {
+          width: 100%;
+        }
+
+        .popup-content img {
+          width: 100%;
+          object-fit: contain;
+        }
+
+        .search-container {
+          margin-left: 0;
+          margin-top: 10px;
+          width: 100%;
+          margin-right: 0;
+        }
+
+        #searchInput {
+          width: 80%;
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .social-medias-container {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
     <!-- ===== CONTEÚDO ===== -->
     <button class="dark-mode-toggle">
-      <i class="fa-solid fa-circle-half-stroke"></i>
+      <i class="fa-solid fa-moon"></i>
+      <i class="fa-solid fa-sun" style="display: none"></i>
     </button>
     <div id="scrollTopButton">
       <i class="fa-solid fa-angle-up"></i>
@@ -547,6 +706,14 @@
       <p>Uma enciclopédia criada por Alan Ryan</p>
     </header>
     <div class="filter-container">
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Pesquisar por título..."
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
       <button class="filter-btn active" data-filter="all">
         <i class="fa-solid fa-globe"></i>
       </button>
@@ -559,6 +726,24 @@
     </div>
     <main>
       <div class="container">
+        <article id="00" data-category="erro">
+          <div class="images-container">
+            <img
+              src="./assets/images/error-404.webp"
+              alt="Nuvem
+            Lenticular"
+              data-description='<img
+              src="./assets/images/error-404.webp"
+              alt="ERRO 404"
+            />
+            '
+            />
+          </div>
+          <div>
+            <h1>Artigo não encontrado</h1>
+            <p>ERRO 404</p>
+          </div>
+        </article>
         <article id="01" data-category="natureza">
           <div class="images-container">
             <img
@@ -1202,6 +1387,27 @@
         <div id="popup-description"></div>
       </div>
     </div>
+    <nav class="social-medias-container">
+      <ul>
+        <li>
+          <a href="https://github.com/0nF1REy" target="_blank">
+            <img
+              src="./assets/images/github-logo.svg"
+              alt="Logotipo do GitHub"
+              id="githubLogo"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="https://linkedin.com/in/alan-ryan-b115ba228" target="_blank">
+            <img
+              src="./assets/images/linkedin-logo.svg"
+              alt="Logotipo do LinkeDin"
+            />
+          </a>
+        </li>
+      </ul>
+    </nav>
     <footer>©2025 Alan Ryan</footer>
   </body>
   <!-- ===== SCRIPT ===== -->
@@ -1217,13 +1423,25 @@
     const popupDescriptionDiv = document.getElementById("popup-description");
     const container = document.querySelector(".container");
     const verMaisBtn = document.querySelector(".ver-mais-btn");
+    const githubLogo = document.getElementById("githubLogo");
+    const moonIcon = document.querySelector(".fa-moon");
+    const sunIcon = document.querySelector(".fa-sun");
 
     function applySavedTheme() {
       const savedTheme = localStorage.getItem("theme");
       if (savedTheme === "dark") {
         body.classList.add("dark-mode");
+        moonIcon.style.display = "none";
+        sunIcon.style.display = "inline";
+        if (githubLogo) {
+          githubLogo.src = "./assets/images/github-white-logo.svg";
+        }
+      } else {
+        moonIcon.style.display = "inline";
+        sunIcon.style.display = "none";
       }
     }
+
     applySavedTheme();
 
     // =========================================================================
@@ -1231,10 +1449,20 @@
     // =========================================================================
     darkModeToggle.addEventListener("click", () => {
       body.classList.toggle("dark-mode");
-      if (body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark");
+      const isDarkMode = body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+
+      if (githubLogo) {
+        githubLogo.src = isDarkMode
+          ? "./assets/images/github-white-logo.svg"
+          : "./assets/images/github-logo.svg";
+      }
+      if (isDarkMode) {
+        moonIcon.style.display = "none";
+        sunIcon.style.display = "inline";
       } else {
-        localStorage.setItem("theme", "light");
+        moonIcon.style.display = "inline";
+        sunIcon.style.display = "none";
       }
     });
 
@@ -1263,6 +1491,8 @@
     closePopupBtn.addEventListener("click", () => {
       popup.style.display = "none";
       closePopupBtn.style.display = "none";
+      // Reabilita o scroll ao fechar o popup
+      document.body.style.overflow = "auto";
     });
 
     document
@@ -1277,6 +1507,8 @@
               description +
               "</div>";
             popup.style.display = "block";
+            // Desabilita o scroll ao abrir o popup
+            document.body.style.overflow = "hidden";
           }
         });
       });
@@ -1285,6 +1517,8 @@
       if (event.target === popup) {
         popup.style.display = "none";
         closePopupBtn.style.display = "none";
+        // Reabilita o scroll ao fechar o popup
+        document.body.style.overflow = "auto";
       }
     });
     // =========================================================================
@@ -1292,7 +1526,8 @@
     // =========================================================================
     const filterButtons = document.querySelectorAll(".filter-btn");
     const articles = document.querySelectorAll("article");
-    let currentFilterIndex = 0; // Índice do filtro ativo
+    let currentFilterIndex = 0;
+
     function filterArticles(filter) {
       let articlesArray = Array.from(articles);
       if (filter === "all") {
@@ -1315,27 +1550,41 @@
       articlesArray.forEach((article) => {
         container.appendChild(article);
       });
+      const searchTerm = document.getElementById("searchInput").value;
+      performSearch(searchTerm, filter);
     }
+
     function applyOddArticleStyle() {
-      let visibleIndex = 0;
-      const articles = document.querySelectorAll(
-        'article:not([style*="display: none"])'
-      );
-      articles.forEach((article) => {
-        if (visibleIndex % 2 === 0) {
-          article.style.flexDirection = "row";
-        } else {
-          article.style.flexDirection = "row-reverse";
-        }
-        visibleIndex++;
-      });
+      if (window.innerWidth > 768) {
+        let visibleIndex = 0;
+        const articles = document.querySelectorAll(
+          'article:not([style*="display: none"])'
+        );
+        articles.forEach((article) => {
+          if (visibleIndex % 2 === 0) {
+            article.style.flexDirection = "row";
+          } else {
+            article.style.flexDirection = "row-reverse";
+          }
+          visibleIndex++;
+        });
+      } else {
+        const articles = document.querySelectorAll(
+          'article:not([style*="display: none"])'
+        );
+        articles.forEach((article) => {
+          article.style.flexDirection = "column";
+        });
+      }
     }
+
     function updateActiveButton(selectedButton) {
       filterButtons.forEach((button) => {
         button.classList.remove("active");
       });
       selectedButton.classList.add("active");
     }
+
     function applyFilter(index) {
       if (index >= 0 && index < filterButtons.length) {
         currentFilterIndex = index;
@@ -1357,6 +1606,7 @@
         }
       }
     }
+
     filterButtons.forEach((button, index) => {
       button.addEventListener("click", function () {
         applyFilter(index);
@@ -1368,6 +1618,7 @@
     // =========================================================================
     const filterStates = {};
     let activeMostrarMenosBtn = null;
+
     function createMostrarMenosBtn(filter) {
       const btn = document.createElement("button");
       btn.classList.add("ver-mais-btn");
@@ -1392,6 +1643,7 @@
       });
       return btn;
     }
+
     filterButtons.forEach((button, index) => {
       button.addEventListener("click", function () {
         applyFilter(index);
@@ -1434,5 +1686,70 @@
         }
       }
     });
+
+    // =========================================================================
+    //  Função para realizar a pesquisa
+    // =========================================================================
+    function performSearch(searchTerm, currentFilter) {
+      const articles = document.querySelectorAll("article");
+      const articleErro = document.getElementById("00");
+      searchTerm = searchTerm.toLowerCase();
+      let visibleArticleCount = 0;
+
+      articles.forEach((article) => {
+        if (article.id !== "00") {
+          const title = article.querySelector("h1").textContent.toLowerCase();
+          const matchesFilter =
+            currentFilter === "all" ||
+            article.getAttribute("data-category") === currentFilter;
+          const matchesSearch = title.includes(searchTerm);
+
+          if (matchesFilter && matchesSearch) {
+            article.style.display = "flex";
+            visibleArticleCount++;
+          } else {
+            article.style.display = "none";
+          }
+        }
+      });
+
+      if (visibleArticleCount === 0) {
+        articleErro.style.display = "flex";
+      } else {
+        articleErro.style.display = "none";
+      }
+
+      applyOddArticleStyle();
+
+      if (visibleArticleCount > 4) {
+        verMaisBtn.style.display = "block";
+      } else {
+        verMaisBtn.style.display = "none";
+      }
+    }
+
+    // =========================================================================
+    //  Adicionar evento de input ao campo de pesquisa
+    // =========================================================================
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", function () {
+      const searchTerm = this.value;
+      const activeFilter =
+        document.querySelector(".filter-btn.active").dataset.filter;
+      performSearch(searchTerm, activeFilter);
+    });
+
+    function updateSearchInputStyle() {
+      const searchInput = document.getElementById("searchInput");
+      if (body.classList.contains("dark-mode")) {
+        searchInput.classList.add("dark-mode");
+      } else {
+        searchInput.classList.remove("dark-mode");
+      }
+    }
+
+    darkModeToggle.addEventListener("click", updateSearchInputStyle);
+
+    updateSearchInputStyle();
   </script>
 </html>
