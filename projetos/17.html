@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- ===== TÍTULO e METADADOS ===== -->
+    <title>DNA | Visualização Dinâmica</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Refresh" content="25; 01.html" />
+    <meta
+      name="viewport"
+      content="width=device-width,maximum-scale=0.9,user-scalable=0"
+    />
+    <meta name="keywords" content="DNA | Visualização Dinâmica" />
+    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta content="#222" name="theme-color" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- ==== FAVICON e ÍCONES ==== -->
+    <link
+      rel="shortcut icon"
+      href="./assets/images/17_dna/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/images/17_dna/favicon-16x16.png"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/images/17_dna/favicon-32x32.png"
+      sizes="32x32"
+    />
+
+    <!-- ==== OPEN GRAPH e SEGURANÇA ==== -->
+    <meta property="og:title" content="DNA | Visualização Dinâmica" />
+    <meta property="og:type" content="website" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- ==== MICROSOFT TILE ==== -->
+    <meta name="application-name" content="ALN Wiki" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <style>
+      /* ==================== BODY ==================== */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #111;
+        overflow: hidden;
+        perspective: 800px;
+      }
+
+      #myCanvas {
+        margin-top: -100px;
+        transform-style: preserve-3d;
+      }
+
+      #mensagemHeader {
+        position: fixed;
+        top: 20px;
+        left: auto;
+        right: -500px;
+        transform: none;
+        background-color: rgba(30, 30, 30, 0.8);
+        color: #ffffff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        z-index: 1000;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 1.2em;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        transition: right 0.5s ease-out, opacity 0.5s ease-in-out;
+        opacity: 0;
+      }
+
+      #mensagemHeader.show {
+        right: auto;
+        left: 20px;
+        opacity: 1;
+      }
+
+      .fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div id="mensagemHeader">© Alan Ryan | DNA | Visualização Dinâmica</div>
+    </header>
+
+    <main>
+      <canvas id="myCanvas" width="900" height="1100"></canvas>
+    </main>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      // =========================================================================
+      //  INICIALIZAÇÃO DA MENSAGEM DO HEADER
+      // =========================================================================
+      window.onload = function () {
+        const mensagemDiv = document.getElementById("mensagemHeader");
+
+        setTimeout(function () {
+          mensagemDiv.classList.add("show");
+          setTimeout(function () {
+            mensagemDiv.classList.remove("show");
+            mensagemDiv.classList.add("fade-out");
+            setTimeout(function () {
+              mensagemDiv.style.display = "none";
+            }, 500);
+          }, 3000);
+        }, 100);
+      };
+
+      // =========================================================================
+      //  CONFIGURAÇÃO INICIAL DA ANIMAÇÃO DO DNA
+      // =========================================================================
+      const numberOfPoints = 80; // Número de pontos em cada hélice
+      const canvas = document.getElementById("myCanvas");
+      const { width, height } = canvas; // Dimensões do canvas
+      const context = canvas.getContext("2d"); // Contexto 2D do canvas
+
+      context.translate(width / 2, height / 2); // Centraliza a origem
+
+      // =========================================================================
+      //  PARÂMETROS DA HÉLICE
+      // =========================================================================
+      const helixRadius = 150; // Raio da hélice
+      const helixHeight = 900; // Altura da hélice
+      const baseCircleRadius = 8; // Raio base dos círculos
+      const rotationSpeed = 0.3; // Velocidade de rotação da hélice
+      const depthFactor = 0.5; // Fator de profundidade para dimensionamento
+
+      // =========================================================================
+      //  PARÂMETROS DA CÂMERA
+      // =========================================================================
+      const cameraRotationSpeed = 0.01; // Velocidade de rotação da câmera
+      const cameraRotationAmplitude = 0.05; // Amplitude da rotação da câmera
+
+      // =========================================================================
+      //  PARÂMETROS DE BRILHO
+      // =========================================================================
+      const minDepthBrightness = 0.2; // Brilho mínimo com base na profundidade
+      const maxDepthBrightness = 1.0; // Brilho máximo com base na profundidade
+      const depthBrightnessFactor = 0.8; // Fator para cálculo do brilho
+      const zOffset = -500; // Deslocamento no eixo Z
+
+      // =========================================================================
+      //  PRÉ-CALCULAR CORES DO GRADIENTE
+      // =========================================================================
+      const gradientColors = [];
+      for (let i = 0; i < numberOfPoints; i++) {
+        const hue1 = i * (360 / numberOfPoints);
+        const hue2 = (i + numberOfPoints / 4) * (360 / numberOfPoints);
+        gradientColors.push({ hue1, hue2 });
+      }
+
+      // =========================================================================
+      //  FUNÇÃO DE ANIMAÇÃO PRINCIPAL
+      // =========================================================================
+      function animate() {
+        // Limpa o canvas a cada frame
+        context.clearRect(-width / 2, -height / 2, width, height);
+
+        const time = Date.now() / 1000; // Tempo atual em segundos
+        const cameraAngleOffset =
+          Math.sin(time * cameraRotationSpeed) * cameraRotationAmplitude; // Deslocamento do ângulo da câmera
+        const viewAngle = time * rotationSpeed + cameraAngleOffset; // Ângulo de visão atual
+
+        // Itera sobre cada ponto da hélice
+        for (let i = 0; i < numberOfPoints; i++) {
+          const angle = (i / numberOfPoints) * Math.PI * 2; // Ângulo para posicionar o ponto
+
+          // Calcula as coordenadas 3D do ponto
+          const x = Math.cos(angle) * helixRadius;
+          const y = (i / numberOfPoints) * helixHeight - helixHeight / 2;
+          const z = Math.sin(angle) * helixRadius;
+
+          // Aplica a rotação 3D
+          const rotatedX = x * Math.cos(viewAngle) - z * Math.sin(viewAngle);
+          const rotatedZ =
+            x * Math.sin(viewAngle) + z * Math.cos(viewAngle) + zOffset;
+
+          // Calcula a profundidade e o fator de tamanho
+          const depth = (rotatedZ + helixRadius - zOffset) / (2 * helixRadius);
+          const sizeFactor = 0.5 + depthFactor * depth;
+          const circleRadius = baseCircleRadius * sizeFactor;
+
+          // Calcula o brilho com base na profundidade
+          const brightness =
+            minDepthBrightness +
+            (maxDepthBrightness - minDepthBrightness) *
+              Math.pow(depth, depthBrightnessFactor);
+          const alpha = brightness; // Valor alfa para transparência
+
+          // Calcula as coordenadas e propriedades do ponto oposto na outra hélice
+          const x2 = Math.cos(angle + Math.PI) * helixRadius;
+          const z2 = Math.sin(angle + Math.PI) * helixRadius;
+          const rotatedX2 = x2 * Math.cos(viewAngle) - z2 * Math.sin(viewAngle);
+          const rotatedZ2 =
+            x2 * Math.sin(viewAngle) + z2 * Math.cos(viewAngle) + zOffset;
+          const depth2 =
+            (rotatedZ2 + helixRadius - zOffset) / (2 * helixRadius);
+          const sizeFactor2 = 0.5 + depthFactor * depth2;
+          const circleRadius2 = baseCircleRadius * sizeFactor2;
+          const brightness2 =
+            minDepthBrightness +
+            (maxDepthBrightness - minDepthBrightness) *
+              Math.pow(depth2, depthBrightnessFactor);
+          const alpha2 = brightness2;
+
+          // Desenha os círculos com sombra e brilho
+          context.shadowBlur = 10;
+          context.shadowColor = `rgba(255, 255, 255, ${alpha})`;
+          context.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          drawCircle(rotatedX, y, circleRadius);
+          context.fillStyle = `rgba(255, 255, 255, ${alpha2})`;
+          drawCircle(rotatedX2, y, circleRadius2);
+          context.shadowBlur = 0;
+
+          // Desenha a linha entre os pontos
+          const gradient = context.createLinearGradient(
+            rotatedX,
+            y,
+            rotatedX2,
+            y
+          );
+          const { hue1, hue2 } = gradientColors[i];
+          gradient.addColorStop(0, `hsla(${hue1}, 100%, 50%, ${alpha})`);
+          gradient.addColorStop(1, `hsla(${hue2}, 100%, 50%, ${alpha2})`);
+          context.strokeStyle = gradient;
+          context.lineWidth = 2;
+          context.beginPath();
+          context.moveTo(rotatedX, y);
+          context.lineTo(rotatedX2, y);
+          context.stroke();
+        }
+
+        // Solicita o próximo frame da animação
+        requestAnimationFrame(animate);
+      }
+
+      // =========================================================================
+      //  FUNÇÃO PARA DESENHAR UM CÍRCULO
+      // =========================================================================
+      function drawCircle(x, y, radius) {
+        context.beginPath();
+        context.arc(x, y, radius, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      // Inicia a animação
+      animate();
+
+      document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+
+        console.info(
+          "Context menu (botão direito do mouse) desabilitado para proteger o conteúdo."
+        );
+
+        const mensagem = document.createElement("div");
+        mensagem.textContent =
+          "A funcionalidade do botão direito do mouse foi desabilitada nesta página.";
+        mensagem.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 9999;
+    font-size: 16px;
+  `;
+        document.body.appendChild(mensagem);
+
+        setTimeout(() => {
+          document.body.removeChild(mensagem);
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>
