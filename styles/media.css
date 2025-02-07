@@ -1,4 +1,5 @@
-@media (min-width: 600px) {
+/* ==================== RESPONSIVE ==================== */
+@media (min-width: 768px) {
   .card-wrap {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -7,17 +8,5 @@
   }
   .card-special {
     grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 600px) {
-  .card-list {
-    width: 100%;
-  }
-}
-
-@media (max-width: 900px) {
-  .card-list {
-    width: calc(50% - 20px);
   }
 }
