@@ -1,12 +1,23 @@
 /* ==================== RESPONSIVE ==================== */
-@media (min-width: 768px) {
-  .card-wrap {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 768px) {
+  main .card-wrap {
+    grid-template-columns: repeat(1, 1fr);
   }
-  .card-list:first-child {
+
+  main .card-list:nth-child(1) {
     grid-column: 1 / -1;
   }
-  .card-special {
+
+  main .card-list.card-special:last-child {
     grid-column: 1 / -1;
+  }
+
+  main .card-special-content {
+    align-items: stretch;
+  }
+
+  main .card-special-link {
+    width: 100%;
+    margin-bottom: 1rem;
   }
 }

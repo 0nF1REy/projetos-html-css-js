@@ -86,6 +86,10 @@ img {
 }
 
 /* ========= CARD ========= */
+.card-list:nth-child(1) {
+  grid-column: span 3;
+}
+
 .card-wrap {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -181,6 +185,10 @@ footer::before {
 }
 
 /* ========= CARD ESPECIAL ========= */
+.card-list.card-special:last-child {
+  grid-column: span 3;
+}
+
 .card-special-content {
   display: flex;
   flex-direction: row;
