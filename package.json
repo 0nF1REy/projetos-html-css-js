@@ -1,12 +1,20 @@
 {
-  "name": "projetos-html-css",
+  "name": "projetos-html-css-js",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "live-server",
+    "build": "echo 'Nenhuma etapa de build definida'",
+    "test": "echo 'Error: no test specified' && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "portfolio",
+    "html",
+    "css",
+    "javascript",
+    "web development"
+  ],
   "author": "Alan Ryan da Silva Domingues",
-  "license": "ISC",
-  "description": ""
+  "license": "MIT",
+  "description": "Um portfólio de projetos web desenvolvidos com HTML, CSS e JavaScript por Alan Ryan."
 }
