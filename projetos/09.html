@@ -1,91 +1,170 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>09 - Imagens</title>
-    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta charset="UTF-8" />
+    <meta name="author" content="Alan Ryan da Silva Domingues" />
     <meta
       name="description"
       content="Esta página foi criada para estudo HTML"
     />
-    <meta name="keywords" content="HTML,CSS" />
-    <meta http-equiv="Refresh" content="25; 10.html" />
-    <meta charset="UTF-8" />
-    <style type="text/css">
-      body {
-        background-image: url(assets/img/roxinho-bolinha.png);
+    <meta name="keywords" content="HTML,CSS,JavaScript" />
+    <meta http-equiv="refresh" content="25; 10.html" />
+    <title>09 - Imagens</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: url("assets/img/roxinho-bolinha.png");
+        color: #fff;
+      }
+
       header,
       footer {
-        background-image: url(assets/img/rotated-square.png);
-        background-repeat: repeat-x;
-      }
-      section,
-      footer {
+        background: url("assets/img/rotated-square.png") repeat-x;
         text-align: center;
+        padding: 1rem;
       }
-      footer {
-        color: #adff2f;
-      }
-      main {
-        background-image: url(assets/img/cubo-3d.png);
-      }
-      .cabecalho-1 {
+
+      header h2 {
         color: khaki;
         text-decoration: underline;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
       }
-      .cabecalho-2 {
+
+      header span {
         color: #adff2f;
+        font-size: 1rem;
       }
-      hr {
-        border-top: solid 0;
-        color: paleturquoise;
+
+      main {
+        background: url("assets/img/cubo-3d.png");
+        padding: 2rem 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
       }
+
+      section {
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+
+      .banda {
+        width: 350px;
+        height: 200px;
+        object-fit: cover;
+        margin: 10px;
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .banda:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      }
+
       .fotos {
         width: 200px;
-        border: 5px #000000 solid;
-        cursor: grab;
+        border: 5px solid black;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: transform 0.3s, border-color 0.3s;
       }
+
       .fotos:hover {
-        border: 5px #ff0000 solid;
-        zoom: 110%;
+        border-color: red;
+        transform: scale(1.1);
       }
-      .banda {
-        height: 200px;
-        width: 350px;
+
+      footer {
+        color: #adff2f;
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+
+      hr {
+        border: none;
+        height: 2px;
+        background: paleturquoise;
+        margin: 1rem 0;
+        width: 80%;
+        margin-inline: auto;
       }
     </style>
   </head>
   <body>
     <!-- Cabeçalho -->
     <header>
-      <h2 class="cabecalho-1">Módulo de HTML</h2>
-      <span class="cabecalho-2"
-        >Realizado por Alan Ryan na data de 21 de setembro de 2024.</span
-      >
+      <h2>Módulo de HTML</h2>
+      <span>Realizado por Alan Ryan na data de 21 de setembro de 2024.</span>
       <hr />
     </header>
-    <!-- Conteúdo de hoje -->
+
+    <!-- Conteúdo principal -->
     <section>
       <div>
-        <img class="banda" src="./assets/img/elp.jpg" />
-        <img class="banda" src="./assets/img/os-mutantes.webp" />
+        <img class="banda" src="./assets/img/elp.jpg" alt="ELP" />
+        <img
+          class="banda"
+          src="./assets/img/os-mutantes.webp"
+          alt="Os Mutantes"
+        />
       </div>
+
       <main>
-        <div>
-          <img class="fotos" src="./assets/img/A-Night-at-the Opera.jpeg" />
-          <img class="fotos" src="./assets/img/Brain-Salad-Surgery.jpeg" />
-          <img class="fotos" src="./assets/img/Tudo-foi-feito-pelo-Sol.jpeg" />
-          <img class="fotos" src="./assets/img/Wheels-Are-Turnin.jpeg" />
-        </div>
+        <img
+          class="fotos"
+          src="./assets/img/A-Night-at-the Opera.jpeg"
+          alt="Queen - A Night at the Opera"
+        />
+        <img
+          class="fotos"
+          src="./assets/img/Brain-Salad-Surgery.jpeg"
+          alt="ELP - Brain Salad Surgery"
+        />
+        <img
+          class="fotos"
+          src="./assets/img/Tudo-foi-feito-pelo-Sol.jpeg"
+          alt="Os Mutantes - Tudo foi feito pelo Sol"
+        />
+        <img
+          class="fotos"
+          src="./assets/img/Wheels-Are-Turnin.jpeg"
+          alt="REO Speedwagon - Wheels Are Turnin"
+        />
       </main>
+
       <div>
-        <img class="banda" src="./assets/img/queen.webp" />
-        <img class="banda" src="./assets/img/reo-speedwagon.jpg" />
+        <img class="banda" src="./assets/img/queen.webp" alt="Queen" />
+        <img
+          class="banda"
+          src="./assets/img/reo-speedwagon.jpg"
+          alt="REO Speedwagon"
+        />
       </div>
     </section>
+
     <!-- Rodapé -->
     <footer>
-      <small> &copy;2024 Alan Ryan </small>
+      <small>&copy; 2024 Alan Ryan</small>
     </footer>
+
+    <script>
+      // Efeito suave de entrada
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.style.opacity = 0;
+        setTimeout(() => {
+          document.body.style.transition = "opacity 1.5s ease-in-out";
+          document.body.style.opacity = 1;
+        }, 100);
+      });
+    </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>11 - Cursor Personalizado</title>
+    <meta charset="UTF-8" />
     <meta name="Author" content="Alan Ryan da Silva Domingues" />
     <meta
       name="description"
@@ -9,19 +9,100 @@
     />
     <meta name="keywords" content="HTML,CSS" />
     <meta http-equiv="Refresh" content="25; 12.html" />
-    <meta charset="UTF-8" />
-    <style type="text/css">
-      main {
+    <title>11 - Cursor Personalizado</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: #eee;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        cursor: none;
+        overflow-x: hidden;
+      }
+
+      header {
         text-align: center;
-        cursor: url(./assets/cur/llx-aero-black-blue/Normal\ Select.cur),
-          default;
+        margin-bottom: 20px;
       }
+      .cabecalho-1 {
+        font-size: 2rem;
+        color: #61dafb;
+        text-shadow: 0 0 10px #61dafb;
+        letter-spacing: 2px;
+        margin-bottom: 5px;
+      }
+      .cabecalho-2 {
+        font-size: 1.1rem;
+        color: #a0cfe8;
+        font-style: italic;
+      }
+      .linha {
+        margin: 15px auto;
+        width: 50%;
+        border: 1px solid #61dafb;
+        border-radius: 2px;
+        box-shadow: 0 0 6px #61dafb;
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        padding: 10px;
+      }
+
       .os-mutantes {
-        height: 400px;
-        width: 500px;
+        max-width: 100%;
+        max-height: 400px;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(97, 218, 251, 0.7);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: none;
       }
+      
       .os-mutantes:hover {
-        cursor: default;
+        transform: scale(1.05) rotate(1deg);
+        box-shadow: 0 0 30px rgba(97, 218, 251, 1);
+      }
+
+      footer {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: #61dafb;
+        text-shadow: 0 0 6px #61dafb;
+      }
+
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        border: 3px solid #61dafb;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: background-color 0.3s ease, transform 0.1s ease;
+        z-index: 10000;
+        mix-blend-mode: difference;
+        backdrop-filter: blur(5px);
+      }
+
+      .cursor-hover {
+        background-color: #61dafb88;
+        transform: translate(-50%, -50%) scale(1.5);
+        border-color: #a0cfe8;
       }
     </style>
   </head>
@@ -34,17 +115,43 @@
       >
       <hr class="linha" />
     </header>
-    <!-- Conteúdo de hoje -->
+
+    <!-- Conteúdo -->
     <main>
       <section>
         <div>
-          <img class="os-mutantes" src="./assets/img/os-mutantes.webp" />
+          <img
+            class="os-mutantes"
+            src="./assets/img/os-mutantes.webp"
+            alt="Imagem da banda Os Mutantes"
+          />
         </div>
       </section>
     </main>
+
     <!-- Rodapé -->
     <footer>
-      <small> &copy;2024 Alan Ryan </small>
+      <small>&copy;2024 Alan Ryan</small>
     </footer>
+
+    <div class="custom-cursor" id="customCursor"></div>
+
+    <script>
+      const cursor = document.getElementById("customCursor");
+      const image = document.querySelector(".os-mutantes");
+
+      window.addEventListener("mousemove", (e) => {
+        cursor.style.top = e.clientY + "px";
+        cursor.style.left = e.clientX + "px";
+      });
+
+      image.addEventListener("mouseenter", () => {
+        cursor.classList.add("cursor-hover");
+      });
+
+      image.addEventListener("mouseleave", () => {
+        cursor.classList.remove("cursor-hover");
+      });
+    </script>
   </body>
 </html>
