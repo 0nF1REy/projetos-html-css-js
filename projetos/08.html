@@ -1,389 +1,507 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>08 - Links</title>
-    <meta name="Author" content="Alan Ryan da Silva Domingues" />
-    <meta
-      name="description"
-      content="Esta página foi criada para estudo HTML"
-    />
-    <meta name="keywords" content="HTML,CSS" />
-    <meta http-equiv="Refresh" content="25; 09.html" />
     <meta charset="UTF-8" />
-    <style type="text/css">
+    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta name="description" content="Página de Estudo HTML - Links" />
+    <meta name="keywords" content="HTML, CSS, Links, Estudo" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="25; 09.html" />
+    <title>08 - Links</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
-        background-color: #263f70;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #eef2f3, #8e9eab);
+        color: #333;
+        line-height: 1.6;
+        transition: background 0.3s ease;
       }
+
       header {
-        background-color: #2f3f7f;
+        background-color: #222;
+        color: #fff;
+        padding: 1.5rem 0;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
       }
+
+      header h2 {
+        font-size: 2rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 960px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+
       a {
+        color: #007bff;
         text-decoration: none;
-        color: #000000;
+        transition: all 0.3s ease;
       }
+
       a:hover {
-        color: #ff0000;
-        text-decoration: underline;
+        color: #100dd7;
       }
-      .cabecalho-1 {
-        color: khaki;
-        text-decoration: underline;
+
+      .link-button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+        margin: 8px 5px;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
       }
-      .cabecalho-2 {
-        color: greenyellow;
+
+      .link-button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
       }
-      .linha {
-        border-top: solid 0;
-        color: paleturquoise;
-      }
-      .lke {
-        text-decoration: none;
-        color: #009000;
-      }
-      .lke:hover {
-        text-decoration: underline;
-        color: #0000ff;
-      }
-      .lka {
-        text-decoration: none;
-        color: #bf03c2;
-      }
-      .lka:hover {
-        text-decoration: underline;
-        color: #a0a000;
-      }
+
       p {
+        margin: 1rem 0;
         text-align: justify;
+        transition: color 0.4s ease;
+      }
+
+      #primeiro-paragrafo {
+        color: #000070;
+      }
+
+      p:nth-of-type(even) {
+        color: #007000;
+      }
+
+      p:nth-of-type(odd) {
+        color: #700000;
+      }
+
+      .internal-links {
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      .internal-links a {
+        margin: 5px 10px;
+        padding: 8px 14px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fafafa;
+        transition: background-color 0.3s ease;
+      }
+
+      .internal-links a:hover {
+        background-color: #ddd;
+      }
+
+      .yahoo-link {
+        background-color: #bf03c2;
+        color: white !important;
+      }
+
+      .yahoo-link:hover {
+        background-color: #a0a000;
+        color: #fff !important;
+      }
+
+      footer {
+        background-color: #222;
+        color: white;
+        text-align: center;
+        padding: 20px 10px;
+        margin-top: 40px;
+        border-top: 4px solid #007bff;
+      }
+
+      #copyright {
+        color: #fff;
+      }
+
+      @media (max-width: 600px) {
+        .link-button {
+          width: 100%;
+          text-align: center;
+        }
+
+        .internal-links {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
       }
     </style>
   </head>
+
   <body>
-    <a name="topo"></a>
-    <!-- Cabeçalho -->
     <header>
-      <h2 class="cabecalho-1">Módulo de HTML</h2>
-      <span class="cabecalho-2"
-        >Realizado por Alan Ryan na data de 21 de setembro de 2024.</span
-      >
-      <hr class="linha" />
+      <h2>Módulo de HTML</h2>
+      <span>Realizado por Alan Ryan na data de 21 de setembro de 2024.</span>
     </header>
-    <!-- Conteúdo de hoje -->
-    <a href="I.html" target="_self">Aula 1</a>
-    <p>
-      <a href="II.html" target="_self">Aula 2 - Textos/Listas</a>
-    </p>
-    <a href="III.html" target="_self">Aula 3</a>
-    <p>
-      <a href="IV.html" target="_self">Aula 4 - Tabelas</a>
-    </p>
-    <a href="V.html" target="_self">Aula 5 - CSS/Texto</a>
-    <p>
-      <a href="VI.html" target="_self">Aula 6 - Cores</a>
-    </p>
-    <a href="VII.html" target="_self"
-      >Aula 7 - Formatação de tabelas / CSS - Classes</a
-    >
-    <p>
-      <a href="https://www.yahoo.co.jp/" target="_blank" class="lke"
+
+    <div class="container">
+      <a id="topo"></a>
+
+      <a href="01.html" class="link-button">Aula 1</a>
+      <a href="02.html" class="link-button">Aula 2 - Textos/Listas</a>
+      <a href="03.html" class="link-button">Aula 3</a>
+      <a href="04.html" class="link-button">Aula 4 - Tabelas</a>
+      <a href="05.html" class="link-button">Aula 5 - CSS/Texto</a>
+      <a href="06.html" class="link-button">Aula 6 - Cores</a>
+      <a href="07.html" class="link-button"
+        >Aula 7 - Formatação de Tabelas / Classes</a
+      >
+
+      <a
+        href="https://www.yahoo.co.jp/"
+        target="_blank"
+        class="link-button yahoo-link"
         >Yahoo JP</a
       >
-    </p>
-    <a href="./assets/comp/texto-qualquer.zip" class="lke"
-      >Baixar arquivo de texto</a
-    >
-    <p>
-      <a href="#fim" class="lka">Fim da página</a>
-    </p>
-    <p>
-      <a href="#2p" class="lka">Segundo parágrafo</a>
-    </p>
-    <a href="#3p" class="lka">Terceiro parágrafo</a>
-    <p style="color: #700000">
-      O Yahoo Japan, fundado em 1996 como uma joint venture entre o Yahoo! dos
-      Estados Unidos e a SoftBank, emergiu como uma das plataformas digitais
-      mais influentes do Japão, desempenhando um papel crucial no
-      desenvolvimento do cenário online do país. Sua sede, localizada em Tóquio,
-      reflete a modernidade e a inovação que caracterizam a metrópole, um dos
-      centros tecnológicos mais dinâmicos do mundo. Desde sua criação, o Yahoo
-      Japan não apenas se posicionou como um portal de busca, mas também se
-      transformou em um ecossistema digital abrangente, oferecendo uma gama
-      diversificada de serviços que atendem às necessidades e interesses
-      específicos dos usuários japoneses. Com uma interface fácil de usar, o
-      site se tornou um ponto de partida para milhões de pessoas que buscam
-      notícias atualizadas, entretenimento, informações sobre clima, esportes e
-      muito mais. O Yahoo Japan se destaca pela sua capacidade de adaptação ao
-      contexto cultural do Japão, incorporando uma variedade de temas populares,
-      como animes, mangás e tendências de moda. Esse entendimento das
-      preferências locais é um dos segredos do seu sucesso, permitindo que a
-      plataforma ressoe profundamente com a identidade cultural japonesa. Além
-      de suas funções como portal de busca, o Yahoo Japan oferece um serviço de
-      e-mail amplamente utilizado e uma plataforma de compras online que compete
-      com outros gigantes do comércio eletrônico. O Yahoo Auctions, por exemplo,
-      se destacou como um dos serviços de leilão mais populares no Japão,
-      atraindo usuários que buscam tanto produtos novos quanto usados, desde
-      eletrônicos até itens colecionáveis. Este serviço não só facilita
-      transações, mas também cria um ambiente comunitário onde os usuários podem
-      interagir e compartilhar experiências. A plataforma também se aventurou
-      com sucesso no campo das redes sociais, lançando serviços que promovem a
-      interação e a construção de comunidades entre os usuários. Essa estratégia
-      ajudou a criar um ambiente digital mais dinâmico e fortaleceu a lealdade
-      dos usuários à plataforma. Com a crescente popularidade de redes sociais,
-      o Yahoo Japan se posicionou como um espaço onde os usuários podem
-      expressar suas opiniões e conectar-se com outras pessoas que compartilham
-      interesses semelhantes. Ademais, o Yahoo Japan investe constantemente em
-      tecnologia e inovação, integrando inteligência artificial e aprendizado de
-      máquina para personalizar a experiência do usuário e oferecer
-      recomendações mais relevantes. Essa ênfase em tecnologia é crucial,
-      especialmente em um país como o Japão, onde a tecnologia e a inovação são
-      parte integral da vida cotidiana. Apesar de enfrentar desafios
-      significativos, como a concorrência crescente de outros motores de busca e
-      redes sociais, o Yahoo Japan continua a se reinventar. A plataforma
-      frequentemente estabelece parcerias estratégicas e busca novas formas de
-      engajamento, mantendo-se atualizada com as tendências do mercado. O
-      investimento em serviços móveis tornou-se uma prioridade, dado o aumento
-      do uso de smartphones no Japão. A mobilidade é um fator crítico, e o Yahoo
-      Japan se adaptou a essa mudança, garantindo que seus serviços sejam
-      facilmente acessíveis em dispositivos móveis. Com todas essas iniciativas,
-      o Yahoo Japan não apenas preserva sua relevância no ecossistema digital
-      japonês, mas também se afirma como um pilar fundamental da internet no
-      país, moldando a forma como os japoneses se conectam, compartilham
-      informações e consomem conteúdo online. Sua história é um testemunho de
-      como uma empresa pode evoluir e se adaptar em um ambiente digital em
-      constante mudança, refletindo as necessidades e os valores de seus
-      usuários. O Yahoo Japan, fundado em 1996 como uma joint venture entre o
-      Yahoo! dos Estados Unidos e a SoftBank, emergiu como uma das plataformas
-      digitais mais influentes do Japão, desempenhando um papel crucial no
-      desenvolvimento do cenário online do país. Sua sede, localizada em Tóquio,
-      reflete a modernidade e a inovação que caracterizam a metrópole, um dos
-      centros tecnológicos mais dinâmicos do mundo. Desde sua criação, o Yahoo
-      Japan não apenas se posicionou como um portal de busca, mas também se
-      transformou em um ecossistema digital abrangente, oferecendo uma gama
-      diversificada de serviços que atendem às necessidades e interesses
-      específicos dos usuários japoneses. Com uma interface fácil de usar, o
-      site se tornou um ponto de partida para milhões de pessoas que buscam
-      notícias atualizadas, entretenimento, informações sobre clima, esportes e
-      muito mais. O Yahoo Japan se destaca pela sua capacidade de adaptação ao
-      contexto cultural do Japão, incorporando uma variedade de temas populares,
-      como animes, mangás e tendências de moda. Esse entendimento das
-      preferências locais é um dos segredos do seu sucesso, permitindo que a
-      plataforma ressoe profundamente com a identidade cultural japonesa. Além
-      de suas funções como portal de busca, o Yahoo Japan oferece um serviço de
-      e-mail amplamente utilizado e uma plataforma de compras online que compete
-      com outros gigantes do comércio eletrônico. O Yahoo Auctions, por exemplo,
-      se destacou como um dos serviços de leilão mais populares no Japão,
-      atraindo usuários que buscam tanto produtos novos quanto usados, desde
-      eletrônicos até itens colecionáveis. Este serviço não só facilita
-      transações, mas também cria um ambiente comunitário onde os usuários podem
-      interagir e compartilhar experiências. A plataforma também se aventurou
-      com sucesso no campo das redes sociais, lançando serviços que promovem a
-      interação e a construção de comunidades entre os usuários. Essa estratégia
-      ajudou a criar um ambiente digital mais dinâmico e fortaleceu a lealdade
-      dos usuários à plataforma. Com a crescente popularidade de redes sociais,
-      o Yahoo Japan se posicionou como um espaço onde os usuários podem
-      expressar suas opiniões e conectar-se com outras pessoas que compartilham
-      interesses semelhantes. Ademais, o Yahoo Japan investe constantemente em
-      tecnologia e inovação, integrando inteligência artificial e aprendizado de
-      máquina para personalizar a experiência do usuário e oferecer
-      recomendações mais relevantes. Essa ênfase em tecnologia é crucial,
-      especialmente em um país como o Japão, onde a tecnologia e a inovação são
-      parte integral da vida cotidiana. Apesar de enfrentar desafios
-      significativos, como a concorrência crescente de outros motores de busca e
-      redes sociais, o Yahoo Japan continua a se reinventar. A plataforma
-      frequentemente estabelece parcerias estratégicas e busca novas formas de
-      engajamento, mantendo-se atualizada com as tendências do mercado. O
-      investimento em serviços móveis tornou-se uma prioridade, dado o aumento
-      do uso de smartphones no Japão. A mobilidade é um fator crítico, e o Yahoo
-      Japan se adaptou a essa mudança, garantindo que seus serviços sejam
-      facilmente acessíveis em dispositivos móveis. Com todas essas iniciativas,
-      o Yahoo Japan não apenas preserva sua relevância no ecossistema digital
-      japonês, mas também se afirma como um pilar fundamental da internet no
-      país, moldando a forma como os japoneses se conectam, compartilham
-      informações e consomem conteúdo online. Sua história é um testemunho de
-      como uma empresa pode evoluir e se adaptar em um ambiente digital em
-      constante mudança, refletindo as necessidades e os valores de seus
-      usuários.
-    </p>
-    <a name="2p"></a>
-    <p style="color: #007000">
-      O Yahoo Japan foi fundado em 1996 como uma joint venture entre a gigante
-      americana Yahoo! Inc. e a SoftBank, um dos principais conglomerados de
-      tecnologia e telecomunicações do Japão. O intuito principal dessa
-      colaboração era desenvolver um portal de internet que fosse
-      especificamente adaptado ao mercado japonês, reconhecendo a importância de
-      criar uma plataforma que atendesse às necessidades culturais, sociais e
-      econômicas dos usuários locais. Desde o início, o Yahoo Japan se destacou
-      por oferecer uma interface em japonês e conteúdos relevantes, atraindo
-      rapidamente um grande número de usuários. Nos anos 90 e início dos anos
-      2000, o Yahoo Japan se tornou um dos sites mais populares do Japão,
-      estabelecendo-se como uma força dominante no cenário digital. O portal
-      oferecia uma ampla gama de serviços, incluindo busca na web, e-mail
-      gratuito, notícias atualizadas, e uma plataforma de leilão online que
-      facilitava a compra e venda de produtos entre os usuários. O leilão
-      online, em particular, foi um grande sucesso, pois permitiu que usuários
-      japoneses comprassem produtos de forma fácil e conveniente, criando um
-      novo paradigma no comércio eletrônico no país. O crescimento do Yahoo
-      Japan pode ser atribuído a uma série de fatores. Primeiramente, sua forte
-      estratégia de marketing ajudou a estabelecer a marca como sinônimo de
-      internet no Japão. As campanhas publicitárias foram cuidadosamente
-      elaboradas para ressoar com o público japonês, utilizando elementos
-      culturais que geraram identificação e confiança. Além disso, a empresa
-      soube aproveitar as tendências do mercado, adaptando constantemente seus
-      serviços para atender às demandas dos usuários. Por exemplo, o Yahoo Japan
-      foi um dos primeiros portais a introduzir um serviço de busca otimizado,
-      que melhorou a experiência do usuário e tornou a navegação mais eficiente.
-      Um dos aspectos mais impressionantes do Yahoo Japan foi sua habilidade em
-      monetizar seus serviços. A empresa explorou várias formas de publicidade
-      online, como banners, links patrocinados e campanhas de marketing
-      direcionadas, gerando receitas substanciais. Além disso, as parcerias
-      estratégicas com empresas locais e internacionais, especialmente no setor
-      de e-commerce, permitiram que o Yahoo Japan se posicionasse como um player
-      essencial nesse mercado emergente. A plataforma se tornou um ponto de
-      referência para consumidores que desejavam comprar produtos online,
-      impulsionando o crescimento do comércio eletrônico no Japão. Com o passar
-      dos anos, o Yahoo Japan expandiu sua gama dO Yahoo Japan foi fundado em
-      1996 como uma joint venture entre a gigante americana Yahoo! Inc. e a
-      SoftBank, um dos principais conglomerados de tecnologia e telecomunicações
-      do Japão. O intuito principal dessa colaboração era desenvolver um portal
-      de internet que fosse especificamente adaptado ao mercado japonês,
-      reconhecendo a importância de criar uma plataforma que atendesse às
-      necessidades culturais, sociais e econômicas dos usuários locais. Desde o
-      início, o Yahoo Japan se destacou por oferecer uma interface em japonês e
-      conteúdos relevantes, atraindo rapidamente um grande número de usuários.
-      Nos anos 90 e início dos anos 2000, o Yahoo Japan se tornou um dos sites
-      mais populares do Japão, estabelecendo-se como uma força dominante no
-      cenário digital. O portal oferecia uma ampla gama de serviços, incluindo
-      busca na web, e-mail gratuito, notícias atualizadas, e uma plataforma de
-      leilão online que facilitava a compra e venda de produtos entre os
-      usuários. O leilão online, em particular, foi um grande sucesso, pois
-      permitiu que usuários japoneses comprassem produtos de forma fácil e
-      conveniente, criando um novo paradigma no comércio eletrônico no país. O
-      crescimento do Yahoo Japan pode ser atribuído a uma série de fatores.
-      Primeiramente, sua forte estratégia de marketing ajudou a estabelecer a
-      marca como sinônimo de internet no Japão. As campanhas publicitárias foram
-      cuidadosamente elaboradas para ressoar com o público japonês, utilizando
-      elementos culturais que geraram identificação e confiança. Além disso, a
-      empresa soube aproveitar as tendências do mercado, adaptando
-      constantemente seus serviços para atender às demandas dos usuários. Por
-      exemplo, o Yahoo Japan foi um dos primeiros portais a introduzir um
-      serviço de busca otimizado, que melhorou a experiência do usuário e tornou
-      a navegação mais eficiente. Um dos aspectos mais impressionantes do Yahoo
-      Japan foi sua habilidade em monetizar seus serviços. A empresa explorou
-      várias formas de publicidade online, como banners, links patrocinados e
-      campanhas de marketing direcionadas, gerando receitas substanciais. Além
-      disso, as parcerias estratégicas com empresas locais e internacionais,
-      especialmente no setor de e-commerce, permitiram que o Yahoo Japan se
-      posicionasse como um player essencial nesse mercado emergente. A
-      plataforma se tornou um ponto de referência para consumidores que
-      desejavam comprar produtos online, impulsionando o crescimento do comércio
-      eletrônico no Japão. Com o passar dos anos, o Yahoo Japan expandiu sua
-      gama de serviços para incluir opções como pagamentos online, reservas de
-      viagens, e até mesmo serviços de streaming de vídeo. Essa diversificação
-      foi crucial para sua sobrevivência e relevância em um ambiente digital
-      cada vez mais competitivo. A empresa também investiu em inovações
-      tecnológicas, como inteligência artificial e big data, para melhorar a
-      personalização dos serviços e otimizar a experiência do usuário. Isso não
-      só atraiu novos usuários, mas também manteve a lealdade dos existentes,
-      que viam no Yahoo Japan uma plataforma em constante evolução. Em 2017, o
-      Yahoo Japan anunciou uma fusão com a Z Holdings, uma subsidiária da
-      SoftBank. Essa fusão foi um movimento estratégico importante, permitindo
-      que as duas entidades combinassem seus recursos e tecnologias para
-      competir de maneira mais eficaz com gigantes como Google e Amazon no
-      Japão. A união também possibilitou a criação de um portfólio de serviços
-      ainda mais robusto, abrangendo áreas como finanças, comunicação e
-      entretenimento, solidificando a posição do Yahoo Japan como uma potência
-      digital no país. Hoje, apesar das contínuas mudanças e desafios no cenário
-      digital, o Yahoo Japan mantém uma presença influente no Japão. Com uma
-      base de usuários significativa, a empresa continua a se adaptar às novas
-      tendências e demandas do mercado. O portal se transformou em um
-      ecossistema digital abrangente, que não apenas atende às necessidades dos
-      consumidores, mas também investe em inovações que moldam o futuro do
-      comércio eletrônico e da comunicação digital no Japão. O Yahoo Japan,
-      portanto, não é apenas um portal de internet, mas uma parte integral da
-      vida digital no Japão, refletindo a cultura e as aspirações dos seus
-      usuários.
-    </p>
-    <a name="3p"></a>
-    <p style="color: #000070">
-      A comunidade do Yahoo Japan é um microcosmo vibrante da cultura digital
-      japonesa, refletindo as preferências e comportamentos dos usuários no
-      Japão. Com uma interface amigável e recursos variados, a plataforma não
-      apenas se destaca como um portal de notícias e serviços, mas também como
-      um espaço onde os usuários podem interagir e compartilhar conhecimento. Um
-      dos serviços mais populares é o Yahoo! Chiebukuro, que funciona como um
-      fórum de perguntas e respostas. Nele, usuários de todas as idades podem
-      postar perguntas sobre diversos temas, desde conselhos práticos do dia a
-      dia até tópicos mais complexos. As respostas são fornecidas pela
-      comunidade, permitindo uma rica troca de informações e perspectivas. Esse
-      serviço tem uma atmosfera colaborativa, incentivando os usuários a ajudar
-      uns aos outros. No campo do comércio eletrônico, o Yahoo Japan possui uma
-      presença forte com o Yahoo Shopping e o Yahoo Auctions. O Yahoo Shopping é
-      um dos principais destinos de compras online, oferecendo uma ampla gama de
-      produtos, desde eletrônicos até moda. O Yahoo Auctions, por sua vez,
-      permite que os usuários leiloem itens, funcionando de maneira similar ao
-      eBay, e é especialmente popular entre colecionadores. Além disso, a
-      plataforma abriga diversas comunidades e fóruns onde os usuários podem
-      discutir interesses comuns. Esses grupos variam de tópicos como cultura
-      pop, anime, moda, tecnologia e muito mais. A interação nesses espaços é
-      intensa, com muitos usuários compartilhando não apenas opiniões, mas
-      também recursos, dicas e experiências pessoais. Outro aspecto interessante
-      é a personalização que a Yahoo Japan oferece. Os usuários podem configurar
-      seus feeds de notícias, selecionar os tópicos que mais os interessam e até
-      participar de pesquisas e enquetes. Essa personalização ajuda a manter o
-      engajamento e a relevância do conteúdo que cada usuário vê. Apesar de sua
-      popularidade, a Yahoo Japan também enfrenta desafios, especialmente com o
-      crescimento de outras plataformas de mídia social e comércio eletrônico,
-      como LINE e Rakuten. A competição no espaço digital japonês é intensa, e a
-      Yahoo Japan continua a evoluir para se manter relevante e atrativa. A
-      influência do Yahoo Japan vai além do digital; ele se tornou parte
-      integrante da vida cotidiana de muitos japoneses. Muitas vezes, as
-      tendências e discussões que emergem da plataforma têm um impacto
-      significativo na cultura popular e nas tendências de consumo no Japão. Com
-      uma base de usuários fiel e uma ampla gama de serviços, a comunidade do
-      Yahoo Japan continua a ser um espaço vital para interação, comércio e
-      compartilhamento de informações, refletindo a dinâmica da sociedade
-      japonesa contemporânea. Se houver um aspecto específico que você gostaria
-      de explorar mais a fundo, é só me avisar, A comunidade do Yahoo Japan é um
-      microcosmo vibrante da cultura digital japonesa, refletindo as
-      preferências e comportamentos dos usuários no Japão. Com uma interface
-      amigável e recursos variados, a plataforma não apenas se destaca como um
-      portal de notícias e serviços, mas também como um espaço onde os usuários
-      podem interagir e compartilhar conhecimento. Um dos serviços mais
-      populares é o Yahoo! Chiebukuro, que funciona como um fórum de perguntas e
-      respostas. Nele, usuários de todas as idades podem postar perguntas sobre
-      diversos temas, desde conselhos práticos do dia a dia até tópicos mais
-      complexos. As respostas são fornecidas pela comunidade, permitindo uma
-      rica troca de informações e perspectivas. Esse serviço tem uma atmosfera
-      colaborativa, incentivando os usuários a ajudar uns aos outros. No campo
-      do comércio eletrônico, o Yahoo Japan possui uma presença forte com o
-      Yahoo Shopping e o Yahoo Auctions. O Yahoo Shopping é um dos principais
-      destinos de compras online, oferecendo uma ampla gama de produtos, desde
-      eletrônicos até moda. O Yahoo Auctions, por sua vez, permite que os
-      usuários leiloem itens, funcionando de maneira similar ao eBay, e é
-      especialmente popular entre colecionadores. Além disso, a plataforma
-      abriga diversas comunidades e fóruns onde os usuários podem discutir
-      interesses comuns. Esses grupos variam de tópicos como cultura pop, anime,
-      moda, tecnologia e muito mais. A interação nesses espaços é intensa, com
-      muitos usuários compartilhando não apenas opiniões, mas também recursos,
-      dicas e experiências pessoais. Outro aspecto interessante é a
-      personalização que a Yahoo Japan oferece. Os usuários podem configurar
-      seus feeds de notícias, selecionar os tópicos que mais os interessam e até
-      participar de pesquisas e enquetes. Essa personalização ajuda a manter o
-      engajamento e a relevância do conteúdo que cada usuário vê. Apesar de sua
-      popularidade, a Yahoo Japan também enfrenta desafios, especialmente com o
-      crescimento de outras plataformas de mídia social e comércio eletrônico,
-      como LINE e Rakuten. A competição no espaço digital japonês é intensa, e a
-      Yahoo Japan continua a evoluir para se manter relevante e atrativa. A
-      influência do Yahoo Japan vai além do digital; ele se tornou parte
-      integrante da vida cotidiana de muitos japoneses. Muitas vezes, as
-      tendências e discussões que emergem da plataforma têm um impacto
-      significativo na cultura popular e nas tendências de consumo no Japão. Com
-      uma base de usuários fiel e uma ampla gama de serviços, a comunidade do
-      Yahoo Japan continua a ser um espaço vital para interação, comércio e
-      compartilhamento de informações, refletindo a dinâmica da sociedade
-      japonesa contemporânea. Se houver um aspecto específico que você gostaria
-      de explorar mais a fundo, é só me avisar!
-    </p>
-    <a href="#topo" class="lka">Topo da página</a>
-    <a name="fim"></a>
+
+      <a href="./assets/comp/texto-qualquer.zip" class="link-button"
+        >Baixar arquivo de texto</a
+      >
+
+      <div class="internal-links">
+        <a href="#fim">Fim da página</a>
+        <a href="#2p">Segundo parágrafo</a>
+        <a href="#3p">Terceiro parágrafo</a>
+      </div>
+
+      <p id="primeiro-paragrafo">
+        O Yahoo Japan, fundado em 1996 como uma joint venture entre o Yahoo! dos
+        Estados Unidos e a SoftBank, emergiu como uma das plataformas digitais
+        mais influentes do Japão, desempenhando um papel crucial no
+        desenvolvimento do cenário online do país. Sua sede, localizada em
+        Tóquio, reflete a modernidade e a inovação que caracterizam a metrópole,
+        um dos centros tecnológicos mais dinâmicos do mundo. Desde sua criação,
+        o Yahoo Japan não apenas se posicionou como um portal de busca, mas
+        também se transformou em um ecossistema digital abrangente, oferecendo
+        uma gama diversificada de serviços que atendem às necessidades e
+        interesses específicos dos usuários japoneses. Com uma interface fácil
+        de usar, o site se tornou um ponto de partida para milhões de pessoas
+        que buscam notícias atualizadas, entretenimento, informações sobre
+        clima, esportes e muito mais. O Yahoo Japan se destaca pela sua
+        capacidade de adaptação ao contexto cultural do Japão, incorporando uma
+        variedade de temas populares, como animes, mangás e tendências de moda.
+        Esse entendimento das preferências locais é um dos segredos do seu
+        sucesso, permitindo que a plataforma ressoe profundamente com a
+        identidade cultural japonesa. Além de suas funções como portal de busca,
+        o Yahoo Japan oferece um serviço de e-mail amplamente utilizado e uma
+        plataforma de compras online que compete com outros gigantes do comércio
+        eletrônico. O Yahoo Auctions, por exemplo, se destacou como um dos
+        serviços de leilão mais populares no Japão, atraindo usuários que buscam
+        tanto produtos novos quanto usados, desde eletrônicos até itens
+        colecionáveis. Este serviço não só facilita transações, mas também cria
+        um ambiente comunitário onde os usuários podem interagir e compartilhar
+        experiências. A plataforma também se aventurou com sucesso no campo das
+        redes sociais, lançando serviços que promovem a interação e a construção
+        de comunidades entre os usuários. Essa estratégia ajudou a criar um
+        ambiente digital mais dinâmico e fortaleceu a lealdade dos usuários à
+        plataforma. Com a crescente popularidade de redes sociais, o Yahoo Japan
+        se posicionou como um espaço onde os usuários podem expressar suas
+        opiniões e conectar-se com outras pessoas que compartilham interesses
+        semelhantes. Ademais, o Yahoo Japan investe constantemente em tecnologia
+        e inovação, integrando inteligência artificial e aprendizado de máquina
+        para personalizar a experiência do usuário e oferecer recomendações mais
+        relevantes. Essa ênfase em tecnologia é crucial, especialmente em um
+        país como o Japão, onde a tecnologia e a inovação são parte integral da
+        vida cotidiana. Apesar de enfrentar desafios significativos, como a
+        concorrência crescente de outros motores de busca e redes sociais, o
+        Yahoo Japan continua a se reinventar. A plataforma frequentemente
+        estabelece parcerias estratégicas e busca novas formas de engajamento,
+        mantendo-se atualizada com as tendências do mercado. O investimento em
+        serviços móveis tornou-se uma prioridade, dado o aumento do uso de
+        smartphones no Japão. A mobilidade é um fator crítico, e o Yahoo Japan
+        se adaptou a essa mudança, garantindo que seus serviços sejam facilmente
+        acessíveis em dispositivos móveis. Com todas essas iniciativas, o Yahoo
+        Japan não apenas preserva sua relevância no ecossistema digital japonês,
+        mas também se afirma como um pilar fundamental da internet no país,
+        moldando a forma como os japoneses se conectam, compartilham informações
+        e consomem conteúdo online. Sua história é um testemunho de como uma
+        empresa pode evoluir e se adaptar em um ambiente digital em constante
+        mudança, refletindo as necessidades e os valores de seus usuários. O
+        Yahoo Japan, fundado em 1996 como uma joint venture entre o Yahoo! dos
+        Estados Unidos e a SoftBank, emergiu como uma das plataformas digitais
+        mais influentes do Japão, desempenhando um papel crucial no
+        desenvolvimento do cenário online do país. Sua sede, localizada em
+        Tóquio, reflete a modernidade e a inovação que caracterizam a metrópole,
+        um dos centros tecnológicos mais dinâmicos do mundo. Desde sua criação,
+        o Yahoo Japan não apenas se posicionou como um portal de busca, mas
+        também se transformou em um ecossistema digital abrangente, oferecendo
+        uma gama diversificada de serviços que atendem às necessidades e
+        interesses específicos dos usuários japoneses. Com uma interface fácil
+        de usar, o site se tornou um ponto de partida para milhões de pessoas
+        que buscam notícias atualizadas, entretenimento, informações sobre
+        clima, esportes e muito mais. O Yahoo Japan se destaca pela sua
+        capacidade de adaptação ao contexto cultural do Japão, incorporando uma
+        variedade de temas populares, como animes, mangás e tendências de moda.
+        Esse entendimento das preferências locais é um dos segredos do seu
+        sucesso, permitindo que a plataforma ressoe profundamente com a
+        identidade cultural japonesa. Além de suas funções como portal de busca,
+        o Yahoo Japan oferece um serviço de e-mail amplamente utilizado e uma
+        plataforma de compras online que compete com outros gigantes do comércio
+        eletrônico. O Yahoo Auctions, por exemplo, se destacou como um dos
+        serviços de leilão mais populares no Japão, atraindo usuários que buscam
+        tanto produtos novos quanto usados, desde eletrônicos até itens
+        colecionáveis. Este serviço não só facilita transações, mas também cria
+        um ambiente comunitário onde os usuários podem interagir e compartilhar
+        experiências. A plataforma também se aventurou com sucesso no campo das
+        redes sociais, lançando serviços que promovem a interação e a construção
+        de comunidades entre os usuários. Essa estratégia ajudou a criar um
+        ambiente digital mais dinâmico e fortaleceu a lealdade dos usuários à
+        plataforma. Com a crescente popularidade de redes sociais, o Yahoo Japan
+        se posicionou como um espaço onde os usuários podem expressar suas
+        opiniões e conectar-se com outras pessoas que compartilham interesses
+        semelhantes. Ademais, o Yahoo Japan investe constantemente em tecnologia
+        e inovação, integrando inteligência artificial e aprendizado de máquina
+        para personalizar a experiência do usuário e oferecer recomendações mais
+        relevantes. Essa ênfase em tecnologia é crucial, especialmente em um
+        país como o Japão, onde a tecnologia e a inovação são parte integral da
+        vida cotidiana. Apesar de enfrentar desafios significativos, como a
+        concorrência crescente de outros motores de busca e redes sociais, o
+        Yahoo Japan continua a se reinventar. A plataforma frequentemente
+        estabelece parcerias estratégicas e busca novas formas de engajamento,
+        mantendo-se atualizada com as tendências do mercado. O investimento em
+        serviços móveis tornou-se uma prioridade, dado o aumento do uso de
+        smartphones no Japão. A mobilidade é um fator crítico, e o Yahoo Japan
+        se adaptou a essa mudança, garantindo que seus serviços sejam facilmente
+        acessíveis em dispositivos móveis. Com todas essas iniciativas, o Yahoo
+        Japan não apenas preserva sua relevância no ecossistema digital japonês,
+        mas também se afirma como um pilar fundamental da internet no país,
+        moldando a forma como os japoneses se conectam, compartilham informações
+        e consomem conteúdo online. Sua história é um testemunho de como uma
+        empresa pode evoluir e se adaptar em um ambiente digital em constante
+        mudança, refletindo as necessidades e os valores de seus usuários.
+      </p>
+
+      <a id="2p"></a>
+      <p>
+        O Yahoo Japan foi fundado em 1996 como uma joint venture entre a gigante
+        americana Yahoo! Inc. e a SoftBank, um dos principais conglomerados de
+        tecnologia e telecomunicações do Japão. O intuito principal dessa
+        colaboração era desenvolver um portal de internet que fosse
+        especificamente adaptado ao mercado japonês, reconhecendo a importância
+        de criar uma plataforma que atendesse às necessidades culturais, sociais
+        e econômicas dos usuários locais. Desde o início, o Yahoo Japan se
+        destacou por oferecer uma interface em japonês e conteúdos relevantes,
+        atraindo rapidamente um grande número de usuários. Nos anos 90 e início
+        dos anos 2000, o Yahoo Japan se tornou um dos sites mais populares do
+        Japão, estabelecendo-se como uma força dominante no cenário digital. O
+        portal oferecia uma ampla gama de serviços, incluindo busca na web,
+        e-mail gratuito, notícias atualizadas, e uma plataforma de leilão online
+        que facilitava a compra e venda de produtos entre os usuários. O leilão
+        online, em particular, foi um grande sucesso, pois permitiu que usuários
+        japoneses comprassem produtos de forma fácil e conveniente, criando um
+        novo paradigma no comércio eletrônico no país. O crescimento do Yahoo
+        Japan pode ser atribuído a uma série de fatores. Primeiramente, sua
+        forte estratégia de marketing ajudou a estabelecer a marca como sinônimo
+        de internet no Japão. As campanhas publicitárias foram cuidadosamente
+        elaboradas para ressoar com o público japonês, utilizando elementos
+        culturais que geraram identificação e confiança. Além disso, a empresa
+        soube aproveitar as tendências do mercado, adaptando constantemente seus
+        serviços para atender às demandas dos usuários. Por exemplo, o Yahoo
+        Japan foi um dos primeiros portais a introduzir um serviço de busca
+        otimizado, que melhorou a experiência do usuário e tornou a navegação
+        mais eficiente. Um dos aspectos mais impressionantes do Yahoo Japan foi
+        sua habilidade em monetizar seus serviços. A empresa explorou várias
+        formas de publicidade online, como banners, links patrocinados e
+        campanhas de marketing direcionadas, gerando receitas substanciais. Além
+        disso, as parcerias estratégicas com empresas locais e internacionais,
+        especialmente no setor de e-commerce, permitiram que o Yahoo Japan se
+        posicionasse como um player essencial nesse mercado emergente. A
+        plataforma se tornou um ponto de referência para consumidores que
+        desejavam comprar produtos online, impulsionando o crescimento do
+        comércio eletrônico no Japão. Com o passar dos anos, o Yahoo Japan
+        expandiu sua gama dO Yahoo Japan foi fundado em 1996 como uma joint
+        venture entre a gigante americana Yahoo! Inc. e a SoftBank, um dos
+        principais conglomerados de tecnologia e telecomunicações do Japão. O
+        intuito principal dessa colaboração era desenvolver um portal de
+        internet que fosse especificamente adaptado ao mercado japonês,
+        reconhecendo a importância de criar uma plataforma que atendesse às
+        necessidades culturais, sociais e econômicas dos usuários locais. Desde
+        o início, o Yahoo Japan se destacou por oferecer uma interface em
+        japonês e conteúdos relevantes, atraindo rapidamente um grande número de
+        usuários. Nos anos 90 e início dos anos 2000, o Yahoo Japan se tornou um
+        dos sites mais populares do Japão, estabelecendo-se como uma força
+        dominante no cenário digital. O portal oferecia uma ampla gama de
+        serviços, incluindo busca na web, e-mail gratuito, notícias atualizadas,
+        e uma plataforma de leilão online que facilitava a compra e venda de
+        produtos entre os usuários. O leilão online, em particular, foi um
+        grande sucesso, pois permitiu que usuários japoneses comprassem produtos
+        de forma fácil e conveniente, criando um novo paradigma no comércio
+        eletrônico no país. O crescimento do Yahoo Japan pode ser atribuído a
+        uma série de fatores. Primeiramente, sua forte estratégia de marketing
+        ajudou a estabelecer a marca como sinônimo de internet no Japão. As
+        campanhas publicitárias foram cuidadosamente elaboradas para ressoar com
+        o público japonês, utilizando elementos culturais que geraram
+        identificação e confiança. Além disso, a empresa soube aproveitar as
+        tendências do mercado, adaptando constantemente seus serviços para
+        atender às demandas dos usuários. Por exemplo, o Yahoo Japan foi um dos
+        primeiros portais a introduzir um serviço de busca otimizado, que
+        melhorou a experiência do usuário e tornou a navegação mais eficiente.
+        Um dos aspectos mais impressionantes do Yahoo Japan foi sua habilidade
+        em monetizar seus serviços. A empresa explorou várias formas de
+        publicidade online, como banners, links patrocinados e campanhas de
+        marketing direcionadas, gerando receitas substanciais. Além disso, as
+        parcerias estratégicas com empresas locais e internacionais,
+        especialmente no setor de e-commerce, permitiram que o Yahoo Japan se
+        posicionasse como um player essencial nesse mercado emergente. A
+        plataforma se tornou um ponto de referência para consumidores que
+        desejavam comprar produtos online, impulsionando o crescimento do
+        comércio eletrônico no Japão. Com o passar dos anos, o Yahoo Japan
+        expandiu sua gama de serviços para incluir opções como pagamentos
+        online, reservas de viagens, e até mesmo serviços de streaming de vídeo.
+        Essa diversificação foi crucial para sua sobrevivência e relevância em
+        um ambiente digital cada vez mais competitivo. A empresa também investiu
+        em inovações tecnológicas, como inteligência artificial e big data, para
+        melhorar a personalização dos serviços e otimizar a experiência do
+        usuário. Isso não só atraiu novos usuários, mas também manteve a
+        lealdade dos existentes, que viam no Yahoo Japan uma plataforma em
+        constante evolução. Em 2017, o Yahoo Japan anunciou uma fusão com a Z
+        Holdings, uma subsidiária da SoftBank. Essa fusão foi um movimento
+        estratégico importante, permitindo que as duas entidades combinassem
+        seus recursos e tecnologias para competir de maneira mais eficaz com
+        gigantes como Google e Amazon no Japão. A união também possibilitou a
+        criação de um portfólio de serviços ainda mais robusto, abrangendo áreas
+        como finanças, comunicação e entretenimento, solidificando a posição do
+        Yahoo Japan como uma potência digital no país. Hoje, apesar das
+        contínuas mudanças e desafios no cenário digital, o Yahoo Japan mantém
+        uma presença influente no Japão. Com uma base de usuários significativa,
+        a empresa continua a se adaptar às novas tendências e demandas do
+        mercado. O portal se transformou em um ecossistema digital abrangente,
+        que não apenas atende às necessidades dos consumidores, mas também
+        investe em inovações que moldam o futuro do comércio eletrônico e da
+        comunicação digital no Japão. O Yahoo Japan, portanto, não é apenas um
+        portal de internet, mas uma parte integral da vida digital no Japão,
+        refletindo a cultura e as aspirações dos seus usuários.
+      </p>
+
+      <a id="3p"></a>
+      <p>
+        A comunidade do Yahoo Japan é um microcosmo vibrante da cultura digital
+        japonesa, refletindo as preferências e comportamentos dos usuários no
+        Japão. Com uma interface amigável e recursos variados, a plataforma não
+        apenas se destaca como um portal de notícias e serviços, mas também como
+        um espaço onde os usuários podem interagir e compartilhar conhecimento.
+        Um dos serviços mais populares é o Yahoo! Chiebukuro, que funciona como
+        um fórum de perguntas e respostas. Nele, usuários de todas as idades
+        podem postar perguntas sobre diversos temas, desde conselhos práticos do
+        dia a dia até tópicos mais complexos. As respostas são fornecidas pela
+        comunidade, permitindo uma rica troca de informações e perspectivas.
+        Esse serviço tem uma atmosfera colaborativa, incentivando os usuários a
+        ajudar uns aos outros. No campo do comércio eletrônico, o Yahoo Japan
+        possui uma presença forte com o Yahoo Shopping e o Yahoo Auctions. O
+        Yahoo Shopping é um dos principais destinos de compras online,
+        oferecendo uma ampla gama de produtos, desde eletrônicos até moda. O
+        Yahoo Auctions, por sua vez, permite que os usuários leiloem itens,
+        funcionando de maneira similar ao eBay, e é especialmente popular entre
+        colecionadores. Além disso, a plataforma abriga diversas comunidades e
+        fóruns onde os usuários podem discutir interesses comuns. Esses grupos
+        variam de tópicos como cultura pop, anime, moda, tecnologia e muito
+        mais. A interação nesses espaços é intensa, com muitos usuários
+        compartilhando não apenas opiniões, mas também recursos, dicas e
+        experiências pessoais. Outro aspecto interessante é a personalização que
+        a Yahoo Japan oferece. Os usuários podem configurar seus feeds de
+        notícias, selecionar os tópicos que mais os interessam e até participar
+        de pesquisas e enquetes. Essa personalização ajuda a manter o
+        engajamento e a relevância do conteúdo que cada usuário vê. Apesar de
+        sua popularidade, a Yahoo Japan também enfrenta desafios, especialmente
+        com o crescimento de outras plataformas de mídia social e comércio
+        eletrônico, como LINE e Rakuten. A competição no espaço digital japonês
+        é intensa, e a Yahoo Japan continua a evoluir para se manter relevante e
+        atrativa. A influência do Yahoo Japan vai além do digital; ele se tornou
+        parte integrante da vida cotidiana de muitos japoneses. Muitas vezes, as
+        tendências e discussões que emergem da plataforma têm um impacto
+        significativo na cultura popular e nas tendências de consumo no Japão.
+        Com uma base de usuários fiel e uma ampla gama de serviços, a comunidade
+        do Yahoo Japan continua a ser um espaço vital para interação, comércio e
+        compartilhamento de informações, refletindo a dinâmica da sociedade
+        japonesa contemporânea. Se houver um aspecto específico que você
+        gostaria de explorar mais a fundo, é só me avisar, A comunidade do Yahoo
+        Japan é um microcosmo vibrante da cultura digital japonesa, refletindo
+        as preferências e comportamentos dos usuários no Japão. Com uma
+        interface amigável e recursos variados, a plataforma não apenas se
+        destaca como um portal de notícias e serviços, mas também como um espaço
+        onde os usuários podem interagir e compartilhar conhecimento. Um dos
+        serviços mais populares é o Yahoo! Chiebukuro, que funciona como um
+        fórum de perguntas e respostas. Nele, usuários de todas as idades podem
+        postar perguntas sobre diversos temas, desde conselhos práticos do dia a
+        dia até tópicos mais complexos. As respostas são fornecidas pela
+        comunidade, permitindo uma rica troca de informações e perspectivas.
+        Esse serviço tem uma atmosfera colaborativa, incentivando os usuários a
+        ajudar uns aos outros. No campo do comércio eletrônico, o Yahoo Japan
+        possui uma presença forte com o Yahoo Shopping e o Yahoo Auctions. O
+        Yahoo Shopping é um dos principais destinos de compras online,
+        oferecendo uma ampla gama de produtos, desde eletrônicos até moda. O
+        Yahoo Auctions, por sua vez, permite que os usuários leiloem itens,
+        funcionando de maneira similar ao eBay, e é especialmente popular entre
+        colecionadores. Além disso, a plataforma abriga diversas comunidades e
+        fóruns onde os usuários podem discutir interesses comuns. Esses grupos
+        variam de tópicos como cultura pop, anime, moda, tecnologia e muito
+        mais. A interação nesses espaços é intensa, com muitos usuários
+        compartilhando não apenas opiniões, mas também recursos, dicas e
+        experiências pessoais. Outro aspecto interessante é a personalização que
+        a Yahoo Japan oferece. Os usuários podem configurar seus feeds de
+        notícias, selecionar os tópicos que mais os interessam e até participar
+        de pesquisas e enquetes. Essa personalização ajuda a manter o
+        engajamento e a relevância do conteúdo que cada usuário vê. Apesar de
+        sua popularidade, a Yahoo Japan também enfrenta desafios, especialmente
+        com o crescimento de outras plataformas de mídia social e comércio
+        eletrônico, como LINE e Rakuten. A competição no espaço digital japonês
+        é intensa, e a Yahoo Japan continua a evoluir para se manter relevante e
+        atrativa. A influência do Yahoo Japan vai além do digital; ele se tornou
+        parte integrante da vida cotidiana de muitos japoneses. Muitas vezes, as
+        tendências e discussões que emergem da plataforma têm um impacto
+        significativo na cultura popular e nas tendências de consumo no Japão.
+        Com uma base de usuários fiel e uma ampla gama de serviços, a comunidade
+        do Yahoo Japan continua a ser um espaço vital para interação, comércio e
+        compartilhamento de informações, refletindo a dinâmica da sociedade
+        japonesa contemporânea. Se houver um aspecto específico que você
+        gostaria de explorar mais a fundo, é só me avisar!
+      </p>
+    </div>
+
+    <footer>
+      <div class="internal-links">
+        <a href="#topo">Voltar ao Topo</a>
+      </div>
+      <span>
+        <a id="fim"></a>
+      </span>
+      <p id="copyright">© 2024 Alan Ryan - Estudo HTML</p>
+    </footer>
+
+    <script>
+      // Animações de entrada suave
+      document.addEventListener("DOMContentLoaded", () => {
+        const paragraphs = document.querySelectorAll("p");
+        paragraphs.forEach((p, index) => {
+          p.style.opacity = 0;
+          p.style.transform = "translateY(10px)";
+          setTimeout(() => {
+            p.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+            p.style.opacity = 1;
+            p.style.transform = "translateY(0)";
+          }, 100 * index);
+        });
+      });
+    </script>
   </body>
 </html>

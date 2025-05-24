@@ -1,87 +1,124 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>07 - Formatação de tabelas / CSS - Classes</title>
-    <meta name="Author" content="Alan Ryan da Silva Domingues" />
-    <meta
-      name="description"
-      content="Esta página foi criada para estudo HTML"
-    />
-    <meta name="keywords" content="HTML,CSS" />
-    <meta http-equiv="Refresh" content="25; 08.html" />
     <meta charset="UTF-8" />
-    <style type="text/css">
+    <meta name="author" content="Alan Ryan da Silva Domingues" />
+    <meta name="description" content="Estudo de HTML, CSS e JavaScript" />
+    <meta name="keywords" content="HTML, CSS, JS" />
+    <meta http-equiv="refresh" content="25; 08.html" />
+    <title>07 - Formatação de Tabelas / CSS - Classes</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+
       body {
-        background-color: #263f70;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #004e64, #00a6a6);
+        color: #f5f5f5;
       }
+
       header {
-        background-color: #2f3f7f;
-      }
-      .cabecalho-1 {
-        color: khaki;
-        text-decoration: underline;
-      }
-      .cabecalho-2 {
-        color: greenyellow;
-      }
-      section {
-        background-color: #263f90;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
-      table {
-        border-spacing: 0px;
-        border-collapse: collapse;
-        display: inline-block;
-        margin-right: 145px;
-        table-layout: auto;
-      }
-      td {
-        border: 1px solid #e6c017;
-        padding: 4px;
-      }
-      .titulo-1,
-      .titulo-2 {
-        background-color: #808080;
+        background-color: #013a40;
+        padding: 20px;
         text-align: center;
-        height: 50px;
-        vertical-align: middle;
-        font-weight: bold;
-        font-size: 23px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-style: italic;
-        color: #eee8aa;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       }
-      .titulo-2 {
-        background-color: #c0c0c0;
-        height: 30px;
-        font-size: 15px;
-        color: #ebe267;
+
+      .cabecalho-1 {
+        font-size: 28px;
+        color: #caffbf;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
       }
-      .colaborador,
-      .salario,
-      .funcao {
-        color: #000066;
-        background-color: #f1f1f1;
+
+      .cabecalho-2 {
+        display: block;
+        color: #a0ffe6;
+        font-size: 14px;
+        margin-top: 8px;
       }
-      .salario {
-        color: #006600;
+
+      hr.linha {
+        border: none;
+        height: 2px;
+        background-color: #a0c4ff;
+        margin: 15px auto;
+        width: 80%;
       }
-      .funcao {
-        color: #660000;
+
+      section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 30px;
+        gap: 30px;
       }
-      .linha {
-        border-top: solid 0;
-        color: paleturquoise;
+
+      table {
+        border-collapse: collapse;
+        background-color: #ffffff;
+        color: #2d3142;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
       }
+
+      table:hover {
+        transform: scale(1.03);
+      }
+
+      td {
+        border: 1px solid #9a8c98;
+        padding: 8px 16px;
+        text-align: center;
+        transition: background 0.3s;
+      }
+
       td:hover {
-        background-color: rgb(0, 0, 0);
+        background-color: #2d3142;
+        color: #ffffff;
+      }
+
+      .titulo-1 {
+        background-color: #5f0f40;
+        color: #ffdde1;
+        font-size: 20px;
+        font-weight: bold;
+        font-style: italic;
+        text-align: center;
+      }
+
+      .titulo-2 {
+        background-color: #e0e0e0;
+        color: #5f0f40;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .colaborador {
+        background-color: #f8f9fa;
+        color: #114b5f;
+      }
+
+      .salario {
+        background-color: #edf6f9;
+        color: #006d77;
+      }
+
+      .funcao {
+        background-color: #edf6f9;
+        color: #780000;
       }
     </style>
   </head>
   <body>
-    <!-- Cabeçalho -->
     <header>
       <h2 class="cabecalho-1">Módulo de HTML</h2>
       <span class="cabecalho-2"
@@ -89,190 +126,127 @@
       >
       <hr class="linha" />
     </header>
-    <!-- Conteúdo de hoje -->
+
     <section>
-      <div>
-        <table>
-          <tr>
-            <td colspan="3" class="titulo-1">Tabela de Colaboradores</td>
-          </tr>
-          <tr>
-            <td class="titulo-2">Colaborador</td>
-            <td class="titulo-2">Salário</td>
-            <td class="titulo-2">Profissão</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Arthur</td>
-            <td class="salario">R$ 3.500,00</td>
-            <td class="funcao">Minerador</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Beatriz</td>
-            <td class="salario">R$ 8.900,00</td>
-            <td class="funcao">Advogada</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Carlos</td>
-            <td class="salario">R$ 7.800,00</td>
-            <td class="funcao">Engenheiro Civil</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Eduardo</td>
-            <td class="salario">R$ 9.642,00</td>
-            <td class="funcao">Piloto de Avião</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Layla</td>
-            <td class="salario">R$ 5.340,00</td>
-            <td class="funcao">Designer</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Mariana</td>
-            <td class="salario">R$ 4.200,00</td>
-            <td class="funcao">Enfermeira</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Ricardo</td>
-            <td class="salario">R$ 6.500,00</td>
-            <td class="funcao">Analista de TI</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Sarah</td>
-            <td class="salario">R$ 2.850,00</td>
-            <td class="funcao">Assistente Social</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Valentina</td>
-            <td class="salario">R$ 3.800,00</td>
-            <td class="funcao">Arquiteta</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Yuna</td>
-            <td class="salario">R$ 5.000,00</td>
-            <td class="funcao">Psicóloga</td>
-          </tr>
-        </table>
-      </div>
-      <div>
-        <table>
-          <tr>
-            <td colspan="3" class="titulo-1">Tabela de Artistas</td>
-          </tr>
-          <tr>
-            <td class="titulo-2">Artista</td>
-            <td class="titulo-2">Grupo</td>
-            <td class="titulo-2">Gravadora</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Baby Consuelo</td>
-            <td class="salario">Os Novos Baianos</td>
-            <td class="funcao">Atlantic</td>
-          </tr>
-          <tr>
-            <td colspan="2" class="colaborador">Chico Buarque</td>
-            <td class="funcao">Philips</td>
-          </tr>
-          <tr>
-            <td colspan="2" class="colaborador">Elvis Presley</td>
-            <td class="funcao">RCA Victor</td>
-          </tr>
-          <tr>
-            <td colspan="2" class="colaborador">Frank Sinatra</td>
-            <td class="funcao">Columbia</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Joan Jett</td>
-            <td class="salario">Joan Jett & The Blackhearts</td>
-            <td class="funcao">Blackheart Records</td>
-          </tr>
-          <tr>
-            <td colspan="2" class="colaborador">Nara Leão</td>
-            <td class="funcao">Philips</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Nena Kerner</td>
-            <td class="salario">Nena</td>
-            <td class="funcao">CBS</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Noel Rosa</td>
-            <td class="salario">Bando De Tangarás</td>
-            <td class="funcao">Victor</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Rita Lee</td>
-            <td class="salario">Os Mutantes</td>
-            <td class="funcao">Som Livre</td>
-          </tr>
-          <tr>
-            <td class="colaborador">Suzi Quatro</td>
-            <td class="salario">The Pleasure Seekers</td>
-            <td class="funcao">RAK</td>
-          </tr>
-        </table>
-      </div>
-      <div>
-        <table>
-          <tr>
-            <td colspan="3" class="titulo-1">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="titulo-2">&nbsp;</td>
-            <td class="titulo-2">&nbsp;</td>
-            <td class="titulo-2">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="colaborador">&nbsp;</td>
-            <td class="salario">&nbsp;</td>
-            <td class="funcao">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="colaborador">&nbsp;</td>
-            <td class="salario">&nbsp;</td>
-            <td class="funcao">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="colaborador">&nbsp;</td>
-            <td class="salario">&nbsp;</td>
-            <td class="funcao">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="colaborador">&nbsp;</td>
-            <td class="salario">&nbsp;</td>
-            <td class="funcao">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="colaborador">&nbsp;</td>
-            <td class="salario">&nbsp;</td>
-            <td class="funcao">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="colaborador">&nbsp;</td>
-            <td class="salario">&nbsp;</td>
-            <td class="funcao">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="colaborador">&nbsp;</td>
-            <td class="salario">&nbsp;</td>
-            <td class="funcao">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="colaborador">&nbsp;</td>
-            <td class="salario">&nbsp;</td>
-            <td class="funcao">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="colaborador">&nbsp;</td>
-            <td class="salario">&nbsp;</td>
-            <td class="funcao">&nbsp;</td>
-          </tr>
-          <tr>
-            <td class="colaborador">&nbsp;</td>
-            <td class="salario">&nbsp;</td>
-            <td class="funcao">&nbsp;</td>
-          </tr>
-        </table>
-      </div>
+      <!-- Tabela 1 -->
+      <table>
+        <tr>
+          <td colspan="3" class="titulo-1">Tabela de Colaboradores</td>
+        </tr>
+        <tr>
+          <td class="titulo-2">Colaborador</td>
+          <td class="titulo-2">Salário</td>
+          <td class="titulo-2">Profissão</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Arthur</td>
+          <td class="salario">R$ 3.500,00</td>
+          <td class="funcao">Minerador</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Beatriz</td>
+          <td class="salario">R$ 8.900,00</td>
+          <td class="funcao">Advogada</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Carlos</td>
+          <td class="salario">R$ 7.800,00</td>
+          <td class="funcao">Engenheiro Civil</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Eduardo</td>
+          <td class="salario">R$ 9.642,00</td>
+          <td class="funcao">Piloto de Avião</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Layla</td>
+          <td class="salario">R$ 5.340,00</td>
+          <td class="funcao">Designer</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Mariana</td>
+          <td class="salario">R$ 4.200,00</td>
+          <td class="funcao">Enfermeira</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Ricardo</td>
+          <td class="salario">R$ 6.500,00</td>
+          <td class="funcao">Analista de TI</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Sarah</td>
+          <td class="salario">R$ 2.850,00</td>
+          <td class="funcao">Assistente Social</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Valentina</td>
+          <td class="salario">R$ 3.800,00</td>
+          <td class="funcao">Arquiteta</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Yuna</td>
+          <td class="salario">R$ 5.000,00</td>
+          <td class="funcao">Psicóloga</td>
+        </tr>
+      </table>
+
+      <!-- Tabela 2 -->
+      <table>
+        <tr>
+          <td colspan="3" class="titulo-1">Tabela de Artistas</td>
+        </tr>
+        <tr>
+          <td class="titulo-2">Artista</td>
+          <td class="titulo-2">Grupo</td>
+          <td class="titulo-2">Gravadora</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Baby Consuelo</td>
+          <td class="salario">Os Novos Baianos</td>
+          <td class="funcao">Atlantic</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="colaborador">Chico Buarque</td>
+          <td class="funcao">Philips</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="colaborador">Elvis Presley</td>
+          <td class="funcao">RCA Victor</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="colaborador">Frank Sinatra</td>
+          <td class="funcao">Columbia</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Joan Jett</td>
+          <td class="salario">Joan Jett & The Blackhearts</td>
+          <td class="funcao">Blackheart Records</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="colaborador">Nara Leão</td>
+          <td class="funcao">Philips</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Nena Kerner</td>
+          <td class="salario">Nena</td>
+          <td class="funcao">CBS</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Noel Rosa</td>
+          <td class="salario">Bando De Tangarás</td>
+          <td class="funcao">Victor</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Rita Lee</td>
+          <td class="salario">Os Mutantes</td>
+          <td class="funcao">Som Livre</td>
+        </tr>
+        <tr>
+          <td class="colaborador">Suzi Quatro</td>
+          <td class="salario">The Pleasure Seekers</td>
+          <td class="funcao">RAK</td>
+        </tr>
+      </table>
     </section>
   </body>
 </html>

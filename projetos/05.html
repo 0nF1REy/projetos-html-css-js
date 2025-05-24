@@ -1,72 +1,128 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>05 - CSS/Texto</title>
-    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta charset="UTF-8" />
+    <meta name="author" content="Alan Ryan da Silva Domingues" />
     <meta
       name="description"
       content="Esta página foi criada para estudo HTML"
     />
     <meta name="keywords" content="HTML,CSS" />
     <meta http-equiv="Refresh" content="25; 06.html" />
-    <meta charset="UTF-8" />
-    <style type="text/css">
-      h2 {
-        color: red;
-        font-size: 45px;
-        font-family: Arial, Verdana;
-        letter-spacing: 5px;
-        word-spacing: 15px;
+    <title>05 - CSS/Texto</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        color: #fff;
+        padding: 30px;
+        transition: background 0.5s ease;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 40px;
+        color: #ffd700;
+        margin-bottom: 10px;
         text-decoration: underline;
+      }
+
+      span {
+        display: block;
+        text-align: center;
+        color: #adff2f;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      hr {
+        border: 1px solid #48d1cc;
+        margin: 20px auto;
+        width: 80%;
+      }
+
+      h2 {
+        color: #ff6347;
+        font-size: 32px;
         text-align: center;
         font-style: italic;
         text-transform: uppercase;
+        margin: 30px 0 10px;
+        letter-spacing: 3px;
       }
+
       p {
-        color: royalblue;
-        font-size: 19px;
-        font-family: "Times New Roman";
-        letter-spacing: 1px;
-        word-spacing: 2px;
+        color: #e0ffff;
+        font-size: 18px;
         text-align: justify;
-        text-indent: 0px;
-        padding-left: 20px;
-        padding-right: 20px;
+        margin: 0 auto 30px;
+        line-height: 1.7;
+        max-width: 800px;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      span.destaque {
+        color: #ffeb3b;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      footer {
+        text-align: center;
+        font-size: 14px;
+        color: #ccc;
+        margin-top: 40px;
       }
     </style>
   </head>
   <body>
-    <h1 style="color: khaki; text-decoration: underline">Módulo de HTML</h1>
-    <span style="color: greenyellow"
-      >Realizado por Alan Ryan na data 14 de setembro de 2024.</span
-    >
-    <hr style="color: paleturquoise" />
-    <p></p>
+    <h1>Módulo de HTML</h1>
+    <span>Realizado por Alan Ryan na data 14 de setembro de 2024.</span>
+    <hr />
 
     <h2>Formatação CSS para textos</h2>
     <p>
-      O álbum Quartz de 1977, produzido por
-      <span style="color: khaki; font-weight: bold; text-decoration: underline"
-        >Tony Iommi</span
-      >
-      do Black Sabbath, combina o hard rock dos anos 70 com elementos de heavy
-      metal. Destaque para faixas como "Mainline Riders" e "Devil's Brew", que
-      trazem riffs potentes e temáticas sombrias. Apesar de não ter sido um
-      sucesso comercial, o álbum influenciou o movimento New Wave of British
-      Heavy Metal (NWOBHM), e continua relevante pela sua mistura única de
-      estilos e pela habilidade técnica da banda.
+      O álbum <strong>Quartz</strong> de 1977, produzido por
+      <span class="destaque">Tony Iommi</span> do Black Sabbath, combina o hard
+      rock dos anos 70 com elementos de heavy metal. Destaque para faixas como
+      <em>"Mainline Riders"</em> e <em>"Devil's Brew"</em>, que trazem riffs
+      potentes e temáticas sombrias. Apesar de não ter sido um sucesso
+      comercial, o álbum influenciou o movimento New Wave of British Heavy Metal
+      (NWOBHM), e continua relevante pela sua mistura única de estilos e pela
+      habilidade técnica da banda.
     </p>
+
     <h2>Título 2</h2>
     <p>
-      Stand Up and Fight (1980), o segundo álbum da banda britânica Quartz, é
-      uma obra representativa do movimento NWOBHM, com um som mais agressivo e
-      pesado em comparação ao seu disco de estreia. Com faixas como
-      <span style="color: khaki; font-weight: bold"
+      <strong>Stand Up and Fight</strong> (1980), o segundo álbum da banda
+      britânica Quartz, é uma obra representativa do movimento NWOBHM, com um
+      som mais agressivo e pesado em comparação ao seu disco de estreia. Com
+      faixas como
+      <span class="destaque"
         >"Stand Up and Fight", "Charlie Snow" e "Stoking Up the Fires of
         Hell"</span
       >, o álbum mistura riffs fortes e uma energia rebelde característica do
       heavy metal da época. Embora não tenha alcançado grande sucesso comercial,
       ele é considerado uma peça importante na consolidação do metal britânico.
     </p>
+
+    <footer>Página atualiza automaticamente em 25 segundos.</footer>
+
+    <script>
+      document.body.style.opacity = 0;
+      window.onload = () => {
+        document.body.style.transition = "opacity 1.5s ease-in-out";
+        document.body.style.opacity = 1;
+      };
+    </script>
   </body>
 </html>
