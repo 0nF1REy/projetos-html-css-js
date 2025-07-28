@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title>Carrossel de Imagens</title>
+    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta
+      name="description"
+      content="Esta página foi criada para estudo HTML"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Refresh" content="25; 01.html" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      li {
+        list-style-type: none;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .slideshow-container {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .slides {
+        height: 100%;
+      }
+
+      .slide {
+        width: 100%;
+        height: 100%;
+
+        display: none;
+      }
+
+      .slide[data-active] {
+        display: block;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .previous-button,
+      .next-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        width: 56px;
+        height: 56px;
+        font-size: 32px;
+        font-weight: bold;
+
+        color: #fff;
+        background-color: transparent;
+        border: 0;
+      }
+
+      .previous-button {
+        left: 0;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+
+      .next-button {
+        right: 0;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+      }
+
+      .previous-button:hover,
+      .next-button:hover {
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .fade {
+        animation-name: fade;
+        animation-duration: 1.2s;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0.8;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="slideshow-container">
+      <ul class="slides">
+        <li class="slide fade" data-active>
+          <img
+            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"
+            alt=""
+          />
+        </li>
+        <li class="slide fade">
+          <img
+            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1275&q=80"
+            alt=""
+          />
+        </li>
+        <li class="slide fade">
+          <img
+            src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt=""
+          />
+        </li>
+      </ul>
+
+      <button class="previous-button" data-change-slide-button="previous">
+        &lt;
+      </button>
+      <button class="next-button" data-change-slide-button="next">&gt;</button>
+    </section>
+    <script>
+      const changeSlideButtons = document.querySelectorAll(
+        "[data-change-slide-button]"
+      );
+
+      changeSlideButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const slides = document.querySelector(".slides");
+          const activeSlide = slides.querySelector("[data-active]");
+          let indexActiveSlide = Array.from(slides.children).indexOf(
+            activeSlide
+          );
+
+          indexActiveSlide =
+            button.dataset.changeSlideButton === "next"
+              ? indexActiveSlide + 1
+              : indexActiveSlide - 1;
+
+          if (indexActiveSlide >= slides.children.length) {
+            indexActiveSlide = 0;
+          }
+
+          if (indexActiveSlide < 0) {
+            indexActiveSlide = slides.children.length - 1;
+          }
+
+          activeSlide.removeAttribute("data-active");
+          slides.children[indexActiveSlide].dataset.active = true;
+        });
+      });
+    </script>
+  </body>
+</html>
