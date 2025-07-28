@@ -18,12 +18,9 @@
         box-sizing: border-box;
       }
 
-      li {
-        list-style-type: none;
-      }
-
-      button {
-        cursor: pointer;
+      body {
+        background: #000;
+        font-family: sans-serif;
       }
 
       .slideshow-container {
@@ -34,17 +31,21 @@
 
       .slides {
         height: 100%;
+        position: relative;
       }
 
       .slide {
         width: 100%;
         height: 100%;
-
         display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
 
       .slide[data-active] {
         display: block;
+        animation: fadeZoom 1.2s ease-in-out;
       }
 
       .slide img {
@@ -54,74 +55,103 @@
         object-position: center;
       }
 
+      .slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.4),
+          rgba(0, 0, 0, 0.7)
+        );
+      }
+
+      @keyframes fadeZoom {
+        0% {
+          opacity: 0;
+          transform: scale(1.05);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
       .previous-button,
       .next-button {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-
         width: 56px;
         height: 56px;
-        font-size: 32px;
+        font-size: 28px;
         font-weight: bold;
-
         color: #fff;
-        background-color: transparent;
-        border: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        transition: background-color 0.3s;
+        z-index: 10;
       }
 
       .previous-button {
-        left: 0;
-        border-top-right-radius: 6px;
-        border-bottom-right-radius: 6px;
+        left: 20px;
       }
 
       .next-button {
-        right: 0;
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
+        right: 20px;
       }
 
       .previous-button:hover,
       .next-button:hover {
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(255, 255, 255, 0.2);
       }
 
-      .fade {
-        animation-name: fade;
-        animation-duration: 1.2s;
+      .indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
       }
 
-      @keyframes fade {
-        from {
-          opacity: 0.8;
-        }
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        transition: background 0.3s, transform 0.3s;
+        cursor: pointer;
+      }
 
-        to {
-          opacity: 1;
-        }
+      .indicator.active {
+        background: #fff;
+        transform: scale(1.3);
       }
     </style>
   </head>
   <body>
     <section class="slideshow-container">
       <ul class="slides">
-        <li class="slide fade" data-active>
+        <li class="slide" data-active>
           <img
-            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"
-            alt=""
+            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1174&q=80"
+            alt="Slide 1"
           />
         </li>
-        <li class="slide fade">
+        <li class="slide">
           <img
-            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1275&q=80"
-            alt=""
+            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1275&q=80"
+            alt="Slide 2"
           />
         </li>
-        <li class="slide fade">
+        <li class="slide">
           <img
-            src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            alt=""
+            src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1170&q=80"
+            alt="Slide 3"
           />
         </li>
       </ul>
@@ -130,35 +160,61 @@
         &lt;
       </button>
       <button class="next-button" data-change-slide-button="next">&gt;</button>
+
+      <div class="indicators"></div>
     </section>
+
     <script>
+      const slides = document.querySelector(".slides");
       const changeSlideButtons = document.querySelectorAll(
         "[data-change-slide-button]"
       );
+      const indicatorsContainer = document.querySelector(".indicators");
+
+      const slidesArray = Array.from(slides.children);
+
+      // Criação dinâmica dos indicadores de navegação do carrossel
+      slidesArray.forEach((_, i) => {
+        const indicator = document.createElement("div");
+        indicator.classList.add("indicator");
+        if (i === 0) indicator.classList.add("active");
+        indicator.dataset.index = i;
+        indicatorsContainer.appendChild(indicator);
+      });
+
+      const indicators = document.querySelectorAll(".indicator");
+
+      function setActiveSlide(index) {
+        const activeSlide = slides.querySelector("[data-active]");
+        const activeIndex = slidesArray.indexOf(activeSlide);
+
+        activeSlide.removeAttribute("data-active");
+        slidesArray[index].dataset.active = true;
+
+        indicators[activeIndex].classList.remove("active");
+        indicators[index].classList.add("active");
+      }
 
       changeSlideButtons.forEach((button) => {
         button.addEventListener("click", () => {
-          const slides = document.querySelector(".slides");
           const activeSlide = slides.querySelector("[data-active]");
-          let indexActiveSlide = Array.from(slides.children).indexOf(
-            activeSlide
-          );
+          let indexActiveSlide = slidesArray.indexOf(activeSlide);
 
           indexActiveSlide =
             button.dataset.changeSlideButton === "next"
               ? indexActiveSlide + 1
               : indexActiveSlide - 1;
 
-          if (indexActiveSlide >= slides.children.length) {
-            indexActiveSlide = 0;
-          }
+          if (indexActiveSlide >= slidesArray.length) indexActiveSlide = 0;
+          if (indexActiveSlide < 0) indexActiveSlide = slidesArray.length - 1;
 
-          if (indexActiveSlide < 0) {
-            indexActiveSlide = slides.children.length - 1;
-          }
+          setActiveSlide(indexActiveSlide);
+        });
+      });
 
-          activeSlide.removeAttribute("data-active");
-          slides.children[indexActiveSlide].dataset.active = true;
+      indicators.forEach((indicator) => {
+        indicator.addEventListener("click", () => {
+          setActiveSlide(parseInt(indicator.dataset.index));
         });
       });
     </script>
