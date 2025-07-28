@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>Carrossel de Imagens Moderno</title>
-    <meta name="Author" content="Alan Ryan da Silva Domingues - Revamped by Gemini" />
+    <title>Carrossel de Imagens</title>
+    <meta
+      name="Author"
+      content="Alan Ryan da Silva Domingues - Revamped by Gemini"
+    />
     <meta
       name="description"
       content="Esta página é um carrossel de imagens moderno e aprimorado."
@@ -26,7 +29,7 @@
       }
 
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
 
       li {
@@ -165,10 +168,10 @@
         </li>
         <li class="slide">
           <img
-            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1275&q=80"
-            alt="Vastos campos verdes sob um céu azul"
+            src="./assets/images/19_carrossel_de_imagens/fullmetal-alchemist.jpg"
+            alt="Fullmetal Alchemist"
           />
-           <div class="slide-caption">
+          <div class="slide-caption">
             <h3>Fullmetal Alchemist</h3>
           </div>
         </li>
@@ -177,7 +180,7 @@
             src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
             alt="Floresta densa com raios de sol"
           />
-           <div class="slide-caption">
+          <div class="slide-caption">
             <h3>Barakamon</h3>
           </div>
         </li>
@@ -223,13 +226,13 @@
       };
 
       const changeSlide = (direction) => {
-          const offset = direction === 'next' ? 1 : -1;
-          goToSlide(currentSlide + offset);
+        const offset = direction === "next" ? 1 : -1;
+        goToSlide(currentSlide + offset);
       };
 
       const startSlideShow = () => {
         slideInterval = setInterval(() => {
-          changeSlide('next');
+          changeSlide("next");
         }, 5000);
       };
 
@@ -237,15 +240,21 @@
         clearInterval(slideInterval);
       };
 
-      document.querySelectorAll("[data-change-slide-button]").forEach(button => {
-          button.addEventListener('click', () => {
-              const direction = button.dataset.changeSlideButton;
-              changeSlide(direction);
+      document
+        .querySelectorAll("[data-change-slide-button]")
+        .forEach((button) => {
+          button.addEventListener("click", () => {
+            const direction = button.dataset.changeSlideButton;
+            changeSlide(direction);
           });
-      });
+        });
 
-      document.querySelector('.slideshow-container').addEventListener('mouseover', stopSlideShow);
-      document.querySelector('.slideshow-container').addEventListener('mouseout', startSlideShow);
+      document
+        .querySelector(".slideshow-container")
+        .addEventListener("mouseover", stopSlideShow);
+      document
+        .querySelector(".slideshow-container")
+        .addEventListener("mouseout", startSlideShow);
 
       createDots();
       startSlideShow();
