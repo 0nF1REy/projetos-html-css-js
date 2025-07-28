@@ -10,7 +10,7 @@
       name="description"
       content="Esta página é um carrossel de imagens moderno e aprimorado."
     />
-    <!-- <meta http-equiv="Refresh" content="25; 01.html" /> -->
+    <meta http-equiv="Refresh" content="25; 01.html" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -236,6 +236,34 @@
             </p>
           </div>
         </li>
+        <li class="slide">
+          <img
+            src="./assets/images/19_carrossel_de_imagens/gintama.jpg"
+            alt="Gintama"
+          />
+          <div class="slide-caption">
+            <h3>Gintama</h3>
+            <p>
+              Em um Japão alternativo dominado por alienígenas, um samurai
+              preguiçoso e seus amigos aceitam qualquer trabalho para
+              sobreviver, misturando ação, comédia e paródias.
+            </p>
+          </div>
+        </li>
+        <li class="slide">
+          <img
+            src="./assets/images/19_carrossel_de_imagens/great-teacher-onizuka.jpg"
+            alt="Great Teacher Onizuka"
+          />
+          <div class="slide-caption">
+            <h3>Great Teacher Onizuka</h3>
+            <p>
+              Um ex-delinquente sonha em ser o melhor professor do Japão e usa
+              métodos nada convencionais para inspirar e mudar a vida de seus
+              alunos problemáticos.
+            </p>
+          </div>
+        </li>
       </ul>
 
       <button class="previous-button" data-change-slide-button="previous">
@@ -251,6 +279,7 @@
       let currentSlide = 0;
       let slideInterval;
 
+      // Criação dinâmica dos indicadores e associação aos eventos de troca de slide
       const createDots = () => {
         slides.forEach((_, i) => {
           const dot = document.createElement("div");
