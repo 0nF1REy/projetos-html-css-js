@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>Carrossel de Imagens</title>
-    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <title>Carrossel de Imagens Moderno</title>
+    <meta name="Author" content="Alan Ryan da Silva Domingues - Revamped by Gemini" />
     <meta
       name="description"
-      content="Esta página foi criada para estudo HTML"
+      content="Esta página é um carrossel de imagens moderno e aprimorado."
     />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Refresh" content="25; 01.html" />
     <style>
+      :root {
+        --animation-speed: 1s;
+        --primary-color: #fff;
+        --secondary-color: #000;
+        --dot-color: #bbb;
+        --dot-active-color: #717171;
+      }
+
       * {
         padding: 0;
         margin: 0;
@@ -19,8 +26,17 @@
       }
 
       body {
-        background: #000;
-        font-family: sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      li {
+        list-style-type: none;
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        background: transparent;
       }
 
       .slideshow-container {
@@ -31,21 +47,20 @@
 
       .slides {
         height: 100%;
-        position: relative;
+        width: 100%;
       }
 
       .slide {
         width: 100%;
         height: 100%;
-        display: none;
         position: absolute;
-        top: 0;
-        left: 0;
+        opacity: 0;
+        transition: opacity var(--animation-speed) ease-in-out;
       }
 
       .slide[data-active] {
-        display: block;
-        animation: fadeZoom 1.2s ease-in-out;
+        opacity: 1;
+        z-index: 1;
       }
 
       .slide img {
@@ -55,26 +70,30 @@
         object-position: center;
       }
 
-      .slide::after {
-        content: "";
+      .slide-caption {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.4),
-          rgba(0, 0, 0, 0.7)
-        );
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 40px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        color: var(--primary-color);
+        z-index: 2;
+        transform: translateY(100%);
+        transition: transform var(--animation-speed) ease-in-out;
       }
 
-      @keyframes fadeZoom {
-        0% {
-          opacity: 0;
-          transform: scale(1.05);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
+      .slide[data-active] .slide-caption {
+        transform: translateY(0);
+      }
+
+      .slide-caption h3 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .slide-caption p {
+        font-size: 1.2rem;
       }
 
       .previous-button,
@@ -82,17 +101,22 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        width: 56px;
-        height: 56px;
-        font-size: 28px;
-        font-weight: bold;
-        color: #fff;
-        background-color: rgba(0, 0, 0, 0.5);
-        border: none;
+        z-index: 2;
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        background-color: rgba(0, 0, 0, 0.2);
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        transition: background-color 0.3s;
-        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .previous-button:hover,
+      .next-button:hover {
+        background-color: rgba(0, 0, 0, 0.5);
       }
 
       .previous-button {
@@ -103,33 +127,27 @@
         right: 20px;
       }
 
-      .previous-button:hover,
-      .next-button:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-      }
-
-      .indicators {
+      .dots-container {
         position: absolute;
         bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
+        z-index: 2;
         display: flex;
         gap: 10px;
-        z-index: 10;
       }
 
-      .indicator {
+      .dot {
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.4);
-        transition: background 0.3s, transform 0.3s;
+        background-color: var(--dot-color);
         cursor: pointer;
+        transition: background-color 0.3s ease;
       }
 
-      .indicator.active {
-        background: #fff;
-        transform: scale(1.3);
+      .dot.active {
+        background-color: var(--dot-active-color);
       }
     </style>
   </head>
@@ -138,85 +156,99 @@
       <ul class="slides">
         <li class="slide" data-active>
           <img
-            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1174&q=80"
-            alt="Slide 1"
+            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"
+            alt="Paisagem montanhosa com um lago"
           />
+          <div class="slide-caption">
+            <h3>Little Witch Academia</h3>
+          </div>
         </li>
         <li class="slide">
           <img
-            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1275&q=80"
-            alt="Slide 2"
+            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1275&q=80"
+            alt="Vastos campos verdes sob um céu azul"
           />
+           <div class="slide-caption">
+            <h3>Fullmetal Alchemist</h3>
+          </div>
         </li>
         <li class="slide">
           <img
-            src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1170&q=80"
-            alt="Slide 3"
+            src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt="Floresta densa com raios de sol"
           />
+           <div class="slide-caption">
+            <h3>Barakamon</h3>
+          </div>
         </li>
       </ul>
 
       <button class="previous-button" data-change-slide-button="previous">
-        &lt;
+        ❮
       </button>
-      <button class="next-button" data-change-slide-button="next">&gt;</button>
+      <button class="next-button" data-change-slide-button="next">❯</button>
 
-      <div class="indicators"></div>
+      <div class="dots-container"></div>
     </section>
-
     <script>
-      const slides = document.querySelector(".slides");
-      const changeSlideButtons = document.querySelectorAll(
-        "[data-change-slide-button]"
-      );
-      const indicatorsContainer = document.querySelector(".indicators");
+      const slides = document.querySelectorAll(".slide");
+      const dotsContainer = document.querySelector(".dots-container");
+      let currentSlide = 0;
+      let slideInterval;
 
-      const slidesArray = Array.from(slides.children);
-
-      // Criação dinâmica dos indicadores de navegação do carrossel
-      slidesArray.forEach((_, i) => {
-        const indicator = document.createElement("div");
-        indicator.classList.add("indicator");
-        if (i === 0) indicator.classList.add("active");
-        indicator.dataset.index = i;
-        indicatorsContainer.appendChild(indicator);
-      });
-
-      const indicators = document.querySelectorAll(".indicator");
-
-      function setActiveSlide(index) {
-        const activeSlide = slides.querySelector("[data-active]");
-        const activeIndex = slidesArray.indexOf(activeSlide);
-
-        activeSlide.removeAttribute("data-active");
-        slidesArray[index].dataset.active = true;
-
-        indicators[activeIndex].classList.remove("active");
-        indicators[index].classList.add("active");
-      }
-
-      changeSlideButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const activeSlide = slides.querySelector("[data-active]");
-          let indexActiveSlide = slidesArray.indexOf(activeSlide);
-
-          indexActiveSlide =
-            button.dataset.changeSlideButton === "next"
-              ? indexActiveSlide + 1
-              : indexActiveSlide - 1;
-
-          if (indexActiveSlide >= slidesArray.length) indexActiveSlide = 0;
-          if (indexActiveSlide < 0) indexActiveSlide = slidesArray.length - 1;
-
-          setActiveSlide(indexActiveSlide);
+      const createDots = () => {
+        slides.forEach((_, i) => {
+          const dot = document.createElement("div");
+          dot.classList.add("dot");
+          if (i === 0) dot.classList.add("active");
+          dot.addEventListener("click", () => {
+            goToSlide(i);
+          });
+          dotsContainer.appendChild(dot);
         });
+      };
+
+      const updateDots = () => {
+        const dots = document.querySelectorAll(".dot");
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === currentSlide);
+        });
+      };
+
+      const goToSlide = (slideIndex) => {
+        slides[currentSlide].removeAttribute("data-active");
+        currentSlide = (slideIndex + slides.length) % slides.length;
+        slides[currentSlide].setAttribute("data-active", "");
+        updateDots();
+      };
+
+      const changeSlide = (direction) => {
+          const offset = direction === 'next' ? 1 : -1;
+          goToSlide(currentSlide + offset);
+      };
+
+      const startSlideShow = () => {
+        slideInterval = setInterval(() => {
+          changeSlide('next');
+        }, 5000);
+      };
+
+      const stopSlideShow = () => {
+        clearInterval(slideInterval);
+      };
+
+      document.querySelectorAll("[data-change-slide-button]").forEach(button => {
+          button.addEventListener('click', () => {
+              const direction = button.dataset.changeSlideButton;
+              changeSlide(direction);
+          });
       });
 
-      indicators.forEach((indicator) => {
-        indicator.addEventListener("click", () => {
-          setActiveSlide(parseInt(indicator.dataset.index));
-        });
-      });
+      document.querySelector('.slideshow-container').addEventListener('mouseover', stopSlideShow);
+      document.querySelector('.slideshow-container').addEventListener('mouseout', startSlideShow);
+
+      createDots();
+      startSlideShow();
     </script>
   </body>
 </html>
