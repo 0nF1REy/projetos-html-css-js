@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>Rotating Snakes Responsivo (Versão Mínima)</title>
+    <title>Rotating Snakes</title>
     <meta name="Author" content="Alan Ryan da Silva Domingues" />
     <meta
       name="description"
       content="Experimento visual baseado na ilusão de ótica Rotating Snakes, exibindo padrões circulares interativos em um canvas HTML5 responsivo."
     />
-    <!-- <meta http-equiv="Refresh" content="25; 01.html" /> -->
+    <meta http-equiv="Refresh" content="25; 01.html" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,13 +33,13 @@
       const ctx = canvas.getContext("2d");
 
       function drawGrid({ centerX, centerY, radius, bandWidth, cols, rows }) {
-        const minX = centerX - (cols - 1) * radius;
-        const maxX = centerX + (cols - 1) * radius;
-        const minY = centerY - (rows - 1) * radius;
-        const maxY = centerY + (rows - 1) * radius;
+        const startX = centerX - (cols / 2) * (radius * 2);
+        const startY = centerY - (rows / 2) * (radius * 2);
 
-        for (let x = minX; x <= maxX; x += radius * 2) {
-          for (let y = minY; y <= maxY; y += radius * 2) {
+        for (let i = 0; i < cols; i++) {
+          for (let j = 0; j < rows; j++) {
+            const x = startX + i * (radius * 2) + radius;
+            const y = startY + j * (radius * 2) + radius;
             drawSnake({
               centerX: x,
               centerY: y,
@@ -87,14 +87,15 @@
         ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
         ctx.fill();
 
-        radius -= bandWidth / 2;
+        let innerRadius = radius - bandWidth / 2;
+        if (innerRadius < 0) innerRadius = 0;
 
-        const segmentWidth = (2 * Math.PI * radius) / count;
+        const segmentWidth = (2 * Math.PI * innerRadius) / count;
         const dashWidth = segmentWidth * 0.25;
         const spaceWidth = segmentWidth * 0.75;
 
         ctx.beginPath();
-        ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+        ctx.arc(centerX, centerY, innerRadius, 0, 2 * Math.PI);
         ctx.lineWidth = bandWidth;
         ctx.setLineDash([dashWidth, spaceWidth]);
         ctx.lineDashOffset = doOffset ? segmentWidth / 2 : 0;
@@ -114,10 +115,12 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const scaleFactor = canvas.width / 1620;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        const dynamicRadius = 100 * scaleFactor;
-        const dynamicBandWidth = 30 * scaleFactor;
+        const baseRadius = 100;
+
+        const cols = Math.ceil(canvas.width / (baseRadius * 2)) + 2;
+        const rows = Math.ceil(canvas.height / (baseRadius * 2)) + 2;
 
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
@@ -125,24 +128,23 @@
         drawGrid({
           centerX,
           centerY,
-          radius: dynamicRadius,
-          bandWidth: dynamicBandWidth,
-          cols: 7,
-          rows: 4,
+          radius: baseRadius,
+          bandWidth: 30,
+          cols: cols,
+          rows: rows,
         });
 
         drawGrid({
-          centerX,
-          centerY,
-          radius: dynamicRadius,
-          bandWidth: dynamicBandWidth,
-          cols: 6,
-          rows: 3,
+          centerX: centerX - baseRadius,
+          centerY: centerY - baseRadius,
+          radius: baseRadius,
+          bandWidth: 30,
+          cols: cols,
+          rows: rows,
         });
       }
 
       drawScene();
-
       window.addEventListener("resize", drawScene);
     </script>
   </body>
