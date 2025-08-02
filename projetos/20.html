@@ -27,15 +27,38 @@
       const bandWidth = 30;
       const count = 10;
 
-      drawBand({
-        centerX: 300,
-        centerY: 400,
-        radius: 200,
-        bandWidth: 50,
-        count: 20,
+      drawSnake({
+        centerX,
+        centerY,
+        radius,
+        bandWidth,
+        count,
       });
 
-      function drawBand({ centerX, centerY, radius, bandWidth, count }) {
+      function drawSnake({ centerX, centerY, radius, bandWidth, count }) {
+        for (let i = 0; radius > 0; i++) {
+          drawBand({
+            centerX,
+            centerY,
+            radius,
+            bandWidth,
+            count,
+            doOffset: i % 2,
+          });
+          radius -= bandWidth;
+        }
+      }
+
+      function drawBand({
+        centerX,
+        centerY,
+        radius,
+        bandWidth,
+        count,
+        doOffset,
+      }) {
+        radius -= bandWidth / 2;
+
         const segmentWidth = (2 * Math.PI * radius) / count;
         const dashWidth = segmentWidth * 0.25;
         const spaceWidth = segmentWidth * 0.75;
@@ -44,13 +67,15 @@
         ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
         ctx.lineWidth = bandWidth;
         ctx.setLineDash([dashWidth, spaceWidth]);
+        ctx.lineDashOffset = doOffset ? segmentWidth / 2 : 0;
+        ctx.strokeStyle = "black";
         ctx.stroke();
 
-        ctx.lineDashOffset = -dashWidth;
+        ctx.lineDashOffset -= dashWidth;
         ctx.strokeStyle = "blue";
         ctx.stroke();
 
-        ctx.lineDashOffset = +dashWidth;
+        ctx.lineDashOffset += 2 * dashWidth;
         ctx.strokeStyle = "yellow";
         ctx.stroke();
       }
