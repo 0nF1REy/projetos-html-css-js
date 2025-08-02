@@ -3,7 +3,10 @@
   <head>
     <title>Rotating Snakes</title>
     <meta name="Author" content="Alan Ryan da Silva Domingues" />
-    <meta name="description" content="" />
+    <meta
+      name="description"
+      content="Experimento visual baseado na ilusão de ótica Rotating Snakes, exibindo padrões circulares interativos em um canvas HTML5."
+    />
     <!-- <meta http-equiv="Refresh" content="25; 01.html" /> -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -26,16 +29,40 @@
       const radius = 100;
       const bandWidth = 30;
       const count = 10;
+      const bandScaleFactor = 0.8;
 
-      drawSnake({
+      drawGrid({ centerX, centerY, radius, bandWidth, cols: 7, rows: 4 });
+
+      drawGrid({ centerX, centerY, radius, bandWidth, cols: 6, rows: 3 });
+
+      function drawGrid({ centerX, centerY, radius, bandWidth, cols, rows }) {
+        const minX = centerX - (cols - 1) * radius;
+        const maxX = centerX + (cols - 1) * radius;
+        const minY = centerY - (rows - 1) * radius;
+        const maxY = centerY + (rows - 1) * radius;
+
+        for (let x = minX; x <= maxX; x += radius * 2) {
+          for (let y = minY; y <= maxY; y += radius * 2) {
+            drawSnake({
+              centerX: x,
+              centerY: y,
+              radius,
+              bandWidth,
+              count,
+              bandScaleFactor,
+            });
+          }
+        }
+      }
+
+      function drawSnake({
         centerX,
         centerY,
         radius,
         bandWidth,
         count,
-      });
-
-      function drawSnake({ centerX, centerY, radius, bandWidth, count }) {
+        bandScaleFactor,
+      }) {
         for (let i = 0; radius > 0; i++) {
           drawBand({
             centerX,
@@ -46,6 +73,7 @@
             doOffset: i % 2,
           });
           radius -= bandWidth;
+          bandWidth *= bandScaleFactor;
         }
       }
 
@@ -57,6 +85,11 @@
         count,
         doOffset,
       }) {
+        ctx.beginPath();
+        ctx.fillStyle = "white";
+        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+        ctx.fill();
+
         radius -= bandWidth / 2;
 
         const segmentWidth = (2 * Math.PI * radius) / count;
