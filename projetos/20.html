@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title>Rotating Snakes</title>
+    <meta name="Author" content="Alan Ryan da Silva Domingues" />
+    <meta name="description" content="" />
+    <!-- <meta http-equiv="Refresh" content="25; 01.html" /> -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style></style>
+  </head>
+  <body>
+    <canvas
+      id="myCanvas"
+      width="1620"
+      height="1004"
+      style="border: 1px solid"
+    ></canvas>
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = 100;
+      const bandWidth = 30;
+
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+      ctx.lineWidth = bandWidth;
+      ctx.stroke();
+    </script>
+  </body>
+</html>
