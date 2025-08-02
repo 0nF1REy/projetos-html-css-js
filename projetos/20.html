@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <title>Rotating Snakes</title>
+    <title>Rotating Snakes Responsivo (Versão Mínima)</title>
     <meta name="Author" content="Alan Ryan da Silva Domingues" />
     <meta
       name="description"
-      content="Experimento visual baseado na ilusão de ótica Rotating Snakes, exibindo padrões circulares interativos em um canvas HTML5."
+      content="Experimento visual baseado na ilusão de ótica Rotating Snakes, exibindo padrões circulares interativos em um canvas HTML5 responsivo."
     />
     <!-- <meta http-equiv="Refresh" content="25; 01.html" /> -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style></style>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f0f0f0;
+      }
+      #myCanvas {
+        display: block;
+        border: 1px solid;
+      }
+    </style>
   </head>
   <body>
-    <canvas
-      id="myCanvas"
-      width="1620"
-      height="1004"
-      style="border: 1px solid"
-    ></canvas>
+    <canvas id="myCanvas"></canvas>
+
     <script>
       const canvas = document.getElementById("myCanvas");
       const ctx = canvas.getContext("2d");
-
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-      const radius = 100;
-      const bandWidth = 30;
-      const count = 10;
-      const bandScaleFactor = 0.8;
-
-      drawGrid({ centerX, centerY, radius, bandWidth, cols: 7, rows: 4 });
-
-      drawGrid({ centerX, centerY, radius, bandWidth, cols: 6, rows: 3 });
 
       function drawGrid({ centerX, centerY, radius, bandWidth, cols, rows }) {
         const minX = centerX - (cols - 1) * radius;
@@ -48,8 +45,8 @@
               centerY: y,
               radius,
               bandWidth,
-              count,
-              bandScaleFactor,
+              count: 10,
+              bandScaleFactor: 0.8,
             });
           }
         }
@@ -112,6 +109,41 @@
         ctx.strokeStyle = "yellow";
         ctx.stroke();
       }
+
+      function drawScene() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const scaleFactor = canvas.width / 1620;
+
+        const dynamicRadius = 100 * scaleFactor;
+        const dynamicBandWidth = 30 * scaleFactor;
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        drawGrid({
+          centerX,
+          centerY,
+          radius: dynamicRadius,
+          bandWidth: dynamicBandWidth,
+          cols: 7,
+          rows: 4,
+        });
+
+        drawGrid({
+          centerX,
+          centerY,
+          radius: dynamicRadius,
+          bandWidth: dynamicBandWidth,
+          cols: 6,
+          rows: 3,
+        });
+      }
+
+      drawScene();
+
+      window.addEventListener("resize", drawScene);
     </script>
   </body>
 </html>
